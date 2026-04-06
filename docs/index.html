@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL 2026 Fantasy Leaderboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 24px 0 16px;
+        }
+        .header h1 {
+            font-size: 1.6em;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .subtitle {
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 4px;
+        }
+        .header .update-date {
+            color: #666;
+            font-size: 0.75em;
+            margin-top: 8px;
+        }
+
+        /* Owner name in header */
+        .owner-name {
+            font-size: 0.65em;
+            opacity: 0.85;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* Fun title bar inside expanded card */
+        .fun-title-bar {
+            padding: 10px 14px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-bottom: 1px solid #222;
+            text-align: center;
+        }
+        .fun-title {
+            font-size: 1em;
+            font-weight: 700;
+            display: block;
+        }
+        .fun-subtitle {
+            font-size: 0.75em;
+            color: #888;
+            display: block;
+            margin-top: 2px;
+        }
+        .trash-talk {
+            font-size: 0.8em;
+            color: #ff6b6b;
+            font-style: italic;
+            margin-top: 6px;
+            padding: 4px 0;
+        }
+        .owner-detail {
+            padding: 6px 14px;
+            font-size: 0.78em;
+            color: #aaa;
+            background: #0f0f1f;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        .podium-owner {
+            font-size: 0.7em;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        /* Champion glow */
+        .team-card.champion {
+            box-shadow: 0 0 15px rgba(255, 210, 0, 0.4);
+            border: 1px solid rgba(255, 210, 0, 0.3);
+        }
+        /* Wooden spoon shame */
+        .team-card.wooden-spoon {
+            opacity: 0.85;
+            border: 1px dashed #ff4444;
+        }
+        .team-card .team-header {
+            position: relative;
+        }
+
+        /* WhatsApp share button */
+        .share-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 24px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            max-width: 280px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .share-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        .share-btn:active { transform: scale(0.97); }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Shame zone */
+        .shame-zone {
+            margin-top: 24px;
+            padding: 16px;
+            background: linear-gradient(135deg, #1a0000, #0a0a1a);
+            border: 1px dashed #ff4444;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .shame-zone h2 {
+            color: #ff4444;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .shame-zone .shame-text {
+            color: #ff6b6b;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+        .shame-zone .shame-owner {
+            font-size: 1.3em;
+            margin-top: 8px;
+        }
+
+        /* Dark horse alert */
+        .dark-horse {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #1a3a00, #0a2a00);
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            color: #76ff03;
+            font-size: 0.8em;
+            font-weight: 600;
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
+            50% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.6); }
+        }
+
+        /* Team Cards */
+        .team-card {
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .team-header {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            cursor: pointer;
+            user-select: none;
+            gap: 12px;
+            transition: filter 0.2s;
+        }
+        .team-header:hover { filter: brightness(1.1); }
+        .team-header:active { filter: brightness(0.95); }
+
+        .rank-badge {
+            font-size: 1.3em;
+            font-weight: 800;
+            min-width: 40px;
+            opacity: 0.9;
+        }
+        .team-info { flex: 1; }
+        .team-abbr { font-size: 1.2em; font-weight: 700; }
+        .team-full { font-size: 0.7em; opacity: 0.8; }
+        .team-pts { text-align: right; }
+        .pts-value { font-size: 1.5em; font-weight: 800; }
+        .pts-label { font-size: 0.65em; opacity: 0.7; text-transform: uppercase; }
+        .expand-icon {
+            font-size: 0.8em;
+            opacity: 0.6;
+            transition: transform 0.3s;
+        }
+        .team-card.open .expand-icon { transform: rotate(180deg); }
+
+        /* Trend */
+        .trend { font-size: 0.75em; font-weight: 600; }
+        .trend-up { color: #4caf50; }
+        .trend-down { color: #f44336; }
+        .trend-same { color: #888; }
+        .pt-diff { font-size: 0.7em; opacity: 0.7; }
+
+        /* Team Body (expandable) */
+        .team-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            background: #111122;
+        }
+        .team-card.open .team-body {
+            max-height: 600px;
+        }
+
+        /* XI Table */
+        .xi-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85em;
+        }
+        .xi-table th {
+            background: #1a1a2e;
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.8em;
+            color: #888;
+            text-transform: uppercase;
+        }
+        .xi-table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        .xi-table .num { width: 30px; color: #666; }
+        .xi-table .pts { text-align: right; font-weight: 600; color: #ffd200; }
+        .xi-table th:last-child { text-align: right; }
+        .total-row td { border-top: 2px solid #333; padding-top: 10px; }
+        .avg-row td { color: #888; font-size: 0.9em; }
+        .player-name { font-weight: 500; }
+
+        /* Role Badges */
+        .role-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .role-wk { background: #1565c0; color: #fff; }
+        .role-bat { background: #e65100; color: #fff; }
+        .role-ar { background: #2e7d32; color: #fff; }
+        .role-bowl { background: #6a1b9a; color: #fff; }
+
+        /* History Section */
+        .history-section {
+            margin-top: 24px;
+            padding: 16px;
+            background: #111122;
+            border-radius: 12px;
+        }
+        .history-section h2 {
+            font-size: 1em;
+            color: #888;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em;
+            overflow-x: auto;
+        }
+        .history-table th, .history-table td {
+            padding: 6px 8px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        .history-table th { color: #666; font-size: 0.85em; }
+        .history-table td { color: #ccc; }
+        .history-table .team-col { text-align: left; font-weight: 600; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #444;
+            font-size: 0.7em;
+        }
+
+        /* Podium (top 3) */
+        .podium {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 8px;
+            margin: 20px 0;
+            height: 160px;
+        }
+        .podium-item {
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            padding: 12px 8px 8px;
+            min-width: 90px;
+            position: relative;
+        }
+        .podium-item.first { height: 150px; }
+        .podium-item.second { height: 120px; }
+        .podium-item.third { height: 100px; }
+        .podium-rank {
+            font-size: 1.8em;
+            font-weight: 900;
+            opacity: 0.3;
+        }
+        .podium-team {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+        .podium-pts {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0a0a1a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IPL 2026 Fantasy Leaderboard</h1>
+            <div class="subtitle">Friends Auction League</div>
+            <div class="update-date">Last updated: 2026-04-07</div>
+        </div>
+
+        <!-- Podium -->
+        <div class="podium">
+            
+            <div class="podium-item first"
+                 style="background:#1C1C2B;
+                        color:#B8D8E8">
+                <div class="podium-rank">🥇</div>
+                <div class="podium-team">GT</div>
+                <div class="podium-owner">Daff</div>
+                <div class="podium-pts">1297 pts</div>
+            </div>
+            
+            <div class="podium-item second"
+                 style="background:#FF822A;
+                        color:#FFFFFF">
+                <div class="podium-rank">🥈</div>
+                <div class="podium-team">SRH</div>
+                <div class="podium-owner">Thal</div>
+                <div class="podium-pts">1212 pts</div>
+            </div>
+            
+            <div class="podium-item third"
+                 style="background:#D71920;
+                        color:#FFFFFF">
+                <div class="podium-rank">🥉</div>
+                <div class="podium-team">PBKS</div>
+                <div class="podium-owner">Megha</div>
+                <div class="podium-pts">1210 pts</div>
+            </div>
+            
+        </div>
+
+        <!-- Team Cards -->
+        
+        <div class="team-card champion" id="team-gt">
+            <div class="team-header" style="background:#1C1C2B; color:#B8D8E8"
+                 onclick="toggleTeam('gt')">
+                <div class="rank-badge">#1</div>
+                <div class="team-info">
+                    <div class="team-abbr">GT</div>
+                    <div class="team-full">Gujarat Titans</div>
+                    <div class="owner-name">&#127918; Daff</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">1297</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-gt">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128081; Auction God</span>
+                    <span class="fun-subtitle">Bow down, peasants.</span>
+                    <div class="trash-talk">&ldquo;Your XI could beat the actual IPL teams tbh.&rdquo;</div>
+                    
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Pranav</strong> aka <em>Daff</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Heinrich Klaasen</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">220</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Dhruv Jurel</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">170</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Jos Buttler</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">110</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Yashasvi Jaiswal</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">142</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Sai Sudharsan</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">123</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Anmolpreet Singh</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">0</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Jamie Overton</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">143</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Anshul Kamboj</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">165</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Mohammad Shami</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">90</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Kuldeep Yadav</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">72</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Avesh Khan</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">62</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1297</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">117.9</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-srh">
+            <div class="team-header" style="background:#FF822A; color:#FFFFFF"
+                 onclick="toggleTeam('srh')">
+                <div class="rank-badge">#2</div>
+                <div class="team-info">
+                    <div class="team-abbr">SRH</div>
+                    <div class="team-full">Sunrisers Hyderabad</div>
+                    <div class="owner-name">&#127918; Thal</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">1212</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-srh">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128170; Almost There</span>
+                    <span class="fun-subtitle">So close, yet so far. Story of your life.</span>
+                    <div class="trash-talk">&ldquo;Silver medal. AKA the first loser.&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 85 pts behind GT (Daff)! One big match and they're cooked &#128293;</div>
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Aman</strong> aka <em>Thal</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">KL Rahul</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">15</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Rohit Sharma</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">166</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Virat Kohli</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">158</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Rajat Patidar</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">144</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Aiden Markram</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">93</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Shubman Gill</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">71</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Nitish Kumar Reddy</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">205</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Abdul Samad</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">83</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Mitchell Marsh</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">71</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Riyan Parag</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">60</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Jaydev Unadkat</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">146</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1212</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">110.2</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-pbks">
+            <div class="team-header" style="background:#D71920; color:#FFFFFF"
+                 onclick="toggleTeam('pbks')">
+                <div class="rank-badge">#3</div>
+                <div class="team-info">
+                    <div class="team-abbr">PBKS</div>
+                    <div class="team-full">Punjab Kings</div>
+                    <div class="owner-name">&#127918; Megha</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">1210</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-pbks">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#129352; Bronze Bhai</span>
+                    <span class="fun-subtitle">Podium finish — barely.</span>
+                    <div class="trash-talk">&ldquo;Podium finish! Screenshot it, it might not happen again.&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 2 pts behind SRH (Thal)! One big match and they're cooked &#128293;</div>
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Meghamsh</strong> aka <em>Megha</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Ishan Kishan</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">182</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Prabhsimran Singh</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">145</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Devdutt Padikkal</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">215</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Sarfaraz Khan</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">175</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Ruturaj Gaikwad</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">60</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Sameer Rizvi</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">226</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Shardul Thakur</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">81</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Hardik Pandya</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">56</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Ramandeep Singh</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">35</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Harshal Patel</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">11</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Arshdeep Singh</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">24</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1210</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">110.0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-kkr">
+            <div class="team-header" style="background:#3A225D; color:#FFC425"
+                 onclick="toggleTeam('kkr')">
+                <div class="rank-badge">#4</div>
+                <div class="team-info">
+                    <div class="team-abbr">KKR</div>
+                    <div class="team-full">Kolkata Knight Riders</div>
+                    <div class="owner-name">&#127918; Oorav</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">1077</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-kkr">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128528; Mid Table Merchant</span>
+                    <span class="fun-subtitle">Not good, not terrible. Just... there.</span>
+                    <div class="trash-talk">&ldquo;You're the Rahul Dravid of this league — solid, boring, forgettable.&rdquo;</div>
+                    
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Tejash</strong> aka <em>Oorav</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Ryan Rickelton</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">142</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Angkrish Raghuvanshi</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">170</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Suryakumar Yadav</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">95</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Nehal Wadhera</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">43</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Priyansh Arya</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">77</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Sunil Narine</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">47</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Ravi Bishnoi</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">159</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Bhuvneshwar Kumar</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">110</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Nandre Burger</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">93</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Vaibhav Arora</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">86</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Mohsin Khan</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">55</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1077</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">97.9</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-mi">
+            <div class="team-header" style="background:#004BA0; color:#D4A537"
+                 onclick="toggleTeam('mi')">
+                <div class="rank-badge">#5</div>
+                <div class="team-info">
+                    <div class="team-abbr">MI</div>
+                    <div class="team-full">Mumbai Indians</div>
+                    <div class="owner-name">&#127918; Nandi</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">846</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-mi">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128564; Snoozefest FC</span>
+                    <span class="fun-subtitle">Even your players are sleeping.</span>
+                    <div class="trash-talk">&ldquo;Average? You wish. Sub-average confirmed.&rdquo;</div>
+                    
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Nandeeshwar</strong> aka <em>Nandi</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Finn Allen</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">118</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Sanju Samson</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">38</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Glenn Phillips</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">57</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Shashank Singh</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">32</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Rovman Powell</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">4</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Shivam Dube</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">131</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Romario Shepherd</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">81</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Axar Patel</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">80</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Prasidh Krishna</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">118</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Mukesh Kumar</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">98</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Jofra Archer</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">89</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>846</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">76.9</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-dc">
+            <div class="team-header" style="background:#004C93; color:#FFFFFF"
+                 onclick="toggleTeam('dc')">
+                <div class="rank-badge">#6</div>
+                <div class="team-info">
+                    <div class="team-abbr">DC</div>
+                    <div class="team-full">Delhi Capitals</div>
+                    <div class="owner-name">&#127918; Aids</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">829</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-dc">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#129313; Clown of the Week</span>
+                    <span class="fun-subtitle">Your auction strategy was a meme.</span>
+                    <div class="trash-talk">&ldquo;You picked players like you pick restaurants — wrong every time.&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 17 pts behind MI (Nandi)! One big match and they're cooked &#128293;</div>
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Nithin</strong> aka <em>Aids</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Phil Salt</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">115</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Shreyas Iyer</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">120</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Pathum Nissanka</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">67</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Manan Vohra</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">0</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Marco Jansen</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">91</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Washington Sundar</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">66</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Naman Dhir</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">48</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Rahul Tewatia</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">35</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Nitish Rana</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">33</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Vyshak Vijaykumar</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">141</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Kagiso Rabada</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">113</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>829</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">75.4</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-rr">
+            <div class="team-header" style="background:#EA1A85; color:#FFFFFF"
+                 onclick="toggleTeam('rr')">
+                <div class="rank-badge">#7</div>
+                <div class="team-info">
+                    <div class="team-abbr">RR</div>
+                    <div class="team-full">Rajasthan Royals</div>
+                    <div class="owner-name">&#127918; Santhoo</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">825</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-rr">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128169; Down Bad</span>
+                    <span class="fun-subtitle">Even the IPL website doesn't recognise your team.</span>
+                    <div class="trash-talk">&ldquo;7th place. Your team is a participation trophy.&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 4 pts behind DC (Aids)! One big match and they're cooked &#128293;</div>
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Santosh</strong> aka <em>Santhoo</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Rishabh Pant</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">139</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Rinku Singh</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">128</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Travis Head</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">101</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Shimron Hetmyer</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">45</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Abhishek Sharma</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">89</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Liam Livingstone</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">36</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Jacob Duffy</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">135</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Yuzvendra Chahal</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">95</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Sandeep Sharma</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">37</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Varun Chakravarthy</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">12</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Rahul Chahar</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">8</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>825</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">75.0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card" id="team-rcb">
+            <div class="team-header" style="background:#D4213D; color:#FFFFFF"
+                 onclick="toggleTeam('rcb')">
+                <div class="rank-badge">#8</div>
+                <div class="team-info">
+                    <div class="team-abbr">RCB</div>
+                    <div class="team-full">Royal Challengers Bengaluru</div>
+                    <div class="owner-name">&#127918; Micromax Sahil</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">812</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-rcb">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128128; Ghost Team</span>
+                    <span class="fun-subtitle">Are you even playing bro?</span>
+                    <div class="trash-talk">&ldquo;Your squad depth is shallower than a kiddie pool.&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 13 pts behind RR (Santhoo)! One big match and they're cooked &#128293;</div>
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Sahil</strong> aka <em>Micromax Sahil</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Jitesh Sharma</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">34</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Aniket Verma</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">87</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Tilak Varma</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">56</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Smaran Ravichandaran</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">0</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Tim David</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">134</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Ravindra Jadeja</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">84</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Prashant Veer</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">72</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">T. Natarajan</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">112</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Eshan Malinga</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">107</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Ashok Sharma</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">64</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Suyash Sharma</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">62</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>812</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">73.8</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="team-card  wooden-spoon" id="team-csk">
+            <div class="team-header" style="background:#FFCB05; color:#0051A2"
+                 onclick="toggleTeam('csk')">
+                <div class="rank-badge">#9</div>
+                <div class="team-info">
+                    <div class="team-abbr">CSK</div>
+                    <div class="team-full">Chennai Super Kings</div>
+                    <div class="owner-name">&#127918; Chillar</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">690</div>
+                    <div class="pts-label">pts</div>
+                    
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-csk">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#127869; Wooden Spoon Champion</span>
+                    <span class="fun-subtitle">Congratulations! You've won the right to make chai for everyone.</span>
+                    <div class="trash-talk">&ldquo;This isn't a team. This is a cry for help.&rdquo;</div>
+                    
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Sai Ram</strong> aka <em>Chillar</em></span>
+                </div>
+                <table class="xi-table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Player</th><th>Role</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Kartik Sharma</td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">41</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Vaibhav Suryavanshi</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">136</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Ajinkya Rahane</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">129</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Ayush Mhatre</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">112</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">David Miller</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">41</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Krunal Pandya</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">46</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Rashid Khan</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">93</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Matt Henry</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">68</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Jasprit Bumrah</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">24</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Prashant Solanki</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">0</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Adam Milne</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">0</td>
+                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>690</strong></td>
+                        </tr>
+                        <tr class="avg-row">
+                            <td></td><td>Avg per player</td><td></td><td class="pts">62.7</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+
+        <!-- History Table -->
+        
+        <div class="history-section">
+            <h2>Ranking History</h2>
+            <div style="overflow-x:auto">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th class="team-col">Team</th>
+                        <th>04-06</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="team-col">GT <small>(Daff)</small></td><td>1297</td></tr><tr><td class="team-col">SRH <small>(Thal)</small></td><td>1212</td></tr><tr><td class="team-col">PBKS <small>(Megha)</small></td><td>1210</td></tr><tr><td class="team-col">KKR <small>(Oorav)</small></td><td>1077</td></tr><tr><td class="team-col">MI <small>(Nandi)</small></td><td>846</td></tr><tr><td class="team-col">DC <small>(Aids)</small></td><td>829</td></tr><tr><td class="team-col">RR <small>(Santhoo)</small></td><td>825</td></tr><tr><td class="team-col">RCB <small>(Micromax Sahil)</small></td><td>812</td></tr><tr><td class="team-col">CSK <small>(Chillar)</small></td><td>690</td></tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        
+
+        <div class="footer">
+            Auto-generated by IPL Fantasy Pipeline &middot; 2026-04-07
+        </div>
+    </div>
+
+    <!-- WhatsApp Share -->
+    <a class="share-btn" id="wa-share" target="_blank" rel="noopener noreferrer">
+        &#128172; Share on WhatsApp
+    </a>
+
+    <!-- Shame Zone for last place -->
+    <div class="container">
+        <div class="shame-zone">
+            <h2>&#127869; Wall of Shame &#127869;</h2>
+            <div class="shame-owner">Chillar</div>
+            <div class="shame-text">
+                Owner of CSK (690 pts)<br>
+                "Your auction strategy was basically: close eyes, raise paddle."<br>
+                <br>
+                &#9749; Chai duty: <strong>Chillar</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script>
+        function toggleTeam(id) {
+            const card = document.getElementById('team-' + id);
+            card.classList.toggle('open');
+        }
+        document.querySelector('.team-card')?.classList.add('open');
+
+        // WhatsApp share
+        const rankings = [{"rank": 1, "team": "GT", "nick": "Daff", "pts": 1297}, {"rank": 2, "team": "SRH", "nick": "Thal", "pts": 1212}, {"rank": 3, "team": "PBKS", "nick": "Megha", "pts": 1210}, {"rank": 4, "team": "KKR", "nick": "Oorav", "pts": 1077}, {"rank": 5, "team": "MI", "nick": "Nandi", "pts": 846}, {"rank": 6, "team": "DC", "nick": "Aids", "pts": 829}, {"rank": 7, "team": "RR", "nick": "Santhoo", "pts": 825}, {"rank": 8, "team": "RCB", "nick": "Micromax Sahil", "pts": 812}, {"rank": 9, "team": "CSK", "nick": "Chillar", "pts": 690}];
+        let msg = "&#127942; *IPL 2026 Fantasy Leaderboard*\n";
+        msg += "_Updated: 2026-04-07_\n\n";
+        rankings.forEach(r => {
+            const medal = r.rank === 1 ? "&#128081;" : r.rank === 2 ? "&#129352;" : r.rank === 3 ? "&#129353;" : r.rank === rankings.length ? "&#127869;" : "&#128200;";
+            msg += medal + " #" + r.rank + " *" + r.team + "* (" + r.nick + ") — " + r.pts + " pts\n";
+        });
+        msg += "\n&#128169; Chai duty: *" + rankings[rankings.length-1].nick + "* &#9749;";
+        const waUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg.replace(/&#\d+;/g, ''));
+        document.getElementById('wa-share').href = waUrl;
+
+        // Confetti for #1 team
+        (function() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const pieces = [];
+            const colors = ['#ffd200', '#ff6b6b', '#4caf50', '#2196f3', '#ff9800', '#e91e63', '#9c27b0'];
+            for (let i = 0; i < 120; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    w: Math.random() * 8 + 4,
+                    h: Math.random() * 6 + 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 3 + 1,
+                    angle: Math.random() * 360,
+                    spin: (Math.random() - 0.5) * 4,
+                    drift: (Math.random() - 0.5) * 1.5,
+                });
+            }
+            let frame = 0;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (frame > 200) { canvas.style.display = 'none'; return; }
+                pieces.forEach(p => {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.angle * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = Math.max(0, 1 - frame / 200);
+                    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+                    ctx.restore();
+                    p.y += p.speed;
+                    p.x += p.drift;
+                    p.angle += p.spin;
+                });
+                frame++;
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+    </script>
+</body>
+</html>
