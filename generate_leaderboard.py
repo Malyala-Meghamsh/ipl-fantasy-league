@@ -1942,6 +1942,7 @@ def generate_html(rankings, history, fantasy_points):
         }});
         function scrollToTeam(teamId) {{
             closeSearch();
+            switchPageTab('leaderboard');
             const card = document.getElementById('team-' + teamId);
             if (card) {{
                 card.classList.add('open');
