@@ -10,7 +10,7 @@ Daily IPL Fantasy Stats Pipeline
 import time
 import csv
 import os
-from datetime import date
+from datetime import date, datetime, timedelta
 from itertools import combinations
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -22,7 +22,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 # ═══════════════════════════════════════════════════════════════════
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-TODAY = date.today().strftime("%Y-%m-%d")
+# If before 2 AM, treat it as the previous day (late-night runs)
+_now = datetime.now()
+MATCH_DAY = (_now - timedelta(days=1)).date() if _now.hour < 2 else _now.date()
+TODAY = MATCH_DAY.strftime("%Y-%m-%d")
 DAILY_CSV = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{TODAY}.csv")
 LATEST_CSV = os.path.join(BASE_DIR, "ipl_fantasy_stats.csv")
 HISTORY_CSV = os.path.join(BASE_DIR, "ranking_history.csv")
@@ -456,7 +459,6 @@ def run_pipeline():
         print(f"⚠️  Git deploy failed: {e}")
     except FileNotFoundError:
         print("⚠️  Git not found. Install git and set up the repo first.")
-
 
 if __name__ == "__main__":
     run_pipeline()

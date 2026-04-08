@@ -5,7 +5,7 @@ Reads ipl_fantasy_stats.csv + ranking_history.csv and produces index.html
 
 import csv
 import os
-from datetime import date
+from datetime import date, datetime, timedelta
 from itertools import combinations
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -13,7 +13,118 @@ LATEST_CSV = os.path.join(BASE_DIR, "ipl_fantasy_stats.csv")
 HISTORY_CSV = os.path.join(BASE_DIR, "ranking_history.csv")
 OUTPUT_HTML = os.path.join(BASE_DIR, "docs", "index.html")
 
-TODAY = date.today().strftime("%Y-%m-%d")
+# If before 2 AM, treat it as the previous day (late-night viewing)
+_now = datetime.now()
+MATCH_DAY = (_now - timedelta(days=1)).date() if _now.hour < 2 else _now.date()
+TODAY = MATCH_DAY.strftime("%Y-%m-%d")
+
+# ═══════════════════════════════════════════════════════════════════
+# IPL 2026 FIXTURES (date → list of (home_team_code, away_team_code))
+# ═══════════════════════════════════════════════════════════════════
+IPL_FIXTURES = {
+    "2026-04-08": [("DC", "GT")],
+    "2026-04-09": [("KKR", "LSG")],
+    "2026-04-10": [("RR", "RCB")],
+    "2026-04-11": [("PBKS", "SRH"), ("CSK", "DC")],
+    "2026-04-12": [("LSG", "GT"), ("MI", "RCB")],
+    "2026-04-13": [("SRH", "RR")],
+    "2026-04-14": [("CSK", "KKR")],
+    "2026-04-15": [("RCB", "LSG")],
+    "2026-04-16": [("MI", "PBKS")],
+    "2026-04-17": [("GT", "KKR")],
+    "2026-04-18": [("RCB", "DC"), ("SRH", "CSK")],
+    "2026-04-19": [("KKR", "RR"), ("PBKS", "LSG")],
+    "2026-04-20": [("GT", "MI")],
+    "2026-04-21": [("SRH", "DC")],
+    "2026-04-22": [("LSG", "RR")],
+    "2026-04-23": [("MI", "CSK")],
+    "2026-04-24": [("RCB", "GT")],
+    "2026-04-25": [("DC", "PBKS"), ("RR", "SRH")],
+    "2026-04-26": [("GT", "CSK"), ("LSG", "KKR")],
+    "2026-04-27": [("DC", "RCB")],
+    "2026-04-28": [("PBKS", "RR")],
+    "2026-04-29": [("MI", "SRH")],
+    "2026-04-30": [("GT", "RCB")],
+    "2026-05-01": [("RR", "DC")],
+    "2026-05-02": [("CSK", "MI")],
+    "2026-05-03": [("SRH", "KKR"), ("GT", "PBKS")],
+    "2026-05-04": [("MI", "LSG")],
+    "2026-05-05": [("DC", "CSK")],
+    "2026-05-06": [("SRH", "PBKS")],
+    "2026-05-07": [("LSG", "RCB")],
+    "2026-05-08": [("DC", "KKR")],
+    "2026-05-09": [("RR", "GT")],
+    "2026-05-10": [("CSK", "LSG"), ("RCB", "MI")],
+    "2026-05-11": [("PBKS", "DC")],
+    "2026-05-12": [("GT", "SRH")],
+    "2026-05-13": [("RCB", "KKR")],
+    "2026-05-14": [("PBKS", "MI")],
+    "2026-05-15": [("LSG", "CSK")],
+    "2026-05-16": [("KKR", "GT")],
+    "2026-05-17": [("PBKS", "RCB"), ("DC", "RR")],
+    "2026-05-18": [("CSK", "SRH")],
+    "2026-05-19": [("RR", "LSG")],
+    "2026-05-20": [("KKR", "MI")],
+    "2026-05-21": [("CSK", "GT")],
+    "2026-05-22": [("SRH", "RCB")],
+    "2026-05-23": [("LSG", "PBKS")],
+    "2026-05-24": [("MI", "RR"), ("KKR", "DC")],
+}
+
+# Map original IPL team codes used in ipl_fantasy_stats.csv
+# Note: "LSG" does not exist in original IPL teams — Lucknow Super Giants is LSG
+ORIGINAL_TEAM_FULL = {
+    "DC": "Delhi Capitals", "GT": "Gujarat Titans", "KKR": "Kolkata Knight Riders",
+    "LSG": "Lucknow Super Giants", "MI": "Mumbai Indians", "PBKS": "Punjab Kings",
+    "RR": "Rajasthan Royals", "RCB": "Royal Challengers Bengaluru",
+    "CSK": "Chennai Super Kings", "SRH": "Sunrisers Hyderabad",
+}
+
+
+def get_todays_matches():
+    """Return list of (home, away) tuples for today's IPL matches."""
+    return IPL_FIXTURES.get(TODAY, [])
+
+
+def get_today_players(fantasy_points_csv_path):
+    """Return players from today's match teams, sorted by points desc."""
+    matches = get_todays_matches()
+    if not matches:
+        return [], []
+
+    # Collect all team codes playing today
+    playing_teams = set()
+    for home, away in matches:
+        playing_teams.add(home)
+        playing_teams.add(away)
+
+    # Load yesterday's points for daily diff
+    yesterday = (MATCH_DAY - timedelta(days=1)).strftime("%Y-%m-%d")
+    yesterday_csv = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{yesterday}.csv")
+    yesterday_pts = {}
+    if os.path.isfile(yesterday_csv):
+        with open(yesterday_csv, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                yesterday_pts[row["Player"].strip()] = int(row["Total Points"])
+
+    # Read CSV and filter by original team
+    players = []
+    with open(fantasy_points_csv_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["Team"].strip() in playing_teams:
+                total = int(row["Total Points"])
+                prev = yesterday_pts.get(row["Player"].strip(), 0)
+                players.append({
+                    "name": row["Player"].strip(),
+                    "original_team": row["Team"].strip(),
+                    "credits": float(row["Credits"]),
+                    "points": total,
+                    "today_pts": total - prev,
+                })
+
+    players.sort(key=lambda x: x["points"], reverse=True)
+    return matches, players
 
 # ── Import data from daily script ──
 from daily_ipl_fantasy import (
@@ -399,6 +510,95 @@ def compute_rankings(fantasy_points):
 
 def generate_html(rankings, history, fantasy_points):
     """Generate a complete standalone HTML file."""
+
+    # Build today's players to watch HTML
+    today_matches, today_players = get_today_players(LATEST_CSV)
+    today_section_html = ""
+    if today_matches:
+        match_labels = []
+        for home, away in today_matches:
+            match_labels.append(f"{home} vs {away}")
+        match_title = " &amp; ".join(match_labels)
+
+        # Build player rows — show which fantasy owner has each player
+        # Map: player name -> fantasy owner team
+        player_to_owner = {}
+        for team_code, squad in squads.items():
+            for pname in squad:
+                mapped = name_map.get(pname, pname)
+                player_to_owner[mapped] = team_code
+
+        # Sort: owned players first (by points desc), then unowned (by points desc)
+        owned = [p for p in today_players if player_to_owner.get(p["name"], "")]
+        unowned = [p for p in today_players if not player_to_owner.get(p["name"], "")]
+        today_players_sorted = owned + unowned
+
+        today_rows = ""
+        divider_added = False
+        for i, p in enumerate(today_players_sorted, 1):
+            owner_team = player_to_owner.get(p["name"], "")
+            # Insert divider before first unowned player
+            if not owner_team and not divider_added and owned:
+                divider_added = True
+                today_rows += f'<tr class="today-divider-row" data-owner="UNCLAIMED"><td colspan="6" class="today-divider">&#128683; Unclaimed Players</td></tr>'
+            owner_nick = OWNERS.get(owner_team, {}).get("nick", "") if owner_team else ""
+            owner_badge = f'<span class="today-owner-badge" style="background:{TEAM_COLORS.get(owner_team, {}).get("bg","#333")};color:{TEAM_COLORS.get(owner_team, {}).get("text","#fff")}">{owner_team}</span>' if owner_team else '<span class="today-owner-badge today-unclaimed">N/A</span>'
+            pts_class = "today-pts-hot" if p["points"] >= 100 else "today-pts-warm" if p["points"] >= 50 else ""
+            team_color = TEAM_COLORS.get(p["original_team"], {"bg": "#333", "text": "#fff"})
+            # Reverse name_map (CSV name → squad name) for price lookup
+            reverse_name = {v: k for k, v in name_map.items()}.get(p["name"], p["name"])
+            price = squad_prices.get(p["name"], 0) or squad_prices.get(reverse_name, 0)
+            price_str = f"{price} Cr" if price else "-"
+            row_owner = owner_team if owner_team else "UNCLAIMED"
+            today_pts = p.get("today_pts", 0)
+            today_pts_display = f"+{today_pts}" if today_pts > 0 else str(today_pts) if today_pts < 0 else "0"
+            today_pts_color = "today-day-hot" if today_pts >= 50 else "today-day-warm" if today_pts > 0 else "today-day-zero"
+            today_rows += f"""
+                <tr class="today-row" data-owner="{row_owner}">
+                    <td class="num">{i}</td>
+                    <td class="player-name">
+                        {p["name"]}
+                        <span class="today-orig-team" style="background:{team_color['bg']};color:{team_color['text']}">{p["original_team"]}</span>
+                    </td>
+                    <td class="today-price">{price_str}</td>
+                    <td class="pts {pts_class}">{p["points"]}</td>
+                    <td class="today-day {today_pts_color}">{today_pts_display}</td>
+                    <td class="today-owner">{owner_badge}<br><small>{owner_nick}</small></td>
+                </tr>"""
+
+        # Build owner filter buttons (only owners who have players in today's match)
+        today_owners_set = set()
+        for p in today_players_sorted:
+            ot = player_to_owner.get(p["name"], "")
+            if ot:
+                today_owners_set.add(ot)
+        filter_buttons = '<button class="today-filter-btn active" onclick="filterTodayOwner(\'ALL\')">All</button>'
+        for tc in sorted(today_owners_set):
+            nick = OWNERS.get(tc, {}).get("nick", tc)
+            bg = TEAM_COLORS.get(tc, {}).get("bg", "#333")
+            txt = TEAM_COLORS.get(tc, {}).get("text", "#fff")
+            filter_buttons += f'<button class="today-filter-btn" style="--btn-bg:{bg};--btn-text:{txt}" onclick="filterTodayOwner(\'{tc}\')">{nick}</button>'
+        filter_buttons += '<button class="today-filter-btn" style="--btn-bg:#333;--btn-text:#888" onclick="filterTodayOwner(\'UNCLAIMED\')">Unclaimed</button>'
+
+        today_section_html = f"""
+        <div class="today-section">
+            <div class="today-header">
+                <div class="today-live-dot"></div>
+                <h2>Today's Players to Watch</h2>
+            </div>
+            <div class="today-match-info">{match_title}</div>
+            <div class="today-subtitle">{len(today_players)} players in action &middot; Sorted by fantasy points</div>
+            <div class="today-filter-bar">{filter_buttons}</div>
+            <table class="today-table">
+                <thead>
+                    <tr><th>#</th><th>Player</th><th>Price</th><th>Pts</th><th>Today</th><th>Owner</th></tr>
+                </thead>
+                <tbody>
+                    {today_rows}
+                </tbody>
+            </table>
+        </div>
+        """
 
     # Build auction awards HTML
     auction_awards = compute_auction_awards(rankings, fantasy_points)
@@ -1348,6 +1548,179 @@ def generate_html(rankings, history, fantasy_points):
             font-size: 0.8em;
         }}
 
+        /* Today's Players to Watch */
+        .today-section {{
+            margin: 20px 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0d1a2e, #0a0a1a);
+            border-radius: 14px;
+            border: 1px solid #1a3a5e;
+            overflow: hidden;
+        }}
+        .today-header {{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 16px 6px;
+        }}
+        .today-header h2 {{
+            font-size: 1.05em;
+            color: #4fc3f7;
+            margin: 0;
+        }}
+        .today-live-dot {{
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #4caf50;
+            animation: live-pulse 1.5s infinite;
+        }}
+        @keyframes live-pulse {{
+            0%, 100% {{ opacity: 1; box-shadow: 0 0 4px #4caf50; }}
+            50% {{ opacity: 0.4; box-shadow: 0 0 10px #4caf50; }}
+        }}
+        .today-match-info {{
+            padding: 0 16px;
+            font-size: 1.2em;
+            font-weight: 800;
+            color: #ffd200;
+            letter-spacing: 1px;
+        }}
+        .today-subtitle {{
+            padding: 4px 16px 10px;
+            font-size: 0.72em;
+            color: #666;
+        }}
+        .today-table {{
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82em;
+        }}
+        .today-table th {{
+            background: #0a1525;
+            padding: 8px 8px;
+            text-align: left;
+            font-size: 0.78em;
+            color: #4fc3f7;
+            text-transform: uppercase;
+        }}
+        .today-table th:last-child {{ text-align: center; }}
+        .today-table td {{
+            padding: 7px 8px;
+            border-bottom: 1px solid #112240;
+        }}
+        .today-row:hover {{ background: rgba(79, 195, 247, 0.05); }}
+        .today-table .num {{ width: 28px; color: #555; }}
+        .today-table .pts {{ text-align: right; font-weight: 700; color: #ffd200; }}
+        .today-pts-hot {{ color: #4caf50 !important; font-size: 1.05em; }}
+        .today-pts-warm {{ color: #ffa726 !important; }}
+
+        .today-owner {{ text-align: center; font-size: 0.8em; }}
+        .today-price {{ text-align: center; color: #aaa; font-size: 0.85em; white-space: nowrap; }}
+        .today-day {{ text-align: right; font-weight: 700; font-size: 0.85em; }}
+        .today-day-hot {{ color: #4caf50; }}
+        .today-day-warm {{ color: #ffa726; }}
+        .today-day-zero {{ color: #555; }}
+        .today-orig-team {{
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 6px;
+            font-size: 0.6em;
+            font-weight: 700;
+            margin-left: 4px;
+            vertical-align: middle;
+        }}
+        .today-owner-badge {{
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.7em;
+            font-weight: 700;
+        }}
+        .today-unclaimed {{
+            background: #333 !important;
+            color: #888 !important;
+        }}
+        .today-divider {{
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.72em;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-top: 1px dashed #1a3a5e;
+        }}
+        .today-filter-bar {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 10px 0;
+            justify-content: center;
+        }}
+        .today-filter-btn {{
+            padding: 5px 12px;
+            border-radius: 16px;
+            border: 1px solid #222;
+            background: #111;
+            color: #888;
+            font-size: 0.75em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }}
+        .today-filter-btn:hover {{
+            background: #1a1a2e;
+            color: #ccc;
+        }}
+        .today-filter-btn.active {{
+            background: var(--btn-bg, #ffd200);
+            color: var(--btn-text, #000);
+            border-color: var(--btn-bg, #ffd200);
+        }}
+
+        /* Page-level tab bar */
+        .page-tab-bar {{
+            display: flex;
+            background: #0d0d1f;
+            border-radius: 12px;
+            margin: 16px 0;
+            overflow: hidden;
+            border: 1px solid #1a1a2e;
+        }}
+        .page-tab {{
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            user-select: none;
+        }}
+        .page-tab:hover {{ color: #aaa; background: #111128; }}
+        .page-tab.active {{
+            color: #ffd200;
+            border-bottom-color: #ffd200;
+            background: #111128;
+        }}
+        .page-tab-content {{
+            display: none;
+        }}
+        .page-tab-content.active {{
+            display: block;
+        }}
+        .page-tab .tab-badge {{
+            display: inline-block;
+            padding: 1px 7px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            margin-left: 5px;
+            background: #4caf50;
+            color: #fff;
+            vertical-align: middle;
+        }}
+
         /* Scrollbar */
         ::-webkit-scrollbar {{ width: 4px; }}
         ::-webkit-scrollbar-track {{ background: #0a0a1a; }}
@@ -1373,6 +1746,15 @@ def generate_html(rankings, history, fantasy_points):
                 <div class="search-results" id="search-results"></div>
             </div>
         </div>
+
+        <!-- Page Tab Bar -->
+        <div class="page-tab-bar">
+            <div class="page-tab active" onclick="switchPageTab('leaderboard')">&#127942; Leaderboard</div>
+            <div class="page-tab" onclick="switchPageTab('today')">{"&#9917; Today's Match" + (' <span class="tab-badge">LIVE</span>' if today_matches else '') if today_matches else "&#9917; Today's Match"}</div>
+        </div>
+
+        <!-- Page Tab: Leaderboard -->
+        <div class="page-tab-content active" id="page-leaderboard">
 
         <!-- Podium -->
         <div class="podium">
@@ -1421,6 +1803,14 @@ def generate_html(rankings, history, fantasy_points):
         <div class="footer">
             Auto-generated by IPL Fantasy Pipeline &middot; {TODAY}
         </div>
+
+        </div><!-- end page-leaderboard -->
+
+        <!-- Page Tab: Today's Match -->
+        <div class="page-tab-content" id="page-today">
+            {today_section_html if today_section_html else '<div style="text-align:center;padding:40px 16px;color:#555"><div style="font-size:2em;margin-bottom:10px">&#128164;</div>No match scheduled for today.</div>'}
+        </div>
+
     </div>
 
     <!-- WhatsApp Share -->
@@ -1470,6 +1860,41 @@ def generate_html(rankings, history, fantasy_points):
             document.getElementById('tab-' + tab + '-' + teamId)?.classList.add('active');
         }}
         document.querySelector('.team-card')?.classList.add('open');
+
+        // Page-level tab switching
+        function switchPageTab(tab) {{
+            document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.page-tab-content').forEach(c => c.classList.remove('active'));
+            const tabMap = {{'leaderboard': 0, 'today': 1}};
+            document.querySelectorAll('.page-tab')[tabMap[tab]]?.classList.add('active');
+            document.getElementById('page-' + tab)?.classList.add('active');
+        }}
+
+        // Today's Match owner filter
+        function filterTodayOwner(owner) {{
+            document.querySelectorAll('.today-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            const rows = document.querySelectorAll('.today-table tbody tr');
+            let visibleIdx = 0;
+            rows.forEach(row => {{
+                const rowOwner = row.getAttribute('data-owner');
+                if (!rowOwner) return;
+                if (owner === 'ALL') {{
+                    row.style.display = '';
+                    if (row.classList.contains('today-row')) {{
+                        visibleIdx++;
+                        row.querySelector('.num').textContent = visibleIdx;
+                    }}
+                }} else {{
+                    const show = rowOwner === owner;
+                    row.style.display = show ? '' : 'none';
+                    if (show && row.classList.contains('today-row')) {{
+                        visibleIdx++;
+                        row.querySelector('.num').textContent = visibleIdx;
+                    }}
+                }}
+            }});
+        }}
 
         // Player Search
         const allPlayers = {player_search_json};
