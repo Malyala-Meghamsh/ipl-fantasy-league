@@ -106,6 +106,8 @@ name_map = {
     "Lhuan-Dre Pretorious": "Lhuan-dre Pretorius",
     "Quinton De Kock": "Quinton de Kock",
     "Digvesh Rathi": "Digvesh Singh",
+    "Mohammad Siraj": "Mohammed Siraj",
+    "Auqib Dar": "Auqib Nabi",
 }
 
 # Map squad player names → player_roles.csv names (for name mismatches)
