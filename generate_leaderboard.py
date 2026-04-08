@@ -528,9 +528,11 @@ def generate_html(rankings, history, fantasy_points):
                 mapped = name_map.get(pname, pname)
                 player_to_owner[mapped] = team_code
 
-        # Sort: owned players first (by points desc), then unowned (by points desc)
+        # Sort: owned players first, then unowned. Within each group: today_pts desc, then total pts desc
         owned = [p for p in today_players if player_to_owner.get(p["name"], "")]
         unowned = [p for p in today_players if not player_to_owner.get(p["name"], "")]
+        owned.sort(key=lambda x: (x.get("today_pts", 0), x["points"]), reverse=True)
+        unowned.sort(key=lambda x: (x.get("today_pts", 0), x["points"]), reverse=True)
         today_players_sorted = owned + unowned
 
         today_rows = ""
@@ -587,7 +589,7 @@ def generate_html(rankings, history, fantasy_points):
                 <h2>Today's Players to Watch</h2>
             </div>
             <div class="today-match-info">{match_title}</div>
-            <div class="today-subtitle">{len(today_players)} players in action &middot; Sorted by fantasy points</div>
+            <div class="today-subtitle">{len(today_players)} players in action</div>
             <div class="today-filter-bar">{filter_buttons}</div>
             <table class="today-table">
                 <thead>
@@ -1750,7 +1752,7 @@ def generate_html(rankings, history, fantasy_points):
         <!-- Page Tab Bar -->
         <div class="page-tab-bar">
             <div class="page-tab active" onclick="switchPageTab('leaderboard')">&#127942; Leaderboard</div>
-            <div class="page-tab" onclick="switchPageTab('today')">{"&#9917; Today's Match" + (' <span class="tab-badge">LIVE</span>' if today_matches else '') if today_matches else "&#9917; Today's Match"}</div>
+            <div class="page-tab" onclick="switchPageTab('today')">{"&#9917; Today's " + ("Matches" if len(today_matches) > 1 else "Match") + (' <span class="tab-badge">LIVE</span>' if today_matches else '') if today_matches else "&#9917; Today's Match"}</div>
         </div>
 
         <!-- Page Tab: Leaderboard -->
