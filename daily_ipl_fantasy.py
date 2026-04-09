@@ -45,7 +45,30 @@ def scrape_stats():
     driver = webdriver.Chrome(service=service, options=options)
 
     driver.get("https://fantasy.iplt20.com/classic/stats")
-    input("\n👉 Log in manually in the browser, then press ENTER here...")
+
+    # Auto-fill mobile number and submit
+    try:
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+
+        # Wait for the mobile input field to appear
+        mobile_input = WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.ID, "mobile_input"))
+        )
+        mobile_input.clear()
+        mobile_input.send_keys("9948905719")
+        time.sleep(1)
+
+        # Click Continue button
+        submit_btn = driver.find_element(By.ID, "registerCTA")
+        submit_btn.click()
+        print("📱 Mobile number entered & submitted. Waiting for OTP...")
+
+        input("\n👉 Enter OTP in the browser, then press ENTER here...")
+    except Exception as e:
+        print(f"⚠️  Auto-login failed ({e}). Log in manually.")
+        input("\n👉 Log in manually in the browser, then press ENTER here...")
+
     time.sleep(5)
 
     driver.get("https://fantasy.iplt20.com/classic/stats")
