@@ -139,7 +139,24 @@ def scrape_stats(otp_provider=None, log_callback=None):
     time.sleep(5)
 
     driver.get("https://fantasy.iplt20.com/classic/stats")
-    time.sleep(8)
+    time.sleep(5)
+
+    # Click the Stats nav button to open the stats page
+    try:
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+
+        stats_link = WebDriverWait(driver, 15).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "a[href='/classic/stats']"))
+        )
+        stats_link.click()
+        _log("📊 Clicked Stats button")
+        time.sleep(5)
+    except Exception as nav_err:
+        _log(f"⚠️ Stats nav click failed ({nav_err}), trying direct URL...")
+        driver.get("https://fantasy.iplt20.com/classic/stats")
+        time.sleep(5)
+
     _log("📊 Loading stats page...")
 
     # Scroll to load all players
