@@ -362,8 +362,8 @@ def compute_auction_awards(rankings, fantasy_points):
                     "pts_per_cr": pts / price,
                 })
 
-    # Visionary Pick: best pts/cr among players that scored >= 100 pts
-    eligible_value = [p for p in all_players if p["pts"] >= 100]
+    # Visionary Pick: best pts/cr among players that scored >= 150 pts
+    eligible_value = [p for p in all_players if p["pts"] >= 150]
     best_value = max(eligible_value, key=lambda p: p["pts_per_cr"]) if eligible_value else None
 
     # Shittiest Pick: worst pts/cr among expensive players (>= 5 Cr), exclude 0 pts
