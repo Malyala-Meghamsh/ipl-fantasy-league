@@ -34,13 +34,24 @@ HISTORY_CSV = os.path.join(BASE_DIR, "ranking_history.csv")
 # STEP 1 — SCRAPE FANTASY STATS
 # ═══════════════════════════════════════════════════════════════════
 
-def scrape_stats():
-    print("\n" + "=" * 60)
-    print("STEP 1: SCRAPING FANTASY STATS")
-    print("=" * 60)
+def scrape_stats(otp_provider=None, log_callback=None):
+    """Scrape fantasy stats. If otp_provider is given, use it to get OTP
+    programmatically instead of waiting for console input.
+    otp_provider: callable that returns OTP string (blocks until available)
+    log_callback: callable(msg) for logging status updates
+    """
+    def _log(msg):
+        print(msg)
+        if log_callback:
+            log_callback(msg)
+
+    _log("\n" + "=" * 60)
+    _log("STEP 1: SCRAPING FANTASY STATS")
+    _log("=" * 60)
 
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
+
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
@@ -62,17 +73,68 @@ def scrape_stats():
         # Click Continue button
         submit_btn = driver.find_element(By.ID, "registerCTA")
         submit_btn.click()
-        print("📱 Mobile number entered & submitted. Waiting for OTP...")
+        _log("📱 Mobile number entered & submitted. Waiting for OTP...")
 
-        input("\n👉 Enter OTP in the browser, then press ENTER here...")
+        if otp_provider:
+            # Get OTP from web interface
+            otp = otp_provider()
+            _log(f"📲 OTP received, entering...")
+
+            time.sleep(2)
+            try:
+                from selenium.webdriver.support.ui import WebDriverWait
+                from selenium.webdriver.support import expected_conditions as EC
+
+                # Wait for OTP form to appear, then fill via JS (avoids interactability issues)
+                WebDriverWait(driver, 15).until(
+                    EC.presence_of_element_located((By.ID, "otpInputField"))
+                )
+                # Use JS to set value and trigger input event (headless-safe)
+                driver.execute_script("""
+                    var el = document.getElementById('otpInputField');
+                    el.value = arguments[0];
+                    el.dispatchEvent(new Event('input', {bubbles: true}));
+                    el.dispatchEvent(new Event('change', {bubbles: true}));
+                """, otp)
+                _log("✅ OTP entered in #otpInputField")
+
+                time.sleep(1)
+                # Click the Verify button via JS (try multiple selectors)
+                driver.execute_script("""
+                    var btn = document.getElementById('verifyOtp')
+                           || document.querySelector('#paj-verifyform button[type="submit"]')
+                           || document.querySelector('.paj3OTPForm button');
+                    if (btn) btn.click();
+                """)
+                _log("✅ Clicked verify button")
+            except Exception as otp_err:
+                _log(f"⚠️ OTP auto-fill issue: {otp_err}")
+        else:
+            input("\n👉 Enter OTP in the browser, then press ENTER here...")
     except Exception as e:
-        print(f"⚠️  Auto-login failed ({e}). Log in manually.")
-        input("\n👉 Log in manually in the browser, then press ENTER here...")
+        _log(f"⚠️  Auto-login failed ({e}).")
+        if not otp_provider:
+            input("\n👉 Log in manually in the browser, then press ENTER here...")
 
     time.sleep(5)
 
     driver.get("https://fantasy.iplt20.com/classic/stats")
-    time.sleep(8)
+    time.sleep(5)
+
+    # Click the Stats nav button via JS (avoids element-not-interactable)
+    try:
+        driver.execute_script("""
+            var link = document.querySelector("a[href='/classic/stats']");
+            if (link) link.click();
+        """)
+        _log("📊 Clicked Stats nav button")
+        time.sleep(5)
+    except Exception as nav_err:
+        _log(f"⚠️ Stats nav click failed ({nav_err}), trying direct URL...")
+        driver.get("https://fantasy.iplt20.com/classic/stats")
+        time.sleep(5)
+
+    _log("📊 Loading stats page...")
 
     # Scroll to load all players
     scrollable = driver.find_elements(By.CSS_SELECTOR, ".m11c-plyrSel__list")
@@ -88,18 +150,25 @@ def scrape_stats():
             )
             time.sleep(1)
 
-    # Extract data
-    rows = driver.find_elements(By.CSS_SELECTOR, ".m11c-plyrSel__list li")
-    data = []
-    for row in rows:
-        try:
-            name = row.find_element(By.CSS_SELECTOR, ".m11c-plyrSel__name span").text
-            team = row.find_element(By.CSS_SELECTOR, ".m11c-plyrSel__team span").text
-            credits_val = row.find_element(By.CSS_SELECTOR, ".m11c-tbl__cell--pts span").text
-            total_points = row.find_element(By.CSS_SELECTOR, ".m11c-tbl__cell--amt span").text
-            data.append([name, team, credits_val, total_points])
-        except Exception:
-            continue
+    # Extract data using JS to get textContent (works reliably in headless)
+    data = driver.execute_script("""
+        var rows = document.querySelectorAll('.m11c-plyrSel__list li');
+        var result = [];
+        rows.forEach(function(row) {
+            try {
+                var name = row.querySelector('.m11c-plyrSel__name span');
+                var team = row.querySelector('.m11c-plyrSel__team span');
+                var credits = row.querySelector('.m11c-tbl__cell--pts span');
+                var points = row.querySelector('.m11c-tbl__cell--amt span');
+                var n = name ? name.textContent.trim() : '';
+                var t = team ? team.textContent.trim() : '';
+                var c = credits ? credits.textContent.trim() : '';
+                var p = points ? points.textContent.trim() : '';
+                if (n) result.push([n, t, c, p]);
+            } catch(e) {}
+        });
+        return result;
+    """)
 
     driver.quit()
 
@@ -110,7 +179,7 @@ def scrape_stats():
             writer.writerow(["Player", "Team", "Credits", "Total Points"])
             writer.writerows(data)
 
-    print(f"✅ Scraped {len(data)} players → {DAILY_CSV}")
+    _log(f"✅ Scraped {len(data)} players → {DAILY_CSV}")
     return data
 
 
@@ -378,13 +447,20 @@ def load_fantasy_points():
     with open(LATEST_CSV, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            fp[row["Player"].strip()] = int(row["Total Points"])
+            pts = row["Total Points"].strip()
+            if pts:
+                fp[row["Player"].strip()] = int(pts)
     return fp
 
 
-def run_pipeline():
+def run_pipeline(otp_provider=None, log_callback=None):
+    def _log(msg):
+        print(msg)
+        if log_callback:
+            log_callback(msg)
+
     # --- Scrape ---
-    scrape_stats()
+    scrape_stats(otp_provider=otp_provider, log_callback=log_callback)
 
     # --- Load points ---
     fantasy_points = load_fantasy_points()

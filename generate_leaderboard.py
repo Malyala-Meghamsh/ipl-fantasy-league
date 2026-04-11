@@ -105,7 +105,9 @@ def get_today_players(fantasy_points_csv_path):
     if os.path.isfile(yesterday_csv):
         with open(yesterday_csv, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                yesterday_pts[row["Player"].strip()] = int(row["Total Points"])
+                pts_str = row["Total Points"].strip()
+                if pts_str:
+                    yesterday_pts[row["Player"].strip()] = int(pts_str)
 
     # Read CSV and filter by original team
     players = []
@@ -113,7 +115,10 @@ def get_today_players(fantasy_points_csv_path):
         reader = csv.DictReader(f)
         for row in reader:
             if row["Team"].strip() in playing_teams:
-                total = int(row["Total Points"])
+                pts_str = row["Total Points"].strip()
+                if not pts_str:
+                    continue
+                total = int(pts_str)
                 prev = yesterday_pts.get(row["Player"].strip(), 0)
                 players.append({
                     "name": row["Player"].strip(),
@@ -450,7 +455,9 @@ def load_fantasy_points():
     with open(LATEST_CSV, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            fp[row["Player"].strip()] = int(row["Total Points"])
+            pts = row["Total Points"].strip()
+            if pts:
+                fp[row["Player"].strip()] = int(pts)
     return fp
 
 
