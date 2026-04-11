@@ -34,13 +34,27 @@ HISTORY_CSV = os.path.join(BASE_DIR, "ranking_history.csv")
 # STEP 1 — SCRAPE FANTASY STATS
 # ═══════════════════════════════════════════════════════════════════
 
-def scrape_stats():
-    print("\n" + "=" * 60)
-    print("STEP 1: SCRAPING FANTASY STATS")
-    print("=" * 60)
+def scrape_stats(otp_provider=None, log_callback=None):
+    """Scrape fantasy stats. If otp_provider is given, use it to get OTP
+    programmatically instead of waiting for console input.
+    otp_provider: callable that returns OTP string (blocks until available)
+    log_callback: callable(msg) for logging status updates
+    """
+    def _log(msg):
+        print(msg)
+        if log_callback:
+            log_callback(msg)
+
+    _log("\n" + "=" * 60)
+    _log("STEP 1: SCRAPING FANTASY STATS")
+    _log("=" * 60)
 
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
+    options.add_argument("--headless=new")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
@@ -62,17 +76,71 @@ def scrape_stats():
         # Click Continue button
         submit_btn = driver.find_element(By.ID, "registerCTA")
         submit_btn.click()
-        print("📱 Mobile number entered & submitted. Waiting for OTP...")
+        _log("📱 Mobile number entered & submitted. Waiting for OTP...")
 
-        input("\n👉 Enter OTP in the browser, then press ENTER here...")
+        if otp_provider:
+            # Get OTP from web interface
+            otp = otp_provider()
+            _log(f"📲 OTP received, entering...")
+
+            # Try to find OTP input fields and enter OTP programmatically
+            time.sleep(2)
+            try:
+                # Strategy 1: Individual digit OTP inputs
+                otp_inputs = driver.find_elements(By.CSS_SELECTOR,
+                    "input[type='tel'], input[type='number'], input.otp-input, "
+                    "input[class*='otp'], input[name*='otp'], input[id*='otp']")
+                if len(otp_inputs) >= len(otp):
+                    for i, digit in enumerate(otp):
+                        otp_inputs[i].clear()
+                        otp_inputs[i].send_keys(digit)
+                        time.sleep(0.1)
+                    _log("✅ OTP entered in individual fields")
+                elif otp_inputs:
+                    otp_inputs[0].clear()
+                    otp_inputs[0].send_keys(otp)
+                    _log("✅ OTP entered in single field")
+                else:
+                    # Strategy 2: Use JavaScript to find and fill
+                    driver.execute_script(f"""
+                        var inputs = document.querySelectorAll('input');
+                        for (var inp of inputs) {{
+                            if (inp.type === 'tel' || inp.type === 'number' ||
+                                inp.placeholder.toLowerCase().includes('otp') ||
+                                inp.name.toLowerCase().includes('otp')) {{
+                                inp.value = '{otp}';
+                                inp.dispatchEvent(new Event('input', {{bubbles: true}}));
+                                break;
+                            }}
+                        }}
+                    """)
+                    _log("✅ OTP entered via JS fallback")
+
+                time.sleep(1)
+                # Try to click verify/submit button
+                verify_btns = driver.find_elements(By.CSS_SELECTOR,
+                    "button[id*='verify'], button[id*='submit'], "
+                    "button[class*='verify'], button[class*='submit'], "
+                    "#registerCTA, .btn-primary, button[type='submit']")
+                for btn in verify_btns:
+                    if btn.is_displayed():
+                        btn.click()
+                        _log("✅ Clicked verify button")
+                        break
+            except Exception as otp_err:
+                _log(f"⚠️ OTP auto-fill issue: {otp_err}")
+        else:
+            input("\n👉 Enter OTP in the browser, then press ENTER here...")
     except Exception as e:
-        print(f"⚠️  Auto-login failed ({e}). Log in manually.")
-        input("\n👉 Log in manually in the browser, then press ENTER here...")
+        _log(f"⚠️  Auto-login failed ({e}).")
+        if not otp_provider:
+            input("\n👉 Log in manually in the browser, then press ENTER here...")
 
     time.sleep(5)
 
     driver.get("https://fantasy.iplt20.com/classic/stats")
     time.sleep(8)
+    _log("📊 Loading stats page...")
 
     # Scroll to load all players
     scrollable = driver.find_elements(By.CSS_SELECTOR, ".m11c-plyrSel__list")
@@ -110,7 +178,7 @@ def scrape_stats():
             writer.writerow(["Player", "Team", "Credits", "Total Points"])
             writer.writerows(data)
 
-    print(f"✅ Scraped {len(data)} players → {DAILY_CSV}")
+    _log(f"✅ Scraped {len(data)} players → {DAILY_CSV}")
     return data
 
 
@@ -382,9 +450,14 @@ def load_fantasy_points():
     return fp
 
 
-def run_pipeline():
+def run_pipeline(otp_provider=None, log_callback=None):
+    def _log(msg):
+        print(msg)
+        if log_callback:
+            log_callback(msg)
+
     # --- Scrape ---
-    scrape_stats()
+    scrape_stats(otp_provider=otp_provider, log_callback=log_callback)
 
     # --- Load points ---
     fantasy_points = load_fantasy_points()

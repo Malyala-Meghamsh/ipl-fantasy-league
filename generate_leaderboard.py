@@ -454,6 +454,16 @@ def load_fantasy_points():
     return fp
 
 
+def load_original_teams():
+    """Load player -> original IPL team mapping from the stats CSV."""
+    ot = {}
+    with open(LATEST_CSV, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            ot[row["Player"].strip()] = row["Team"].strip()
+    return ot
+
+
 def load_history():
     """Load ranking history for trend display."""
     history = {}
@@ -473,8 +483,10 @@ def load_history():
     return history
 
 
-def compute_rankings(fantasy_points):
+def compute_rankings(fantasy_points, original_teams=None):
     """Return sorted list of (team, best_pts, best_xi_players, full_squad)."""
+    if original_teams is None:
+        original_teams = {}
     results = []
     for team, squad in squads.items():
         best_team, best_pts = find_best_xi(team, squad, fantasy_points)
@@ -492,11 +504,14 @@ def compute_rankings(fantasy_points):
         for name in squad:
             p = get_points(name, fantasy_points)
             total_squad_pts += p
+            csv_name = name_map.get(name, name)
+            orig_team = original_teams.get(csv_name, "")
             full_squad.append({
                 "name": name,
                 "role": get_role(name),
                 "points": p,
                 "in_xi": name in best_xi_names,
+                "original_team": orig_team,
             })
         full_squad.sort(key=lambda x: x["points"], reverse=True)
         results.append({
@@ -742,10 +757,15 @@ def generate_html(rankings, history, fantasy_points):
             os_badge = ' <span class="overseas-badge">OS</span>' if is_foreign(p["name"]) else ""
             if is_foreign(p["name"]):
                 squad_overseas += 1
+            orig_team = p.get("original_team", "")
+            orig_team_badge = ""
+            if orig_team:
+                otc = TEAM_COLORS.get(orig_team, {"bg": "#333", "text": "#fff"})
+                orig_team_badge = f' <span class="orig-team-badge" style="background:{otc["bg"]};color:{otc["text"]}">{orig_team}</span>'
             squad_rows += f"""
                 <tr class="{row_class}">
                     <td class="num">{i}</td>
-                    <td class="player-name">{p["name"]}{os_badge}</td>
+                    <td class="player-name">{p["name"]}{os_badge}{orig_team_badge}</td>
                     <td><span class="role-badge role-{role_class}">{p["role"]}</span></td>
                     <td class="price">{price_str}</td>
                     <td class="pts">{p["points"]}</td>
@@ -1226,6 +1246,17 @@ def generate_html(rankings, history, fantasy_points):
             margin-left: 4px;
             vertical-align: middle;
             letter-spacing: 0.5px;
+        }}
+        .orig-team-badge {{
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 6px;
+            font-size: 0.6em;
+            font-weight: 700;
+            margin-left: 4px;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+            opacity: 0.85;
         }}
         .squad-legend {{
             padding: 8px 14px;
@@ -2013,7 +2044,8 @@ def generate_html(rankings, history, fantasy_points):
 def main():
     print("Loading fantasy data...")
     fantasy_points = load_fantasy_points()
-    rankings = compute_rankings(fantasy_points)
+    original_teams = load_original_teams()
+    rankings = compute_rankings(fantasy_points, original_teams)
     history = load_history()
 
     html = generate_html(rankings, history, fantasy_points)
