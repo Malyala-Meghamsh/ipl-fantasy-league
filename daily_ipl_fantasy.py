@@ -83,50 +83,33 @@ def scrape_stats(otp_provider=None, log_callback=None):
             otp = otp_provider()
             _log(f"📲 OTP received, entering...")
 
-            # Try to find OTP input fields and enter OTP programmatically
             time.sleep(2)
             try:
-                # Strategy 1: Individual digit OTP inputs
-                otp_inputs = driver.find_elements(By.CSS_SELECTOR,
-                    "input[type='tel'], input[type='number'], input.otp-input, "
-                    "input[class*='otp'], input[name*='otp'], input[id*='otp']")
-                if len(otp_inputs) >= len(otp):
-                    for i, digit in enumerate(otp):
-                        otp_inputs[i].clear()
-                        otp_inputs[i].send_keys(digit)
-                        time.sleep(0.1)
-                    _log("✅ OTP entered in individual fields")
-                elif otp_inputs:
-                    otp_inputs[0].clear()
-                    otp_inputs[0].send_keys(otp)
-                    _log("✅ OTP entered in single field")
-                else:
-                    # Strategy 2: Use JavaScript to find and fill
-                    driver.execute_script(f"""
-                        var inputs = document.querySelectorAll('input');
-                        for (var inp of inputs) {{
-                            if (inp.type === 'tel' || inp.type === 'number' ||
-                                inp.placeholder.toLowerCase().includes('otp') ||
-                                inp.name.toLowerCase().includes('otp')) {{
-                                inp.value = '{otp}';
-                                inp.dispatchEvent(new Event('input', {{bubbles: true}}));
-                                break;
-                            }}
-                        }}
-                    """)
-                    _log("✅ OTP entered via JS fallback")
+                from selenium.webdriver.support.ui import WebDriverWait
+                from selenium.webdriver.support import expected_conditions as EC
+
+                # Wait for OTP form to appear, then fill via JS (avoids interactability issues)
+                WebDriverWait(driver, 15).until(
+                    EC.presence_of_element_located((By.ID, "otpInputField"))
+                )
+                # Use JS to set value and trigger input event (headless-safe)
+                driver.execute_script("""
+                    var el = document.getElementById('otpInputField');
+                    el.value = arguments[0];
+                    el.dispatchEvent(new Event('input', {bubbles: true}));
+                    el.dispatchEvent(new Event('change', {bubbles: true}));
+                """, otp)
+                _log("✅ OTP entered in #otpInputField")
 
                 time.sleep(1)
-                # Try to click verify/submit button
-                verify_btns = driver.find_elements(By.CSS_SELECTOR,
-                    "button[id*='verify'], button[id*='submit'], "
-                    "button[class*='verify'], button[class*='submit'], "
-                    "#registerCTA, .btn-primary, button[type='submit']")
-                for btn in verify_btns:
-                    if btn.is_displayed():
-                        btn.click()
-                        _log("✅ Clicked verify button")
-                        break
+                # Click the Verify button via JS (try multiple selectors)
+                driver.execute_script("""
+                    var btn = document.getElementById('verifyOtp')
+                           || document.querySelector('#paj-verifyform button[type="submit"]')
+                           || document.querySelector('.paj3OTPForm button');
+                    if (btn) btn.click();
+                """)
+                _log("✅ Clicked verify button")
             except Exception as otp_err:
                 _log(f"⚠️ OTP auto-fill issue: {otp_err}")
         else:
@@ -141,16 +124,13 @@ def scrape_stats(otp_provider=None, log_callback=None):
     driver.get("https://fantasy.iplt20.com/classic/stats")
     time.sleep(5)
 
-    # Click the Stats nav button to open the stats page
+    # Click the Stats nav button via JS (avoids element-not-interactable)
     try:
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
-
-        stats_link = WebDriverWait(driver, 15).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "a[href='/classic/stats']"))
-        )
-        stats_link.click()
-        _log("📊 Clicked Stats button")
+        driver.execute_script("""
+            var link = document.querySelector("a[href='/classic/stats']");
+            if (link) link.click();
+        """)
+        _log("📊 Clicked Stats nav button")
         time.sleep(5)
     except Exception as nav_err:
         _log(f"⚠️ Stats nav click failed ({nav_err}), trying direct URL...")
@@ -463,7 +443,9 @@ def load_fantasy_points():
     with open(LATEST_CSV, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            fp[row["Player"].strip()] = int(row["Total Points"])
+            pts = row["Total Points"].strip()
+            if pts:
+                fp[row["Player"].strip()] = int(pts)
     return fp
 
 
