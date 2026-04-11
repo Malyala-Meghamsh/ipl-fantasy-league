@@ -52,6 +52,7 @@ def scrape_stats(otp_provider=None, log_callback=None):
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
@@ -153,18 +154,25 @@ def scrape_stats(otp_provider=None, log_callback=None):
             )
             time.sleep(1)
 
-    # Extract data
-    rows = driver.find_elements(By.CSS_SELECTOR, ".m11c-plyrSel__list li")
-    data = []
-    for row in rows:
-        try:
-            name = row.find_element(By.CSS_SELECTOR, ".m11c-plyrSel__name span").text
-            team = row.find_element(By.CSS_SELECTOR, ".m11c-plyrSel__team span").text
-            credits_val = row.find_element(By.CSS_SELECTOR, ".m11c-tbl__cell--pts span").text
-            total_points = row.find_element(By.CSS_SELECTOR, ".m11c-tbl__cell--amt span").text
-            data.append([name, team, credits_val, total_points])
-        except Exception:
-            continue
+    # Extract data using JS to get textContent (works reliably in headless)
+    data = driver.execute_script("""
+        var rows = document.querySelectorAll('.m11c-plyrSel__list li');
+        var result = [];
+        rows.forEach(function(row) {
+            try {
+                var name = row.querySelector('.m11c-plyrSel__name span');
+                var team = row.querySelector('.m11c-plyrSel__team span');
+                var credits = row.querySelector('.m11c-tbl__cell--pts span');
+                var points = row.querySelector('.m11c-tbl__cell--amt span');
+                var n = name ? name.textContent.trim() : '';
+                var t = team ? team.textContent.trim() : '';
+                var c = credits ? credits.textContent.trim() : '';
+                var p = points ? points.textContent.trim() : '';
+                if (n) result.push([n, t, c, p]);
+            } catch(e) {}
+        });
+        return result;
+    """)
 
     driver.quit()
 
