@@ -557,6 +557,19 @@ def generate_html(rankings, history, fantasy_points):
         unowned.sort(key=lambda x: (x.get("today_pts", 0), x["points"]), reverse=True)
         today_players_sorted = owned + unowned
 
+        # Compute dynamic thresholds based on percentiles of today's players
+        all_total_pts = sorted([p["points"] for p in today_players_sorted if p["points"] > 0])
+        all_daily_pts = sorted([p.get("today_pts", 0) for p in today_players_sorted if p.get("today_pts", 0) > 0])
+        def _percentile(sorted_vals, pct):
+            if not sorted_vals:
+                return 0
+            idx = int(len(sorted_vals) * pct / 100)
+            return sorted_vals[min(idx, len(sorted_vals) - 1)]
+        pts_hot_threshold = _percentile(all_total_pts, 75)   # top 25% = green
+        pts_warm_threshold = _percentile(all_total_pts, 40)   # top 60% = orange
+        day_hot_threshold = _percentile(all_daily_pts, 75)    # top 25% daily = green
+        day_warm_threshold = max(_percentile(all_daily_pts, 40), 1)  # top 60% daily = orange
+
         today_rows = ""
         divider_added = False
         for i, p in enumerate(today_players_sorted, 1):
@@ -567,7 +580,7 @@ def generate_html(rankings, history, fantasy_points):
                 today_rows += f'<tr class="today-divider-row" data-owner="UNCLAIMED"><td colspan="6" class="today-divider">&#128683; Unclaimed Players</td></tr>'
             owner_nick = OWNERS.get(owner_team, {}).get("nick", "") if owner_team else ""
             owner_badge = f'<span class="today-owner-badge" style="background:{TEAM_COLORS.get(owner_team, {}).get("bg","#333")};color:{TEAM_COLORS.get(owner_team, {}).get("text","#fff")}">{owner_team}</span>' if owner_team else '<span class="today-owner-badge today-unclaimed">N/A</span>'
-            pts_class = "today-pts-hot" if p["points"] >= 100 else "today-pts-warm" if p["points"] >= 50 else ""
+            pts_class = "today-pts-hot" if p["points"] >= pts_hot_threshold else "today-pts-warm" if p["points"] >= pts_warm_threshold else ""
             team_color = TEAM_COLORS.get(p["original_team"], {"bg": "#333", "text": "#fff"})
             # Reverse name_map (CSV name → squad name) for price lookup
             reverse_name = {v: k for k, v in name_map.items()}.get(p["name"], p["name"])
@@ -576,7 +589,7 @@ def generate_html(rankings, history, fantasy_points):
             row_owner = owner_team if owner_team else "UNCLAIMED"
             today_pts = p.get("today_pts", 0)
             today_pts_display = f"+{today_pts}" if today_pts > 0 else str(today_pts) if today_pts < 0 else "0"
-            today_pts_color = "today-day-hot" if today_pts >= 50 else "today-day-warm" if today_pts > 0 else "today-day-zero"
+            today_pts_color = "today-day-hot" if today_pts >= day_hot_threshold else "today-day-warm" if today_pts >= day_warm_threshold else "today-day-zero"
             today_rows += f"""
                 <tr class="today-row" data-owner="{row_owner}">
                     <td class="num">{i}</td>
