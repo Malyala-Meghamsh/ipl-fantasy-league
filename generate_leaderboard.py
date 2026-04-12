@@ -1307,13 +1307,44 @@ def generate_html(rankings, history, fantasy_points):
             overflow-x: auto;
         }}
         .history-table th, .history-table td {{
-            padding: 6px 8px;
+            padding: 8px 10px;
             text-align: center;
             border-bottom: 1px solid #1a1a2e;
         }}
         .history-table th {{ color: #666; font-size: 0.85em; }}
         .history-table td {{ color: #ccc; }}
-        .history-table .team-col {{ text-align: left; font-weight: 600; }}
+        .history-table .team-col {{
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            left: 0;
+            background: #111122;
+            z-index: 2;
+            min-width: 120px;
+            white-space: nowrap;
+        }}
+        .history-table thead th.team-col {{
+            z-index: 3;
+            background: #111122;
+        }}
+        .history-table tbody tr:nth-child(odd) {{
+            background: #0e0e1e;
+        }}
+        .history-table tbody tr:nth-child(even) {{
+            background: #161630;
+        }}
+        .history-table tbody tr:nth-child(odd) .team-col {{
+            background: #0e0e1e;
+        }}
+        .history-table tbody tr:nth-child(even) .team-col {{
+            background: #161630;
+        }}
+        .history-table tbody tr:hover {{
+            background: #1e1e3a;
+        }}
+        .history-table tbody tr:hover .team-col {{
+            background: #1e1e3a;
+        }}
 
         /* Footer */
         .footer {{

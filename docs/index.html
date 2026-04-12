@@ -376,13 +376,44 @@
             overflow-x: auto;
         }
         .history-table th, .history-table td {
-            padding: 6px 8px;
+            padding: 8px 10px;
             text-align: center;
             border-bottom: 1px solid #1a1a2e;
         }
         .history-table th { color: #666; font-size: 0.85em; }
         .history-table td { color: #ccc; }
-        .history-table .team-col { text-align: left; font-weight: 600; }
+        .history-table .team-col {
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            left: 0;
+            background: #111122;
+            z-index: 2;
+            min-width: 120px;
+            white-space: nowrap;
+        }
+        .history-table thead th.team-col {
+            z-index: 3;
+            background: #111122;
+        }
+        .history-table tbody tr:nth-child(odd) {
+            background: #0e0e1e;
+        }
+        .history-table tbody tr:nth-child(even) {
+            background: #161630;
+        }
+        .history-table tbody tr:nth-child(odd) .team-col {
+            background: #0e0e1e;
+        }
+        .history-table tbody tr:nth-child(even) .team-col {
+            background: #161630;
+        }
+        .history-table tbody tr:hover {
+            background: #1e1e3a;
+        }
+        .history-table tbody tr:hover .team-col {
+            background: #1e1e3a;
+        }
 
         /* Footer */
         .footer {
@@ -883,7 +914,7 @@
                 <div class="podium-rank">🥈</div>
                 <div class="podium-team">SRH</div>
                 <div class="podium-owner">Thal</div>
-                <div class="podium-pts">1953 pts</div>
+                <div class="podium-pts">2011 pts</div>
             </div>
             
             <div class="podium-item third"
@@ -892,7 +923,7 @@
                 <div class="podium-rank">🥉</div>
                 <div class="podium-team">MI</div>
                 <div class="podium-owner">Nandi</div>
-                <div class="podium-pts">1610 pts</div>
+                <div class="podium-pts">1614 pts</div>
             </div>
             
         </div>
@@ -919,7 +950,7 @@
                 <div class="fun-title-bar">
                     <span class="fun-title">&#128081; KING OF LEAGUE</span>
                     <span class="fun-subtitle">Best team. Best owner.</span>
-                    <div class="trash-talk">&ldquo;Number 1 sir. Everyone else is trying for second.&rdquo;</div>
+                    <div class="trash-talk">&ldquo;In auction you were like god.&rdquo;</div>
                     
                 </div>
                 <div class="owner-detail">
@@ -1120,7 +1151,7 @@
                     <td class="player-name">Mitchell Santner <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
                     <td class="price">8.3 Cr</td>
-                    <td class="pts">51</td>
+                    <td class="pts">49</td>
                     <td class="xi-status">&#10060;</td>
                 </tr>
                 <tr class="on-bench">
@@ -1216,7 +1247,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>119.8 Cr</strong></td>
-                                <td class="pts"><strong>2606</strong></td><td></td>
+                                <td class="pts"><strong>2604</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -1235,13 +1266,13 @@
                             <span>&#127942; Best XI Points</span><span class="stat-highlight">2445</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>2606</span>
+                            <span>&#128202; Total Squad Points</span><span>2604</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">161</span>
+                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">159</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#11088; Best XI Utilization</span><span>93.8%</span>
+                            <span>&#11088; Best XI Utilization</span><span>93.9%</span>
                         </div>
                         <div class="stat-row">
                             <span>&#127919; Squad Composition</span><span>6 WK &middot; 3 BAT &middot; 5 AR &middot; 9 BOWL</span>
@@ -1268,9 +1299,9 @@
                     <div class="owner-name">&#127918; Thal</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1953</div>
+                    <div class="pts-value">2011</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+191 pts)</span>
+                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+249 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
@@ -1314,15 +1345,15 @@
                 </tr>
                 <tr>
                     <td class="num">3</td>
-                    <td class="player-name">Rajat Patidar</td>
+                    <td class="player-name">Virat Kohli</td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">235</td>
+                    <td class="pts">269</td>
                 </tr>
                 <tr>
                     <td class="num">4</td>
-                    <td class="player-name">Virat Kohli</td>
+                    <td class="player-name">Rajat Patidar</td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">219</td>
+                    <td class="pts">239</td>
                 </tr>
                 <tr>
                     <td class="num">5</td>
@@ -1334,7 +1365,7 @@
                     <td class="num">6</td>
                     <td class="player-name">Rohit Sharma</td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">175</td>
+                    <td class="pts">179</td>
                 </tr>
                 <tr>
                     <td class="num">7</td>
@@ -1369,10 +1400,10 @@
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1953</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>2011</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">177.5</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">182.8</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -1396,18 +1427,18 @@
                 </tr>
                 <tr class="in-xi">
                     <td class="num">2</td>
-                    <td class="player-name">Rajat Patidar <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
+                    <td class="player-name">Virat Kohli <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">6.3 Cr</td>
-                    <td class="pts">235</td>
+                    <td class="price">20.5 Cr</td>
+                    <td class="pts">269</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
                     <td class="num">3</td>
-                    <td class="player-name">Virat Kohli <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
+                    <td class="player-name">Rajat Patidar <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">20.5 Cr</td>
-                    <td class="pts">219</td>
+                    <td class="price">6.3 Cr</td>
+                    <td class="pts">239</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -1428,18 +1459,18 @@
                 </tr>
                 <tr class="in-xi">
                     <td class="num">6</td>
-                    <td class="player-name">KL Rahul <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
-                    <td><span class="role-badge role-wk">WK</span></td>
-                    <td class="price">15.8 Cr</td>
-                    <td class="pts">176</td>
+                    <td class="player-name">Rohit Sharma <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="price">11.3 Cr</td>
+                    <td class="pts">179</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
                     <td class="num">7</td>
-                    <td class="player-name">Rohit Sharma <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">11.3 Cr</td>
-                    <td class="pts">175</td>
+                    <td class="player-name">KL Rahul <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="price">15.8 Cr</td>
+                    <td class="pts">176</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -1591,7 +1622,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>117.65 Cr</strong></td>
-                                <td class="pts"><strong>2046</strong></td><td></td>
+                                <td class="pts"><strong>2104</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -1607,16 +1638,16 @@
                             <span>&#128203; Squad Size</span><span>25 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1953</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">2011</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>2046</span>
+                            <span>&#128202; Total Squad Points</span><span>2104</span>
                         </div>
                         <div class="stat-row">
                             <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">93</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#11088; Best XI Utilization</span><span>95.5%</span>
+                            <span>&#11088; Best XI Utilization</span><span>95.6%</span>
                         </div>
                         <div class="stat-row">
                             <span>&#127919; Squad Composition</span><span>2 WK &middot; 6 BAT &middot; 9 AR &middot; 8 BOWL</span>
@@ -1643,9 +1674,9 @@
                     <div class="owner-name">&#127918; Nandi</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1610</div>
+                    <div class="pts-value">1614</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-up">&#9650; +2</span> <span class="pt-diff">(+132 pts)</span>
+                    <span class="trend trend-up">&#9650; +2</span> <span class="pt-diff">(+136 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
@@ -1653,7 +1684,7 @@
                 <div class="fun-title-bar">
                     <span class="fun-title">&#129353; Third Place Winner</span>
                     <span class="fun-subtitle">You made it to top 3. That is good.</span>
-                    <div class="trash-talk">&ldquo;You are on podium. Good. Now be quiet.&rdquo;</div>
+                    <div class="trash-talk">&ldquo;Third place. Not good. Not bad. Just okay.&rdquo;</div>
                     
                 </div>
                 <div class="owner-detail">
@@ -1709,7 +1740,7 @@
                     <td class="num">6</td>
                     <td class="player-name">Romario Shepherd <span class="overseas-badge">OS</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">117</td>
+                    <td class="pts">121</td>
                 </tr>
                 <tr>
                     <td class="num">7</td>
@@ -1744,10 +1775,10 @@
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1610</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1614</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">146.4</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">146.7</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -1814,7 +1845,7 @@
                     <td class="player-name">Romario Shepherd <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
                     <td class="price">3.8 Cr</td>
-                    <td class="pts">117</td>
+                    <td class="pts">121</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -1894,7 +1925,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>110.45 Cr</strong></td>
-                                <td class="pts"><strong>1745</strong></td><td></td>
+                                <td class="pts"><strong>1749</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -1910,10 +1941,10 @@
                             <span>&#128203; Squad Size</span><span>16 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1610</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1614</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1745</span>
+                            <span>&#128202; Total Squad Points</span><span>1749</span>
                         </div>
                         <div class="stat-row">
                             <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">135</span>
@@ -1936,28 +1967,363 @@
             </div>
         </div>
         
+        <div class="team-card" id="team-dc">
+            <div class="team-header" style="background:#004C93; color:#FFFFFF"
+                 onclick="toggleTeam('dc')">
+                <div class="rank-badge">#4</div>
+                <div class="team-info">
+                    <div class="team-abbr">DC</div>
+                    <div class="team-full">Delhi Capitals</div>
+                    <div class="owner-name">&#127918; Aids</div>
+                </div>
+                <div class="team-pts">
+                    <div class="pts-value">1594</div>
+                    <div class="pts-label">pts</div>
+                    <span class="trend trend-up">&#9650; +2</span> <span class="pt-diff">(+236 pts)</span>
+                </div>
+                <div class="expand-icon">&#9660;</div>
+            </div>
+            <div class="team-body" id="body-dc">
+                <div class="fun-title-bar">
+                    <span class="fun-title">&#128545; Just Average</span>
+                    <span class="fun-subtitle">Not good. Not bad. Just middle.</span>
+                    <div class="trash-talk">&ldquo;What happened in auction? Nothing good?&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 20 pts behind MI (Nandi)! One big match and they're cooked &#128293;</div>
+                </div>
+                <div class="owner-detail">
+                    <span>Owner: <strong>Nithin</strong> aka <em>Aids</em></span>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tab-bar">
+                    <div class="tab active" onclick="switchTab('dc', 'xi')">Best XI</div>
+                    <div class="tab" onclick="switchTab('dc', 'squad')">Full Squad</div>
+                    <div class="tab" onclick="switchTab('dc', 'stats')">Stats</div>
+                </div>
+
+                <!-- Tab: Best XI -->
+                <div class="tab-content active" id="tab-xi-dc">
+                    <table class="xi-table">
+                        <thead>
+                            <tr><th>#</th><th>Player</th><th>Role</th><th>Pts</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                <tr>
+                    <td class="num">1</td>
+                    <td class="player-name">Phil Salt <span class="overseas-badge">OS</span></td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="pts">230</td>
+                </tr>
+                <tr>
+                    <td class="num">2</td>
+                    <td class="player-name">Shreyas Iyer</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">222</td>
+                </tr>
+                <tr>
+                    <td class="num">3</td>
+                    <td class="player-name">Pathum Nissanka <span class="overseas-badge">OS</span></td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="pts">202</td>
+                </tr>
+                <tr>
+                    <td class="num">4</td>
+                    <td class="player-name">Washington Sundar</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">190</td>
+                </tr>
+                <tr>
+                    <td class="num">5</td>
+                    <td class="player-name">Ayush Badoni</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">114</td>
+                </tr>
+                <tr>
+                    <td class="num">6</td>
+                    <td class="player-name">Marco Jansen <span class="overseas-badge">OS</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">101</td>
+                </tr>
+                <tr>
+                    <td class="num">7</td>
+                    <td class="player-name">Naman Dhir</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">92</td>
+                </tr>
+                <tr>
+                    <td class="num">8</td>
+                    <td class="player-name">Rahul Tewatia</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="pts">71</td>
+                </tr>
+                <tr>
+                    <td class="num">9</td>
+                    <td class="player-name">Kagiso Rabada <span class="overseas-badge">OS</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">140</td>
+                </tr>
+                <tr>
+                    <td class="num">10</td>
+                    <td class="player-name">Vyshak Vijaykumar</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">139</td>
+                </tr>
+                <tr>
+                    <td class="num">11</td>
+                    <td class="player-name">Digvesh Rathi</td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="pts">93</td>
+                </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1594</strong></td>
+                            </tr>
+                            <tr class="avg-row">
+                                <td></td><td>Avg per player</td><td></td><td class="pts">144.9</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Tab: Full Squad -->
+                <div class="tab-content" id="tab-squad-dc">
+                    <table class="xi-table squad-table">
+                        <thead>
+                            <tr><th>#</th><th>Player</th><th>Role</th><th>Price</th><th>Pts</th><th>XI?</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                <tr class="in-xi">
+                    <td class="num">1</td>
+                    <td class="player-name">Phil Salt <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="price">9.0 Cr</td>
+                    <td class="pts">230</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">2</td>
+                    <td class="player-name">Shreyas Iyer <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="price">18.5 Cr</td>
+                    <td class="pts">222</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">3</td>
+                    <td class="player-name">Pathum Nissanka <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="price">4.6 Cr</td>
+                    <td class="pts">202</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">4</td>
+                    <td class="player-name">Washington Sundar <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">4.4 Cr</td>
+                    <td class="pts">190</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">5</td>
+                    <td class="player-name">Kagiso Rabada <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">8.3 Cr</td>
+                    <td class="pts">140</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">6</td>
+                    <td class="player-name">Vyshak Vijaykumar <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">2.2 Cr</td>
+                    <td class="pts">139</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">7</td>
+                    <td class="player-name">Ayush Badoni <span class="orig-team-badge" style="background:#333;color:#fff">LSG</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">7.3 Cr</td>
+                    <td class="pts">114</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">8</td>
+                    <td class="player-name">Marco Jansen <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">9.0 Cr</td>
+                    <td class="pts">101</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">9</td>
+                    <td class="player-name">Digvesh Rathi <span class="orig-team-badge" style="background:#333;color:#fff">LSG</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">6.3 Cr</td>
+                    <td class="pts">93</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">10</td>
+                    <td class="player-name">Naman Dhir <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">8.3 Cr</td>
+                    <td class="pts">92</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="in-xi">
+                    <td class="num">11</td>
+                    <td class="player-name">Rahul Tewatia <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">1.7 Cr</td>
+                    <td class="pts">71</td>
+                    <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">12</td>
+                    <td class="player-name">Nitish Rana <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">4.2 Cr</td>
+                    <td class="pts">59</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">13</td>
+                    <td class="player-name">Marcus Stoinis <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">9.5 Cr</td>
+                    <td class="pts">31</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">14</td>
+                    <td class="player-name">Mayank Markande <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">30L</td>
+                    <td class="pts">18</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">15</td>
+                    <td class="player-name">Will Jacks <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">13.3 Cr</td>
+                    <td class="pts">0</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">16</td>
+                    <td class="player-name">Mayank Yadav <span class="orig-team-badge" style="background:#333;color:#fff">LSG</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">3.0 Cr</td>
+                    <td class="pts">0</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">17</td>
+                    <td class="player-name">Tom Banton <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
+                    <td><span class="role-badge role-wk">WK</span></td>
+                    <td class="price">2.0 Cr</td>
+                    <td class="pts">0</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">18</td>
+                    <td class="player-name">Kyle Jamieson <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">2.0 Cr</td>
+                    <td class="pts">0</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">19</td>
+                    <td class="player-name">Manan Vohra</td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="price">50L</td>
+                    <td class="pts">0</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">20</td>
+                    <td class="player-name">Ankit Kumar</td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">1.5 Cr</td>
+                    <td class="pts">0</td>
+                    <td class="xi-status">&#10060;</td>
+                </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
+                                <td class="price"><strong>115.9 Cr</strong></td>
+                                <td class="pts"><strong>1702</strong></td><td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="squad-legend">
+                        &#9989; = In Best XI &nbsp;&nbsp; &#10060; = On Bench
+                    </div>
+                </div>
+
+                <!-- Tab: Stats -->
+                <div class="tab-content" id="tab-stats-dc">
+                    <div class="team-stats">
+                        <div class="stat-row">
+                            <span>&#128203; Squad Size</span><span>20 players</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1594</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#128202; Total Squad Points</span><span>1702</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">108</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#11088; Best XI Utilization</span><span>93.7%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#127919; Squad Composition</span><span>2 WK &middot; 3 BAT &middot; 9 AR &middot; 6 BOWL</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#128100; Playing / Bench</span><span>11 / 9</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>&#127758; Overseas in XI / Squad</span><span>4 / 8</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
         <div class="team-card" id="team-kkr">
             <div class="team-header" style="background:#3A225D; color:#FFC425"
                  onclick="toggleTeam('kkr')">
-                <div class="rank-badge">#4</div>
+                <div class="rank-badge">#5</div>
                 <div class="team-info">
                     <div class="team-abbr">KKR</div>
                     <div class="team-full">Kolkata Knight Riders</div>
                     <div class="owner-name">&#127918; Oorav</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1568</div>
+                    <div class="pts-value">1580</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-down">&#9660; -1</span>
+                    <span class="trend trend-down">&#9660; -2</span> <span class="pt-diff">(+12 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
             <div class="team-body" id="body-kkr">
                 <div class="fun-title-bar">
-                    <span class="fun-title">&#128545; Just Average</span>
-                    <span class="fun-subtitle">Not good. Not bad. Just middle.</span>
-                    <div class="trash-talk">&ldquo;Fourth place. Nobody will know.&rdquo;</div>
-                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 42 pts behind MI (Nandi)! One big match and they're cooked &#128293;</div>
+                    <span class="fun-title">&#128747; Middle Player</span>
+                    <span class="fun-subtitle">You are forgotten.</span>
+                    <div class="trash-talk">&ldquo;You are standing in middle. That is all.&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 14 pts behind DC (Aids)! One big match and they're cooked &#128293;</div>
                 </div>
                 <div class="owner-detail">
                     <span>Owner: <strong>Tejash</strong> aka <em>Oorav</em></span>
@@ -1982,7 +2348,7 @@
                     <td class="num">1</td>
                     <td class="player-name">Ryan Rickelton <span class="overseas-badge">OS</span></td>
                     <td><span class="role-badge role-wk">WK</span></td>
-                    <td class="pts">156</td>
+                    <td class="pts">160</td>
                 </tr>
                 <tr>
                     <td class="num">2</td>
@@ -1994,7 +2360,7 @@
                     <td class="num">3</td>
                     <td class="player-name">Suryakumar Yadav</td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">107</td>
+                    <td class="pts">111</td>
                 </tr>
                 <tr>
                     <td class="num">4</td>
@@ -2042,15 +2408,15 @@
                     <td class="num">11</td>
                     <td class="player-name">Bhuvneshwar Kumar</td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="pts">124</td>
+                    <td class="pts">128</td>
                 </tr>
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1568</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1580</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">142.5</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">143.6</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -2093,7 +2459,7 @@
                     <td class="player-name">Ryan Rickelton <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
                     <td><span class="role-badge role-wk">WK</span></td>
                     <td class="price">1.2 Cr</td>
-                    <td class="pts">156</td>
+                    <td class="pts">160</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -2117,7 +2483,7 @@
                     <td class="player-name">Bhuvneshwar Kumar <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
                     <td class="price">8.3 Cr</td>
-                    <td class="pts">124</td>
+                    <td class="pts">128</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -2125,7 +2491,7 @@
                     <td class="player-name">Suryakumar Yadav <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
                     <td><span class="role-badge role-bat">BAT</span></td>
                     <td class="price">11.3 Cr</td>
-                    <td class="pts">107</td>
+                    <td class="pts">111</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -2237,7 +2603,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>109.05 Cr</strong></td>
-                                <td class="pts"><strong>1723</strong></td><td></td>
+                                <td class="pts"><strong>1735</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -2253,16 +2619,16 @@
                             <span>&#128203; Squad Size</span><span>21 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1568</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1580</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1723</span>
+                            <span>&#128202; Total Squad Points</span><span>1735</span>
                         </div>
                         <div class="stat-row">
                             <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">155</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#11088; Best XI Utilization</span><span>91.0%</span>
+                            <span>&#11088; Best XI Utilization</span><span>91.1%</span>
                         </div>
                         <div class="stat-row">
                             <span>&#127919; Squad Composition</span><span>2 WK &middot; 6 BAT &middot; 4 AR &middot; 9 BOWL</span>
@@ -2282,24 +2648,24 @@
         <div class="team-card" id="team-pbks">
             <div class="team-header" style="background:#D71920; color:#FFFFFF"
                  onclick="toggleTeam('pbks')">
-                <div class="rank-badge">#5</div>
+                <div class="rank-badge">#6</div>
                 <div class="team-info">
                     <div class="team-abbr">PBKS</div>
                     <div class="team-full">Punjab Kings</div>
                     <div class="owner-name">&#127918; Megha</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1539</div>
+                    <div class="pts-value">1551</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-down">&#9660; -1</span>
+                    <span class="trend trend-down">&#9660; -2</span> <span class="pt-diff">(+12 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
             <div class="team-body" id="body-pbks">
                 <div class="fun-title-bar">
-                    <span class="fun-title">&#128747; Middle Player</span>
-                    <span class="fun-subtitle">You are forgotten.</span>
-                    <div class="trash-talk">&ldquo;Fifth place. Average team average owner.&rdquo;</div>
+                    <span class="fun-title">&#129313; Bad Team</span>
+                    <span class="fun-subtitle">What happened in auction?</span>
+                    <div class="trash-talk">&ldquo;Now the loser section starts.&rdquo;</div>
                     <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 29 pts behind KKR (Oorav)! One big match and they're cooked &#128293;</div>
                 </div>
                 <div class="owner-detail">
@@ -2337,7 +2703,7 @@
                     <td class="num">3</td>
                     <td class="player-name">Devdutt Padikkal</td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">236</td>
+                    <td class="pts">240</td>
                 </tr>
                 <tr>
                     <td class="num">4</td>
@@ -2367,13 +2733,13 @@
                     <td class="num">8</td>
                     <td class="player-name">Shardul Thakur</td>
                     <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">113</td>
+                    <td class="pts">117</td>
                 </tr>
                 <tr>
                     <td class="num">9</td>
                     <td class="player-name">Hardik Pandya</td>
                     <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">71</td>
+                    <td class="pts">75</td>
                 </tr>
                 <tr>
                     <td class="num">10</td>
@@ -2390,10 +2756,10 @@
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1539</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1551</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">139.9</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">141.0</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -2409,18 +2775,18 @@
                             
                 <tr class="in-xi">
                     <td class="num">1</td>
-                    <td class="player-name">Sameer Rizvi <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">1.6 Cr</td>
-                    <td class="pts">239</td>
+                    <td class="player-name">Devdutt Padikkal <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="price">6.0 Cr</td>
+                    <td class="pts">240</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
                     <td class="num">2</td>
-                    <td class="player-name">Devdutt Padikkal <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">6.0 Cr</td>
-                    <td class="pts">236</td>
+                    <td class="player-name">Sameer Rizvi <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
+                    <td><span class="role-badge role-ar">AR</span></td>
+                    <td class="price">1.6 Cr</td>
+                    <td class="pts">239</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -2452,7 +2818,7 @@
                     <td class="player-name">Shardul Thakur <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
                     <td class="price">4.6 Cr</td>
-                    <td class="pts">113</td>
+                    <td class="pts">117</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -2476,7 +2842,7 @@
                     <td class="player-name">Hardik Pandya <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
                     <td class="price">16.5 Cr</td>
-                    <td class="pts">71</td>
+                    <td class="pts">75</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -2548,7 +2914,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>119.5 Cr</strong></td>
-                                <td class="pts"><strong>1548</strong></td><td></td>
+                                <td class="pts"><strong>1560</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -2564,10 +2930,10 @@
                             <span>&#128203; Squad Size</span><span>17 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1539</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1551</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1548</span>
+                            <span>&#128202; Total Squad Points</span><span>1560</span>
                         </div>
                         <div class="stat-row">
                             <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">9</span>
@@ -2590,341 +2956,6 @@
             </div>
         </div>
         
-        <div class="team-card" id="team-dc">
-            <div class="team-header" style="background:#004C93; color:#FFFFFF"
-                 onclick="toggleTeam('dc')">
-                <div class="rank-badge">#6</div>
-                <div class="team-info">
-                    <div class="team-abbr">DC</div>
-                    <div class="team-full">Delhi Capitals</div>
-                    <div class="owner-name">&#127918; Aids</div>
-                </div>
-                <div class="team-pts">
-                    <div class="pts-value">1477</div>
-                    <div class="pts-label">pts</div>
-                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+119 pts)</span>
-                </div>
-                <div class="expand-icon">&#9660;</div>
-            </div>
-            <div class="team-body" id="body-dc">
-                <div class="fun-title-bar">
-                    <span class="fun-title">&#129313; Bad Team</span>
-                    <span class="fun-subtitle">What happened in auction?</span>
-                    <div class="trash-talk">&ldquo;Auction time what happened? You slept?&rdquo;</div>
-                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 62 pts behind PBKS (Megha)! One big match and they're cooked &#128293;</div>
-                </div>
-                <div class="owner-detail">
-                    <span>Owner: <strong>Nithin</strong> aka <em>Aids</em></span>
-                </div>
-
-                <!-- Tabs -->
-                <div class="tab-bar">
-                    <div class="tab active" onclick="switchTab('dc', 'xi')">Best XI</div>
-                    <div class="tab" onclick="switchTab('dc', 'squad')">Full Squad</div>
-                    <div class="tab" onclick="switchTab('dc', 'stats')">Stats</div>
-                </div>
-
-                <!-- Tab: Best XI -->
-                <div class="tab-content active" id="tab-xi-dc">
-                    <table class="xi-table">
-                        <thead>
-                            <tr><th>#</th><th>Player</th><th>Role</th><th>Pts</th></tr>
-                        </thead>
-                        <tbody>
-                            
-                <tr>
-                    <td class="num">1</td>
-                    <td class="player-name">Phil Salt <span class="overseas-badge">OS</span></td>
-                    <td><span class="role-badge role-wk">WK</span></td>
-                    <td class="pts">117</td>
-                </tr>
-                <tr>
-                    <td class="num">2</td>
-                    <td class="player-name">Shreyas Iyer</td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">222</td>
-                </tr>
-                <tr>
-                    <td class="num">3</td>
-                    <td class="player-name">Pathum Nissanka <span class="overseas-badge">OS</span></td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">202</td>
-                </tr>
-                <tr>
-                    <td class="num">4</td>
-                    <td class="player-name">Washington Sundar</td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">190</td>
-                </tr>
-                <tr>
-                    <td class="num">5</td>
-                    <td class="player-name">Ayush Badoni</td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">114</td>
-                </tr>
-                <tr>
-                    <td class="num">6</td>
-                    <td class="player-name">Marco Jansen <span class="overseas-badge">OS</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">101</td>
-                </tr>
-                <tr>
-                    <td class="num">7</td>
-                    <td class="player-name">Naman Dhir</td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">88</td>
-                </tr>
-                <tr>
-                    <td class="num">8</td>
-                    <td class="player-name">Rahul Tewatia</td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">71</td>
-                </tr>
-                <tr>
-                    <td class="num">9</td>
-                    <td class="player-name">Kagiso Rabada <span class="overseas-badge">OS</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="pts">140</td>
-                </tr>
-                <tr>
-                    <td class="num">10</td>
-                    <td class="player-name">Vyshak Vijaykumar</td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="pts">139</td>
-                </tr>
-                <tr>
-                    <td class="num">11</td>
-                    <td class="player-name">Digvesh Rathi</td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="pts">93</td>
-                </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1477</strong></td>
-                            </tr>
-                            <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">134.3</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-
-                <!-- Tab: Full Squad -->
-                <div class="tab-content" id="tab-squad-dc">
-                    <table class="xi-table squad-table">
-                        <thead>
-                            <tr><th>#</th><th>Player</th><th>Role</th><th>Price</th><th>Pts</th><th>XI?</th></tr>
-                        </thead>
-                        <tbody>
-                            
-                <tr class="in-xi">
-                    <td class="num">1</td>
-                    <td class="player-name">Shreyas Iyer <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">18.5 Cr</td>
-                    <td class="pts">222</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">2</td>
-                    <td class="player-name">Pathum Nissanka <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">4.6 Cr</td>
-                    <td class="pts">202</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">3</td>
-                    <td class="player-name">Washington Sundar <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">4.4 Cr</td>
-                    <td class="pts">190</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">4</td>
-                    <td class="player-name">Kagiso Rabada <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">8.3 Cr</td>
-                    <td class="pts">140</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">5</td>
-                    <td class="player-name">Vyshak Vijaykumar <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">2.2 Cr</td>
-                    <td class="pts">139</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">6</td>
-                    <td class="player-name">Phil Salt <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
-                    <td><span class="role-badge role-wk">WK</span></td>
-                    <td class="price">9.0 Cr</td>
-                    <td class="pts">117</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">7</td>
-                    <td class="player-name">Ayush Badoni <span class="orig-team-badge" style="background:#333;color:#fff">LSG</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">7.3 Cr</td>
-                    <td class="pts">114</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">8</td>
-                    <td class="player-name">Marco Jansen <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">9.0 Cr</td>
-                    <td class="pts">101</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">9</td>
-                    <td class="player-name">Digvesh Rathi <span class="orig-team-badge" style="background:#333;color:#fff">LSG</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">6.3 Cr</td>
-                    <td class="pts">93</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">10</td>
-                    <td class="player-name">Naman Dhir <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">8.3 Cr</td>
-                    <td class="pts">88</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="in-xi">
-                    <td class="num">11</td>
-                    <td class="player-name">Rahul Tewatia <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">1.7 Cr</td>
-                    <td class="pts">71</td>
-                    <td class="xi-status">&#9989;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">12</td>
-                    <td class="player-name">Nitish Rana <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">4.2 Cr</td>
-                    <td class="pts">59</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">13</td>
-                    <td class="player-name">Marcus Stoinis <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D71920;color:#FFFFFF">PBKS</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">9.5 Cr</td>
-                    <td class="pts">31</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">14</td>
-                    <td class="player-name">Mayank Markande <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">30L</td>
-                    <td class="pts">14</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">15</td>
-                    <td class="player-name">Will Jacks <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">13.3 Cr</td>
-                    <td class="pts">0</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">16</td>
-                    <td class="player-name">Mayank Yadav <span class="orig-team-badge" style="background:#333;color:#fff">LSG</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">3.0 Cr</td>
-                    <td class="pts">0</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">17</td>
-                    <td class="player-name">Tom Banton <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span></td>
-                    <td><span class="role-badge role-wk">WK</span></td>
-                    <td class="price">2.0 Cr</td>
-                    <td class="pts">0</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">18</td>
-                    <td class="player-name">Kyle Jamieson <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004C93;color:#FFFFFF">DC</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">2.0 Cr</td>
-                    <td class="pts">0</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">19</td>
-                    <td class="player-name">Manan Vohra</td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">50L</td>
-                    <td class="pts">0</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                <tr class="on-bench">
-                    <td class="num">20</td>
-                    <td class="player-name">Ankit Kumar</td>
-                    <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="price">1.5 Cr</td>
-                    <td class="pts">0</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr class="total-row">
-                                <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
-                                <td class="price"><strong>115.9 Cr</strong></td>
-                                <td class="pts"><strong>1581</strong></td><td></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <div class="squad-legend">
-                        &#9989; = In Best XI &nbsp;&nbsp; &#10060; = On Bench
-                    </div>
-                </div>
-
-                <!-- Tab: Stats -->
-                <div class="tab-content" id="tab-stats-dc">
-                    <div class="team-stats">
-                        <div class="stat-row">
-                            <span>&#128203; Squad Size</span><span>20 players</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1477</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1581</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">104</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#11088; Best XI Utilization</span><span>93.4%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#127919; Squad Composition</span><span>2 WK &middot; 3 BAT &middot; 9 AR &middot; 6 BOWL</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#128100; Playing / Bench</span><span>11 / 9</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>&#127758; Overseas in XI / Squad</span><span>4 / 8</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
         <div class="team-card" id="team-csk">
             <div class="team-header" style="background:#FFCB05; color:#0051A2"
                  onclick="toggleTeam('csk')">
@@ -2935,9 +2966,9 @@
                     <div class="owner-name">&#127918; Chillar</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1283</div>
+                    <div class="pts-value">1291</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+6 pts)</span>
+                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+14 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
@@ -2945,7 +2976,7 @@
                 <div class="fun-title-bar">
                     <span class="fun-title">&#128128; Very Bad</span>
                     <span class="fun-subtitle">Almost last place. Not good.</span>
-                    <div class="trash-talk">&ldquo;How far you fell back!&rdquo;</div>
+                    <div class="trash-talk">&ldquo;Seventh. That is it.&rdquo;</div>
                     
                 </div>
                 <div class="owner-detail">
@@ -3001,7 +3032,7 @@
                     <td class="num">6</td>
                     <td class="player-name">Krunal Pandya</td>
                     <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">109</td>
+                    <td class="pts">113</td>
                 </tr>
                 <tr>
                     <td class="num">7</td>
@@ -3019,7 +3050,7 @@
                     <td class="num">9</td>
                     <td class="player-name">Jasprit Bumrah</td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="pts">32</td>
+                    <td class="pts">36</td>
                 </tr>
                 <tr>
                     <td class="num">10</td>
@@ -3036,10 +3067,10 @@
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1283</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1291</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">116.6</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">117.4</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -3098,7 +3129,7 @@
                     <td class="player-name">Krunal Pandya <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
                     <td class="price">6.0 Cr</td>
-                    <td class="pts">109</td>
+                    <td class="pts">113</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -3122,7 +3153,7 @@
                     <td class="player-name">Jasprit Bumrah <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
                     <td class="price">18.0 Cr</td>
-                    <td class="pts">32</td>
+                    <td class="pts">36</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="on-bench">
@@ -3186,7 +3217,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>111.8 Cr</strong></td>
-                                <td class="pts"><strong>1283</strong></td><td></td>
+                                <td class="pts"><strong>1291</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -3202,10 +3233,10 @@
                             <span>&#128203; Squad Size</span><span>16 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1283</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1291</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1283</span>
+                            <span>&#128202; Total Squad Points</span><span>1291</span>
                         </div>
                         <div class="stat-row">
                             <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">0</span>
@@ -3238,9 +3269,9 @@
                     <div class="owner-name">&#127918; Santhoo</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1207</div>
+                    <div class="pts-value">1211</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+38 pts)</span>
+                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+42 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
@@ -3248,7 +3279,7 @@
                 <div class="fun-title-bar">
                     <span class="fun-title">&#127869; Almost Last</span>
                     <span class="fun-subtitle">Last place is coming.</span>
-                    <div class="trash-talk">&ldquo;Almost you will be wooden spoon champion.&rdquo;</div>
+                    <div class="trash-talk">&ldquo;Who is playing with your team now?&rdquo;</div>
                     
                 </div>
                 <div class="owner-detail">
@@ -3310,7 +3341,7 @@
                     <td class="num">7</td>
                     <td class="player-name">Jacob Duffy <span class="overseas-badge">OS</span></td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="pts">135</td>
+                    <td class="pts">139</td>
                 </tr>
                 <tr>
                     <td class="num">8</td>
@@ -3339,10 +3370,10 @@
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1207</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1211</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">109.7</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">110.1</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -3393,7 +3424,7 @@
                     <td class="player-name">Jacob Duffy <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
                     <td class="price">2.2 Cr</td>
-                    <td class="pts">135</td>
+                    <td class="pts">139</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -3436,21 +3467,21 @@
                     <td class="pts">12</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
-                <tr class="on-bench">
-                    <td class="num">11</td>
-                    <td class="player-name">Trent Boult <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">11.3 Cr</td>
-                    <td class="pts">9</td>
-                    <td class="xi-status">&#10060;</td>
-                </tr>
                 <tr class="in-xi">
-                    <td class="num">12</td>
+                    <td class="num">11</td>
                     <td class="player-name">Rahul Chahar <span class="orig-team-badge" style="background:#FFCB05;color:#0051A2">CSK</span></td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
                     <td class="price">1.5 Cr</td>
                     <td class="pts">8</td>
                     <td class="xi-status">&#9989;</td>
+                </tr>
+                <tr class="on-bench">
+                    <td class="num">12</td>
+                    <td class="player-name">Trent Boult <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">11.3 Cr</td>
+                    <td class="pts">7</td>
+                    <td class="xi-status">&#10060;</td>
                 </tr>
                 <tr class="on-bench">
                     <td class="num">13</td>
@@ -3497,7 +3528,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>120.4 Cr</strong></td>
-                                <td class="pts"><strong>1216</strong></td><td></td>
+                                <td class="pts"><strong>1218</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -3513,16 +3544,16 @@
                             <span>&#128203; Squad Size</span><span>17 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1207</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1211</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1216</span>
+                            <span>&#128202; Total Squad Points</span><span>1218</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">9</span>
+                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">7</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#11088; Best XI Utilization</span><span>99.3%</span>
+                            <span>&#11088; Best XI Utilization</span><span>99.4%</span>
                         </div>
                         <div class="stat-row">
                             <span>&#127919; Squad Composition</span><span>2 WK &middot; 4 BAT &middot; 4 AR &middot; 7 BOWL</span>
@@ -3549,9 +3580,9 @@
                     <div class="owner-name">&#127918; Micromax Sahil</div>
                 </div>
                 <div class="team-pts">
-                    <div class="pts-value">1183</div>
+                    <div class="pts-value">1195</div>
                     <div class="pts-label">pts</div>
-                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+54 pts)</span>
+                    <span class="trend trend-same">&#9644;</span> <span class="pt-diff">(+66 pts)</span>
                 </div>
                 <div class="expand-icon">&#9660;</div>
             </div>
@@ -3559,8 +3590,8 @@
                 <div class="fun-title-bar">
                     <span class="fun-title">&#128049; LAST PLACE</span>
                     <span class="fun-subtitle">Make tea for everyone.</span>
-                    <div class="trash-talk">&ldquo;Wooden spoon. This is your gift.&rdquo;</div>
-                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 24 pts behind RR (Santhoo)! One big match and they're cooked &#128293;</div>
+                    <div class="trash-talk">&ldquo;What team is this? You closed your eyes and picked?&rdquo;</div>
+                    <div class="dark-horse">&#127943; DARK HORSE ALERT: Only 16 pts behind RR (Santhoo)! One big match and they're cooked &#128293;</div>
                 </div>
                 <div class="owner-detail">
                     <span>Owner: <strong>Sahil</strong> aka <em>Micromax Sahil</em></span>
@@ -3585,7 +3616,7 @@
                     <td class="num">1</td>
                     <td class="player-name">Jitesh Sharma</td>
                     <td><span class="role-badge role-wk">WK</span></td>
-                    <td class="pts">51</td>
+                    <td class="pts">55</td>
                 </tr>
                 <tr>
                     <td class="num">2</td>
@@ -3597,13 +3628,13 @@
                     <td class="num">3</td>
                     <td class="player-name">Tilak Varma</td>
                     <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="pts">94</td>
+                    <td class="pts">98</td>
                 </tr>
                 <tr>
                     <td class="num">4</td>
                     <td class="player-name">Tim David <span class="overseas-badge">OS</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
-                    <td class="pts">153</td>
+                    <td class="pts">157</td>
                 </tr>
                 <tr>
                     <td class="num">5</td>
@@ -3650,10 +3681,10 @@
                         </tbody>
                         <tfoot>
                             <tr class="total-row">
-                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1183</strong></td>
+                                <td></td><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>1195</strong></td>
                             </tr>
                             <tr class="avg-row">
-                                <td></td><td>Avg per player</td><td></td><td class="pts">107.5</td>
+                                <td></td><td>Avg per player</td><td></td><td class="pts">108.6</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -3672,7 +3703,7 @@
                     <td class="player-name">Tim David <span class="overseas-badge">OS</span> <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-ar">AR</span></td>
                     <td class="price">7.8 Cr</td>
-                    <td class="pts">153</td>
+                    <td class="pts">157</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -3725,18 +3756,18 @@
                 </tr>
                 <tr class="in-xi">
                     <td class="num">8</td>
-                    <td class="player-name">Kartik Tyagi <span class="orig-team-badge" style="background:#3A225D;color:#FFC425">KKR</span></td>
-                    <td><span class="role-badge role-bowl">BOWL</span></td>
-                    <td class="price">95L</td>
-                    <td class="pts">95</td>
+                    <td class="player-name">Tilak Varma <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
+                    <td><span class="role-badge role-bat">BAT</span></td>
+                    <td class="price">8.3 Cr</td>
+                    <td class="pts">98</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
                     <td class="num">9</td>
-                    <td class="player-name">Tilak Varma <span class="orig-team-badge" style="background:#004BA0;color:#D4A537">MI</span></td>
-                    <td><span class="role-badge role-bat">BAT</span></td>
-                    <td class="price">8.3 Cr</td>
-                    <td class="pts">94</td>
+                    <td class="player-name">Kartik Tyagi <span class="orig-team-badge" style="background:#3A225D;color:#FFC425">KKR</span></td>
+                    <td><span class="role-badge role-bowl">BOWL</span></td>
+                    <td class="price">95L</td>
+                    <td class="pts">95</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="in-xi">
@@ -3752,7 +3783,7 @@
                     <td class="player-name">Suyash Sharma <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-bowl">BOWL</span></td>
                     <td class="price">1.1 Cr</td>
-                    <td class="pts">62</td>
+                    <td class="pts">66</td>
                     <td class="xi-status">&#10060;</td>
                 </tr>
                 <tr class="on-bench">
@@ -3768,7 +3799,7 @@
                     <td class="player-name">Jitesh Sharma <span class="orig-team-badge" style="background:#D4213D;color:#FFFFFF">RCB</span></td>
                     <td><span class="role-badge role-wk">WK</span></td>
                     <td class="price">5.8 Cr</td>
-                    <td class="pts">51</td>
+                    <td class="pts">55</td>
                     <td class="xi-status">&#9989;</td>
                 </tr>
                 <tr class="on-bench">
@@ -3856,7 +3887,7 @@
                             <tr class="total-row">
                                 <td></td><td><strong>SQUAD TOTAL</strong></td><td></td>
                                 <td class="price"><strong>118.9 Cr</strong></td>
-                                <td class="pts"><strong>1376</strong></td><td></td>
+                                <td class="pts"><strong>1392</strong></td><td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -3872,16 +3903,16 @@
                             <span>&#128203; Squad Size</span><span>23 players</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1183</span>
+                            <span>&#127942; Best XI Points</span><span class="stat-highlight">1195</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#128202; Total Squad Points</span><span>1376</span>
+                            <span>&#128202; Total Squad Points</span><span>1392</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">193</span>
+                            <span>&#129518; Bench Points (wasted)</span><span class="stat-dim">197</span>
                         </div>
                         <div class="stat-row">
-                            <span>&#11088; Best XI Utilization</span><span>86.0%</span>
+                            <span>&#11088; Best XI Utilization</span><span>85.8%</span>
                         </div>
                         <div class="stat-row">
                             <span>&#127919; Squad Composition</span><span>3 WK &middot; 4 BAT &middot; 7 AR &middot; 9 BOWL</span>
@@ -3912,7 +3943,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td class="team-col">GT <small>(Daff)</small></td><td>1380</td><td>1494</td><td>1711</td><td>1760</td><td>1902</td><td>2273</td><td>2445</td></tr><tr><td class="team-col">SRH <small>(Thal)</small></td><td>1212</td><td>1251</td><td>1493</td><td>1563</td><td>1722</td><td>1762</td><td>1953</td></tr><tr><td class="team-col">MI <small>(Nandi)</small></td><td>873</td><td>881</td><td>1070</td><td>1085</td><td>1171</td><td>1478</td><td>1610</td></tr><tr><td class="team-col">KKR <small>(Oorav)</small></td><td>1077</td><td>1089</td><td>1231</td><td>1392</td><td>1470</td><td>1568</td><td>1568</td></tr><tr><td class="team-col">PBKS <small>(Megha)</small></td><td>1210</td><td>1243</td><td>1259</td><td>1271</td><td>1292</td><td>1539</td><td>1539</td></tr><tr><td class="team-col">DC <small>(Aids)</small></td><td>854</td><td>858</td><td>1083</td><td>1174</td><td>1176</td><td>1358</td><td>1477</td></tr><tr><td class="team-col">CSK <small>(Chillar)</small></td><td>690</td><td>756</td><td>923</td><td>986</td><td>1167</td><td>1277</td><td>1283</td></tr><tr><td class="team-col">RR <small>(Santhoo)</small></td><td>825</td><td>839</td><td>913</td><td>944</td><td>999</td><td>1169</td><td>1207</td></tr><tr><td class="team-col">RCB <small>(Micromax Sahil)</small></td><td>872</td><td>896</td><td>916</td><td>1009</td><td>1099</td><td>1129</td><td>1183</td></tr>
+                    <tr><td class="team-col">GT <small>(Daff)</small></td><td>1380</td><td>1494</td><td>1711</td><td>1760</td><td>1902</td><td>2273</td><td>2445</td></tr><tr><td class="team-col">SRH <small>(Thal)</small></td><td>1212</td><td>1251</td><td>1493</td><td>1563</td><td>1722</td><td>1762</td><td>2011</td></tr><tr><td class="team-col">MI <small>(Nandi)</small></td><td>873</td><td>881</td><td>1070</td><td>1085</td><td>1171</td><td>1478</td><td>1614</td></tr><tr><td class="team-col">DC <small>(Aids)</small></td><td>854</td><td>858</td><td>1083</td><td>1174</td><td>1176</td><td>1358</td><td>1594</td></tr><tr><td class="team-col">KKR <small>(Oorav)</small></td><td>1077</td><td>1089</td><td>1231</td><td>1392</td><td>1470</td><td>1568</td><td>1580</td></tr><tr><td class="team-col">PBKS <small>(Megha)</small></td><td>1210</td><td>1243</td><td>1259</td><td>1271</td><td>1292</td><td>1539</td><td>1551</td></tr><tr><td class="team-col">CSK <small>(Chillar)</small></td><td>690</td><td>756</td><td>923</td><td>986</td><td>1167</td><td>1277</td><td>1291</td></tr><tr><td class="team-col">RR <small>(Santhoo)</small></td><td>825</td><td>839</td><td>913</td><td>944</td><td>999</td><td>1169</td><td>1211</td></tr><tr><td class="team-col">RCB <small>(Micromax Sahil)</small></td><td>872</td><td>896</td><td>916</td><td>1009</td><td>1099</td><td>1129</td><td>1195</td></tr>
                 </tbody>
             </table>
             </div>
@@ -3942,8 +3973,19 @@
                 </thead>
                 <tbody>
                     
-                <tr class="today-row" data-owner="MI">
+                <tr class="today-row" data-owner="DC">
                     <td class="num">1</td>
+                    <td class="player-name">
+                        Phil Salt
+                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
+                    </td>
+                    <td class="today-price">9.0 Cr</td>
+                    <td class="pts today-pts-hot">230</td>
+                    <td class="today-day today-day-hot">+113</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
+                </tr>
+                <tr class="today-row" data-owner="MI">
+                    <td class="num">2</td>
                     <td class="player-name">
                         Prasidh Krishna
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -3954,7 +3996,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004BA0;color:#D4A537">MI</span><br><small>Nandi</small></td>
                 </tr>
                 <tr class="today-row" data-owner="GT">
-                    <td class="num">2</td>
+                    <td class="num">3</td>
                     <td class="player-name">
                         Jos Buttler
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -3965,7 +4007,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span><br><small>Daff</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">3</td>
+                    <td class="num">4</td>
                     <td class="player-name">
                         Shubman Gill
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -3976,7 +4018,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">4</td>
+                    <td class="num">5</td>
                     <td class="player-name">
                         Aiden Markram
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -3987,7 +4029,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
-                    <td class="num">5</td>
+                    <td class="num">6</td>
                     <td class="player-name">
                         Ashok Sharma
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -3997,8 +4039,19 @@
                     <td class="today-day today-day-hot">+54</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
+                <tr class="today-row" data-owner="SRH">
+                    <td class="num">7</td>
+                    <td class="player-name">
+                        Virat Kohli
+                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
+                    </td>
+                    <td class="today-price">20.5 Cr</td>
+                    <td class="pts today-pts-hot">269</td>
+                    <td class="today-day today-day-hot">+50</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
+                </tr>
                 <tr class="today-row" data-owner="GT">
-                    <td class="num">6</td>
+                    <td class="num">8</td>
                     <td class="player-name">
                         Mohammad Shami
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4009,7 +4062,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span><br><small>Daff</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">7</td>
+                    <td class="num">9</td>
                     <td class="player-name">
                         Washington Sundar
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4020,7 +4073,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RR">
-                    <td class="num">8</td>
+                    <td class="num">10</td>
                     <td class="player-name">
                         Rishabh Pant
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4031,7 +4084,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#EA1A85;color:#FFFFFF">RR</span><br><small>Santhoo</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">9</td>
+                    <td class="num">11</td>
                     <td class="player-name">
                         Mohammed Siraj
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4042,7 +4095,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">10</td>
+                    <td class="num">12</td>
                     <td class="player-name">
                         Digvesh Singh
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4053,7 +4106,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="MI">
-                    <td class="num">11</td>
+                    <td class="num">13</td>
                     <td class="player-name">
                         Nicholas Pooran
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4064,7 +4117,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004BA0;color:#D4A537">MI</span><br><small>Nandi</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">12</td>
+                    <td class="num">14</td>
                     <td class="player-name">
                         Abdul Samad
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4075,7 +4128,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">13</td>
+                    <td class="num">15</td>
                     <td class="player-name">
                         Kagiso Rabada
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4086,7 +4139,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">14</td>
+                    <td class="num">16</td>
                     <td class="player-name">
                         Rahul Tewatia
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4097,7 +4150,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="GT">
-                    <td class="num">15</td>
+                    <td class="num">17</td>
                     <td class="player-name">
                         Sai Sudharsan
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4108,7 +4161,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span><br><small>Daff</small></td>
                 </tr>
                 <tr class="today-row" data-owner="MI">
-                    <td class="num">16</td>
+                    <td class="num">18</td>
                     <td class="player-name">
                         Glenn Phillips
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4119,7 +4172,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004BA0;color:#D4A537">MI</span><br><small>Nandi</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">17</td>
+                    <td class="num">19</td>
                     <td class="player-name">
                         Mitchell Marsh
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4130,7 +4183,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">18</td>
+                    <td class="num">20</td>
                     <td class="player-name">
                         Ayush Badoni
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4141,7 +4194,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="KKR">
-                    <td class="num">19</td>
+                    <td class="num">21</td>
                     <td class="player-name">
                         Shahrukh Khan
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4152,7 +4205,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
                 <tr class="today-row" data-owner="GT">
-                    <td class="num">20</td>
+                    <td class="num">22</td>
                     <td class="player-name">
                         Avesh Khan
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4163,7 +4216,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span><br><small>Daff</small></td>
                 </tr>
                 <tr class="today-row" data-owner="CSK">
-                    <td class="num">21</td>
+                    <td class="num">23</td>
                     <td class="player-name">
                         Rashid Khan
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4174,103 +4227,81 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FFCB05;color:#0051A2">CSK</span><br><small>Chillar</small></td>
                 </tr>
                 <tr class="today-row" data-owner="PBKS">
-                    <td class="num">22</td>
+                    <td class="num">24</td>
                     <td class="player-name">
                         Devdutt Padikkal
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">6.0 Cr</td>
-                    <td class="pts today-pts-hot">236</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">240</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D71920;color:#FFFFFF">PBKS</span><br><small>Megha</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">23</td>
+                    <td class="num">25</td>
                     <td class="player-name">
                         Rajat Patidar
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">6.3 Cr</td>
-                    <td class="pts today-pts-hot">235</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">239</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">24</td>
-                    <td class="player-name">
-                        Virat Kohli
-                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
-                    </td>
-                    <td class="today-price">20.5 Cr</td>
-                    <td class="pts today-pts-hot">219</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
-                </tr>
-                <tr class="today-row" data-owner="SRH">
-                    <td class="num">25</td>
+                    <td class="num">26</td>
                     <td class="player-name">
                         Rohit Sharma
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">11.3 Cr</td>
-                    <td class="pts today-pts-hot">175</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">179</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="KKR">
-                    <td class="num">26</td>
+                    <td class="num">27</td>
                     <td class="player-name">
                         Ryan Rickelton
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">1.2 Cr</td>
-                    <td class="pts today-pts-hot">156</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">160</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
-                    <td class="num">27</td>
+                    <td class="num">28</td>
                     <td class="player-name">
                         Tim David
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">7.8 Cr</td>
-                    <td class="pts today-pts-hot">153</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">157</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RR">
-                    <td class="num">28</td>
+                    <td class="num">29</td>
                     <td class="player-name">
                         Jacob Duffy
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">2.2 Cr</td>
-                    <td class="pts today-pts-hot">135</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">139</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#EA1A85;color:#FFFFFF">RR</span><br><small>Santhoo</small></td>
                 </tr>
                 <tr class="today-row" data-owner="KKR">
-                    <td class="num">29</td>
+                    <td class="num">30</td>
                     <td class="player-name">
                         Bhuvneshwar Kumar
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">8.3 Cr</td>
-                    <td class="pts today-pts-hot">124</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">128</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
-                </tr>
-                <tr class="today-row" data-owner="DC">
-                    <td class="num">30</td>
-                    <td class="player-name">
-                        Phil Salt
-                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
-                    </td>
-                    <td class="today-price">9.0 Cr</td>
-                    <td class="pts today-pts-hot">117</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="MI">
                     <td class="num">31</td>
@@ -4279,8 +4310,8 @@
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">3.8 Cr</td>
-                    <td class="pts today-pts-hot">117</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">121</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004BA0;color:#D4A537">MI</span><br><small>Nandi</small></td>
                 </tr>
                 <tr class="today-row" data-owner="PBKS">
@@ -4290,8 +4321,8 @@
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">4.6 Cr</td>
-                    <td class="pts today-pts-hot">113</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">117</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D71920;color:#FFFFFF">PBKS</span><br><small>Megha</small></td>
                 </tr>
                 <tr class="today-row" data-owner="CSK">
@@ -4301,8 +4332,8 @@
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">6.0 Cr</td>
-                    <td class="pts today-pts-hot">109</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">113</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FFCB05;color:#0051A2">CSK</span><br><small>Chillar</small></td>
                 </tr>
                 <tr class="today-row" data-owner="KKR">
@@ -4312,8 +4343,8 @@
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">11.3 Cr</td>
-                    <td class="pts today-pts-hot">107</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-hot">111</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
@@ -4323,8 +4354,8 @@
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">8.3 Cr</td>
-                    <td class="pts today-pts-warm">94</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-warm">98</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
@@ -4334,8 +4365,8 @@
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">8.3 Cr</td>
-                    <td class="pts today-pts-warm">88</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-warm">92</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="PBKS">
@@ -4345,12 +4376,56 @@
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">16.5 Cr</td>
-                    <td class="pts today-pts-warm">71</td>
-                    <td class="today-day today-day-zero">0</td>
+                    <td class="pts today-pts-warm">75</td>
+                    <td class="today-day today-day-warm">+4</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D71920;color:#FFFFFF">PBKS</span><br><small>Megha</small></td>
                 </tr>
-                <tr class="today-row" data-owner="KKR">
+                <tr class="today-row" data-owner="RCB">
                     <td class="num">38</td>
+                    <td class="player-name">
+                        Suyash Sharma
+                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
+                    </td>
+                    <td class="today-price">1.1 Cr</td>
+                    <td class="pts today-pts-warm">66</td>
+                    <td class="today-day today-day-warm">+4</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
+                </tr>
+                <tr class="today-row" data-owner="RCB">
+                    <td class="num">39</td>
+                    <td class="player-name">
+                        Jitesh Sharma
+                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
+                    </td>
+                    <td class="today-price">5.8 Cr</td>
+                    <td class="pts today-pts-warm">55</td>
+                    <td class="today-day today-day-warm">+4</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
+                </tr>
+                <tr class="today-row" data-owner="CSK">
+                    <td class="num">40</td>
+                    <td class="player-name">
+                        Jasprit Bumrah
+                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
+                    </td>
+                    <td class="today-price">18.0 Cr</td>
+                    <td class="pts ">36</td>
+                    <td class="today-day today-day-warm">+4</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#FFCB05;color:#0051A2">CSK</span><br><small>Chillar</small></td>
+                </tr>
+                <tr class="today-row" data-owner="DC">
+                    <td class="num">41</td>
+                    <td class="player-name">
+                        Mayank Markande
+                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
+                    </td>
+                    <td class="today-price">0.3 Cr</td>
+                    <td class="pts ">18</td>
+                    <td class="today-day today-day-warm">+4</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
+                </tr>
+                <tr class="today-row" data-owner="KKR">
+                    <td class="num">42</td>
                     <td class="player-name">
                         Sherfane Rutherford
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
@@ -4360,19 +4435,8 @@
                     <td class="today-day today-day-zero">0</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
-                <tr class="today-row" data-owner="RCB">
-                    <td class="num">39</td>
-                    <td class="player-name">
-                        Suyash Sharma
-                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
-                    </td>
-                    <td class="today-price">1.1 Cr</td>
-                    <td class="pts today-pts-warm">62</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
-                </tr>
                 <tr class="today-row" data-owner="KKR">
-                    <td class="num">40</td>
+                    <td class="num">43</td>
                     <td class="player-name">
                         Josh Hazlewood
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
@@ -4383,7 +4447,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
                 <tr class="today-row" data-owner="KKR">
-                    <td class="num">41</td>
+                    <td class="num">44</td>
                     <td class="player-name">
                         Mohsin Khan
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4393,30 +4457,8 @@
                     <td class="today-day today-day-zero">0</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
-                <tr class="today-row" data-owner="GT">
-                    <td class="num">42</td>
-                    <td class="player-name">
-                        Mitchell Santner
-                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
-                    </td>
-                    <td class="today-price">8.3 Cr</td>
-                    <td class="pts today-pts-warm">51</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span><br><small>Daff</small></td>
-                </tr>
                 <tr class="today-row" data-owner="RCB">
-                    <td class="num">43</td>
-                    <td class="player-name">
-                        Jitesh Sharma
-                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
-                    </td>
-                    <td class="today-price">5.8 Cr</td>
-                    <td class="pts today-pts-warm">51</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
-                </tr>
-                <tr class="today-row" data-owner="RCB">
-                    <td class="num">44</td>
+                    <td class="num">45</td>
                     <td class="player-name">
                         Venkatesh Iyer
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
@@ -4427,7 +4469,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
                 <tr class="today-row" data-owner="MI">
-                    <td class="num">45</td>
+                    <td class="num">46</td>
                     <td class="player-name">
                         Deepak Chahar
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
@@ -4436,17 +4478,6 @@
                     <td class="pts ">42</td>
                     <td class="today-day today-day-zero">0</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004BA0;color:#D4A537">MI</span><br><small>Nandi</small></td>
-                </tr>
-                <tr class="today-row" data-owner="CSK">
-                    <td class="num">46</td>
-                    <td class="player-name">
-                        Jasprit Bumrah
-                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
-                    </td>
-                    <td class="today-price">18.0 Cr</td>
-                    <td class="pts ">32</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#FFCB05;color:#0051A2">CSK</span><br><small>Chillar</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
                     <td class="num">47</td>
@@ -4459,30 +4490,8 @@
                     <td class="today-day today-day-zero">0</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
-                <tr class="today-row" data-owner="DC">
-                    <td class="num">48</td>
-                    <td class="player-name">
-                        Mayank Markande
-                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
-                    </td>
-                    <td class="today-price">0.3 Cr</td>
-                    <td class="pts ">14</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
-                </tr>
-                <tr class="today-row" data-owner="RR">
-                    <td class="num">49</td>
-                    <td class="player-name">
-                        Trent Boult
-                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
-                    </td>
-                    <td class="today-price">11.3 Cr</td>
-                    <td class="pts ">9</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge" style="background:#EA1A85;color:#FFFFFF">RR</span><br><small>Santhoo</small></td>
-                </tr>
                 <tr class="today-row" data-owner="KKR">
-                    <td class="num">50</td>
+                    <td class="num">48</td>
                     <td class="player-name">
                         Sai Kishore
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4493,7 +4502,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#3A225D;color:#FFC425">KKR</span><br><small>Oorav</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">51</td>
+                    <td class="num">49</td>
                     <td class="player-name">
                         Wanindu Hasaranga
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4504,7 +4513,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">52</td>
+                    <td class="num">50</td>
                     <td class="player-name">
                         Will Jacks
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
@@ -4515,7 +4524,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
-                    <td class="num">53</td>
+                    <td class="num">51</td>
                     <td class="player-name">
                         Josh Inglis
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4526,7 +4535,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
                 <tr class="today-row" data-owner="CSK">
-                    <td class="num">54</td>
+                    <td class="num">52</td>
                     <td class="player-name">
                         Jason Holder
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4537,7 +4546,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FFCB05;color:#0051A2">CSK</span><br><small>Chillar</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">55</td>
+                    <td class="num">53</td>
                     <td class="player-name">
                         Yash Dayal
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
@@ -4548,7 +4557,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="CSK">
-                    <td class="num">56</td>
+                    <td class="num">54</td>
                     <td class="player-name">
                         Quinton de Kock
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
@@ -4559,7 +4568,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FFCB05;color:#0051A2">CSK</span><br><small>Chillar</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">57</td>
+                    <td class="num">55</td>
                     <td class="player-name">
                         Swapnil Singh
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
@@ -4570,7 +4579,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">58</td>
+                    <td class="num">56</td>
                     <td class="player-name">
                         Mayank Yadav
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
@@ -4581,7 +4590,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
-                    <td class="num">59</td>
+                    <td class="num">57</td>
                     <td class="player-name">
                         Jacob Bethell
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
@@ -4592,7 +4601,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
                 </tr>
                 <tr class="today-row" data-owner="DC">
-                    <td class="num">60</td>
+                    <td class="num">58</td>
                     <td class="player-name">
                         Tom Banton
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4603,7 +4612,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#004C93;color:#FFFFFF">DC</span><br><small>Aids</small></td>
                 </tr>
                 <tr class="today-row" data-owner="SRH">
-                    <td class="num">61</td>
+                    <td class="num">59</td>
                     <td class="player-name">
                         Anuj Rawat
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
@@ -4614,7 +4623,7 @@
                     <td class="today-owner"><span class="today-owner-badge" style="background:#FF822A;color:#FFFFFF">SRH</span><br><small>Thal</small></td>
                 </tr>
                 <tr class="today-row" data-owner="RCB">
-                    <td class="num">62</td>
+                    <td class="num">60</td>
                     <td class="player-name">
                         Robin Minz
                         <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
@@ -4623,6 +4632,28 @@
                     <td class="pts ">0</td>
                     <td class="today-day today-day-zero">0</td>
                     <td class="today-owner"><span class="today-owner-badge" style="background:#D4213D;color:#FFFFFF">RCB</span><br><small>Micromax Sahil</small></td>
+                </tr>
+                <tr class="today-row" data-owner="GT">
+                    <td class="num">61</td>
+                    <td class="player-name">
+                        Mitchell Santner
+                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
+                    </td>
+                    <td class="today-price">8.3 Cr</td>
+                    <td class="pts ">49</td>
+                    <td class="today-day today-day-zero">-2</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#1C1C2B;color:#B8D8E8">GT</span><br><small>Daff</small></td>
+                </tr>
+                <tr class="today-row" data-owner="RR">
+                    <td class="num">62</td>
+                    <td class="player-name">
+                        Trent Boult
+                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
+                    </td>
+                    <td class="today-price">11.3 Cr</td>
+                    <td class="pts ">7</td>
+                    <td class="today-day today-day-zero">-2</td>
+                    <td class="today-owner"><span class="today-owner-badge" style="background:#EA1A85;color:#FFFFFF">RR</span><br><small>Santhoo</small></td>
                 </tr><tr class="today-divider-row" data-owner="UNCLAIMED"><td colspan="6" class="today-divider">&#128683; Unclaimed Players</td></tr>
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">63</td>
@@ -4781,8 +4812,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">77</td>
                     <td class="player-name">
-                        Raj Bawa
-                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
+                        Nishant Sindhu
+                        <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -4803,8 +4834,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">79</td>
                     <td class="player-name">
-                        Satvik Deswal
-                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
+                        Raj Bawa
+                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -4814,8 +4845,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">80</td>
                     <td class="player-name">
-                        Nishant Sindhu
-                        <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
+                        Satvik Deswal
+                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -4891,8 +4922,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">87</td>
                     <td class="player-name">
-                        Naman Tiwari
-                        <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
+                        Jayant Yadav
+                        <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -4902,7 +4933,7 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">88</td>
                     <td class="player-name">
-                        Jayant Yadav
+                        Kulwant Khejroliya
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
@@ -4913,8 +4944,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">89</td>
                     <td class="player-name">
-                        Luke Wood
-                        <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
+                        Naman Tiwari
+                        <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -4924,7 +4955,7 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">90</td>
                     <td class="player-name">
-                        Prithvi Raj Yarra
+                        Luke Wood
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
@@ -4935,7 +4966,7 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">91</td>
                     <td class="player-name">
-                        Manav Suthar
+                        Prithvi Raj Yarra
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
@@ -4946,7 +4977,7 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">92</td>
                     <td class="player-name">
-                        Gurnoor Brar
+                        Manav Suthar
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
@@ -4957,7 +4988,7 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">93</td>
                     <td class="player-name">
-                        Kulwant Khejroliya
+                        Gurnoor Brar
                         <span class="today-orig-team" style="background:#1C1C2B;color:#B8D8E8">GT</span>
                     </td>
                     <td class="today-price">-</td>
@@ -4979,17 +5010,6 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">95</td>
                     <td class="player-name">
-                        Raghu Sharma
-                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
-                    </td>
-                    <td class="today-price">-</td>
-                    <td class="pts ">0</td>
-                    <td class="today-day today-day-zero">0</td>
-                    <td class="today-owner"><span class="today-owner-badge today-unclaimed">N/A</span><br><small></small></td>
-                </tr>
-                <tr class="today-row" data-owner="UNCLAIMED">
-                    <td class="num">96</td>
-                    <td class="player-name">
                         Vicky Ostwal
                         <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
@@ -4999,10 +5019,21 @@
                     <td class="today-owner"><span class="today-owner-badge today-unclaimed">N/A</span><br><small></small></td>
                 </tr>
                 <tr class="today-row" data-owner="UNCLAIMED">
-                    <td class="num">97</td>
+                    <td class="num">96</td>
                     <td class="player-name">
                         Arjun Tendulkar
                         <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
+                    </td>
+                    <td class="today-price">-</td>
+                    <td class="pts ">0</td>
+                    <td class="today-day today-day-zero">0</td>
+                    <td class="today-owner"><span class="today-owner-badge today-unclaimed">N/A</span><br><small></small></td>
+                </tr>
+                <tr class="today-row" data-owner="UNCLAIMED">
+                    <td class="num">97</td>
+                    <td class="player-name">
+                        Raghu Sharma
+                        <span class="today-orig-team" style="background:#004BA0;color:#D4A537">MI</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -5034,8 +5065,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">100</td>
                     <td class="player-name">
-                        Jordan Cox
-                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
+                        Himmat Singh
+                        <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -5045,8 +5076,8 @@
                 <tr class="today-row" data-owner="UNCLAIMED">
                     <td class="num">101</td>
                     <td class="player-name">
-                        Himmat Singh
-                        <span class="today-orig-team" style="background:#333;color:#fff">LSG</span>
+                        Jordan Cox
+                        <span class="today-orig-team" style="background:#D4213D;color:#FFFFFF">RCB</span>
                     </td>
                     <td class="today-price">-</td>
                     <td class="pts ">0</td>
@@ -5137,14 +5168,14 @@
                 </div>
                 <div class="award-stat-item">
                     <div class="award-stat-label">Points</div>
-                    <div class="award-stat-value" style="color:#ffd200">9</div>
+                    <div class="award-stat-value" style="color:#ffd200">7</div>
                 </div>
                 <div class="award-stat-item">
                     <div class="award-stat-label">Pts/Cr</div>
-                    <div class="award-stat-value" style="color:#ff6b6b">0.8</div>
+                    <div class="award-stat-value" style="color:#ff6b6b">0.6</div>
                 </div>
             </div>
-            <div class="award-reason">Trent Boult cost 11.3 Cr and has only 9 fantasy points to show for it. That is 0.8 pts per crore. Santhoo basically set 11.3 Cr on fire at the auction.</div>
+            <div class="award-reason">Trent Boult cost 11.3 Cr and has only 7 fantasy points to show for it. That is 0.6 pts per crore. Santhoo basically set 11.3 Cr on fire at the auction.</div>
         </div>
         <div class="award-card" style="border-left: 4px solid #4caf50">
             <div class="award-header">
@@ -5168,7 +5199,7 @@
                     <div class="award-stat-value" style="color:#4caf50">2445</div>
                 </div>
             </div>
-            <div class="award-reason">Daff's GT leads the league with 2445 Best XI points out of 2606 total squad points. Built like a pro. Everyone else is just watching.</div>
+            <div class="award-reason">Daff's GT leads the league with 2445 Best XI points out of 2604 total squad points. Built like a pro. Everyone else is just watching.</div>
         </div>
         <div class="award-card" style="border-left: 4px solid #ff6b6b">
             <div class="award-header">
@@ -5189,10 +5220,10 @@
                 </div>
                 <div class="award-stat-item">
                     <div class="award-stat-label">Best XI Pts</div>
-                    <div class="award-stat-value" style="color:#ff6b6b">1183</div>
+                    <div class="award-stat-value" style="color:#ff6b6b">1195</div>
                 </div>
             </div>
-            <div class="award-reason">Micromax Sahil's RCB sits last with only 1183 Best XI points. Squad has 23 players scoring 1376 total pts. Went to the auction looking for samosas and accidentally raised the paddle.</div>
+            <div class="award-reason">Micromax Sahil's RCB sits last with only 1195 Best XI points. Squad has 23 players scoring 1392 total pts. Went to the auction looking for samosas and accidentally raised the paddle.</div>
         </div>
         </div>
     </div>
@@ -5203,7 +5234,7 @@
             <h2>&#127869; Wall of Shame &#127869;</h2>
             <div class="shame-owner">Micromax Sahil</div>
             <div class="shame-text">
-                Owner of RCB (1183 pts)<br>
+                Owner of RCB (1195 pts)<br>
                 "Your auction strategy was basically: close eyes, raise paddle."<br>
                 <br>
                 &#9749; Chai duty: <strong>Micromax Sahil</strong>
@@ -5268,7 +5299,7 @@
         }
 
         // Player Search
-        const allPlayers = [{"name": "Dhruv Jurel", "team": "GT", "owner": "Daff", "role": "WK", "pts": 313, "price": "5.3 Cr", "foreign": false, "in_xi": true}, {"name": "Jos Buttler", "team": "GT", "owner": "Daff", "role": "WK", "pts": 308, "price": "8.3 Cr", "foreign": true, "in_xi": true}, {"name": "Yashasvi Jaiswal", "team": "GT", "owner": "Daff", "role": "BAT", "pts": 284, "price": "16.3 Cr", "foreign": false, "in_xi": true}, {"name": "Heinrich Klaasen", "team": "GT", "owner": "Daff", "role": "WK", "pts": 278, "price": "14.5 Cr", "foreign": true, "in_xi": true}, {"name": "Jamie Overton", "team": "GT", "owner": "Daff", "role": "AR", "pts": 277, "price": "90L", "foreign": true, "in_xi": true}, {"name": "Anshul Kamboj", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 256, "price": "4.6 Cr", "foreign": false, "in_xi": true}, {"name": "Sai Sudharsan", "team": "GT", "owner": "Daff", "role": "BAT", "pts": 183, "price": "12.3 Cr", "foreign": false, "in_xi": true}, {"name": "Tristan Stubbs", "team": "GT", "owner": "Daff", "role": "WK", "pts": 180, "price": "5.8 Cr", "foreign": true, "in_xi": true}, {"name": "Mohammad Shami", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 149, "price": "2.4 Cr", "foreign": false, "in_xi": true}, {"name": "Kuldeep Yadav", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 110, "price": "5.5 Cr", "foreign": false, "in_xi": true}, {"name": "Avesh Khan", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 107, "price": "3.0 Cr", "foreign": false, "in_xi": true}, {"name": "Mitchell Santner", "team": "GT", "owner": "Daff", "role": "AR", "pts": 51, "price": "8.3 Cr", "foreign": true, "in_xi": false}, {"name": "Khaleel Ahmed", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 39, "price": "7.5 Cr", "foreign": false, "in_xi": false}, {"name": "Gurjapneet Singh", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 37, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Ashutosh Sharma", "team": "GT", "owner": "Daff", "role": "AR", "pts": 34, "price": "9.0 Cr", "foreign": false, "in_xi": false}, {"name": "Kamindu Mendis", "team": "GT", "owner": "Daff", "role": "AR", "pts": 0, "price": "1.5 Cr", "foreign": true, "in_xi": false}, {"name": "Harpreet Brar", "team": "GT", "owner": "Daff", "role": "AR", "pts": 0, "price": "1.5 Cr", "foreign": false, "in_xi": false}, {"name": "Urvil Patel", "team": "GT", "owner": "Daff", "role": "WK", "pts": 0, "price": "4.2 Cr", "foreign": false, "in_xi": false}, {"name": "Vishnu Vinod", "team": "GT", "owner": "Daff", "role": "WK", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Fazalhaq Farooqi", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 0, "price": "1.0 Cr", "foreign": true, "in_xi": false}, {"name": "Shivam Mavi", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 0, "price": "1.3 Cr", "foreign": false, "in_xi": false}, {"name": "Anmolpreet Singh", "team": "GT", "owner": "Daff", "role": "BAT", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "Akash Madhwal", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 0, "price": "5.5 Cr", "foreign": false, "in_xi": false}, {"name": "Shubman Gill", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 273, "price": "10.3 Cr", "foreign": false, "in_xi": true}, {"name": "Rajat Patidar", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 235, "price": "6.3 Cr", "foreign": false, "in_xi": true}, {"name": "Virat Kohli", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 219, "price": "20.5 Cr", "foreign": false, "in_xi": true}, {"name": "Nitish Kumar Reddy", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 215, "price": "7.0 Cr", "foreign": false, "in_xi": true}, {"name": "Aiden Markram", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 188, "price": "9.8 Cr", "foreign": true, "in_xi": true}, {"name": "KL Rahul", "team": "SRH", "owner": "Thal", "role": "WK", "pts": 176, "price": "15.8 Cr", "foreign": false, "in_xi": true}, {"name": "Rohit Sharma", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 175, "price": "11.3 Cr", "foreign": false, "in_xi": true}, {"name": "Jaydev Unadkat", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 144, "price": "4.2 Cr", "foreign": false, "in_xi": true}, {"name": "Mitchell Marsh", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 113, "price": "6.5 Cr", "foreign": true, "in_xi": true}, {"name": "Abdul Samad", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 113, "price": "1.1 Cr", "foreign": false, "in_xi": true}, {"name": "Riyan Parag", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 102, "price": "7.8 Cr", "foreign": false, "in_xi": true}, {"name": "Mohammad Siraj", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 93, "price": "7.8 Cr", "foreign": false, "in_xi": false}, {"name": "Yash Dayal", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "Harshit Rana", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "60L", "foreign": false, "in_xi": false}, {"name": "Umran Malik", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "55L", "foreign": false, "in_xi": false}, {"name": "Musheer Khan", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Zeeshan Ansari", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "35L", "foreign": false, "in_xi": false}, {"name": "Anuj Rawat", "team": "SRH", "owner": "Thal", "role": "WK", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Swapnil Singh", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Rachin Ravindra", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Wanindu Hasaranga", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Deepak Hooda", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "75L", "foreign": false, "in_xi": false}, {"name": "Abhinav Manohar", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Aarya Desai", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Kamlesh Nagarkoti", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "1.0 Cr", "foreign": false, "in_xi": false}, {"name": "Prasidh Krishna", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 278, "price": "5.0 Cr", "foreign": false, "in_xi": true}, {"name": "Sanju Samson", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 202, "price": "13.8 Cr", "foreign": false, "in_xi": true}, {"name": "Jofra Archer", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 188, "price": "4.6 Cr", "foreign": true, "in_xi": true}, {"name": "Shivam Dube", "team": "MI", "owner": "Nandi", "role": "AR", "pts": 165, "price": "10.5 Cr", "foreign": false, "in_xi": true}, {"name": "Mukesh Kumar", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 158, "price": "75L", "foreign": false, "in_xi": true}, {"name": "Finn Allen", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 133, "price": "8.8 Cr", "foreign": true, "in_xi": true}, {"name": "Romario Shepherd", "team": "MI", "owner": "Nandi", "role": "AR", "pts": 117, "price": "3.8 Cr", "foreign": true, "in_xi": true}, {"name": "Axar Patel", "team": "MI", "owner": "Nandi", "role": "AR", "pts": 114, "price": "10.3 Cr", "foreign": false, "in_xi": true}, {"name": "Shashank Singh", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 107, "price": "9.5 Cr", "foreign": false, "in_xi": true}, {"name": "Glenn Phillips", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 106, "price": "2.2 Cr", "foreign": true, "in_xi": true}, {"name": "Rovman Powell", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 71, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Nicholas Pooran", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 64, "price": "15.8 Cr", "foreign": true, "in_xi": false}, {"name": "Deepak Chahar", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 42, "price": "6.8 Cr", "foreign": false, "in_xi": true}, {"name": "Prithvi Shaw", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 0, "price": "3.0 Cr", "foreign": false, "in_xi": false}, {"name": "Rahmanullah Gurbaz", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 0, "price": "1.6 Cr", "foreign": true, "in_xi": false}, {"name": "Tim Seifert", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 0, "price": "12.0 Cr", "foreign": true, "in_xi": false}, {"name": "Ravi Bishnoi", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 277, "price": "4.8 Cr", "foreign": false, "in_xi": true}, {"name": "Angkrish Raghuvanshi", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 242, "price": "10.0 Cr", "foreign": false, "in_xi": true}, {"name": "Priyansh Arya", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 167, "price": "13.3 Cr", "foreign": false, "in_xi": true}, {"name": "Ryan Rickelton", "team": "KKR", "owner": "Oorav", "role": "WK", "pts": 156, "price": "1.2 Cr", "foreign": true, "in_xi": true}, {"name": "Nandre Burger", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 147, "price": "95L", "foreign": true, "in_xi": true}, {"name": "Vaibhav Arora", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 140, "price": "30L", "foreign": false, "in_xi": true}, {"name": "Bhuvneshwar Kumar", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 124, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Suryakumar Yadav", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 107, "price": "11.3 Cr", "foreign": false, "in_xi": true}, {"name": "Sunil Narine", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 82, "price": "6.0 Cr", "foreign": true, "in_xi": true}, {"name": "Sherfane Rutherford", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 63, "price": "1.0 Cr", "foreign": true, "in_xi": true}, {"name": "Nehal Wadhera", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 63, "price": "3.6 Cr", "foreign": false, "in_xi": true}, {"name": "Josh Hazlewood", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 58, "price": "14.5 Cr", "foreign": true, "in_xi": false}, {"name": "Mohsin Khan", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 55, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Shahrukh Khan", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 42, "price": "3.2 Cr", "foreign": false, "in_xi": false}, {"name": "MS Dhoni", "team": "KKR", "owner": "Oorav", "role": "WK", "pts": 0, "price": "7.8 Cr", "foreign": false, "in_xi": false}, {"name": "Lockie Ferguson", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 0, "price": "3.0 Cr", "foreign": true, "in_xi": false}, {"name": "Mitchell Starc", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 0, "price": "6.3 Cr", "foreign": true, "in_xi": false}, {"name": "Karun Nair", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "R. Sai Kishore", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 0, "price": "5.5 Cr", "foreign": false, "in_xi": false}, {"name": "Mukesh Choudhary", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 0, "price": "70L", "foreign": false, "in_xi": false}, {"name": "Jake Fraser-McGurk", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 0, "price": "6.5 Cr", "foreign": true, "in_xi": false}, {"name": "Sameer Rizvi", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 239, "price": "1.6 Cr", "foreign": false, "in_xi": true}, {"name": "Devdutt Padikkal", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 236, "price": "6.0 Cr", "foreign": false, "in_xi": true}, {"name": "Prabhsimran Singh", "team": "PBKS", "owner": "Megha", "role": "WK", "pts": 232, "price": "7.0 Cr", "foreign": false, "in_xi": true}, {"name": "Ishan Kishan", "team": "PBKS", "owner": "Megha", "role": "WK", "pts": 222, "price": "14.3 Cr", "foreign": false, "in_xi": true}, {"name": "Sarfaraz Khan", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 187, "price": "1.1 Cr", "foreign": false, "in_xi": true}, {"name": "Shardul Thakur", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 113, "price": "4.6 Cr", "foreign": false, "in_xi": true}, {"name": "Ruturaj Gaikwad", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 80, "price": "16.5 Cr", "foreign": false, "in_xi": true}, {"name": "Arshdeep Singh", "team": "PBKS", "owner": "Megha", "role": "BOWL", "pts": 80, "price": "12.3 Cr", "foreign": false, "in_xi": true}, {"name": "Hardik Pandya", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 71, "price": "16.5 Cr", "foreign": false, "in_xi": true}, {"name": "Ramandeep Singh", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 47, "price": "2.6 Cr", "foreign": false, "in_xi": true}, {"name": "Dewald Brevis", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 32, "price": "16.5 Cr", "foreign": true, "in_xi": true}, {"name": "Harshal Patel", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 9, "price": "7.5 Cr", "foreign": false, "in_xi": false}, {"name": "Sam Curran", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 0, "price": "2.6 Cr", "foreign": true, "in_xi": false}, {"name": "Azmatullah Omarzai", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 0, "price": "3.0 Cr", "foreign": true, "in_xi": false}, {"name": "K.S. Bharat", "team": "PBKS", "owner": "Megha", "role": "WK", "pts": 0, "price": "75L", "foreign": false, "in_xi": false}, {"name": "Matheesha Pathirana", "team": "PBKS", "owner": "Megha", "role": "BOWL", "pts": 0, "price": "6.3 Cr", "foreign": true, "in_xi": false}, {"name": "Vijay Shankar", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 0, "price": "35L", "foreign": false, "in_xi": false}, {"name": "Shreyas Iyer", "team": "DC", "owner": "Aids", "role": "BAT", "pts": 222, "price": "18.5 Cr", "foreign": false, "in_xi": true}, {"name": "Pathum Nissanka", "team": "DC", "owner": "Aids", "role": "BAT", "pts": 202, "price": "4.6 Cr", "foreign": true, "in_xi": true}, {"name": "Washington Sundar", "team": "DC", "owner": "Aids", "role": "AR", "pts": 190, "price": "4.4 Cr", "foreign": false, "in_xi": true}, {"name": "Kagiso Rabada", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 140, "price": "8.3 Cr", "foreign": true, "in_xi": true}, {"name": "Vyshak Vijaykumar", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 139, "price": "2.2 Cr", "foreign": false, "in_xi": true}, {"name": "Phil Salt", "team": "DC", "owner": "Aids", "role": "WK", "pts": 117, "price": "9.0 Cr", "foreign": true, "in_xi": true}, {"name": "Ayush Badoni", "team": "DC", "owner": "Aids", "role": "AR", "pts": 114, "price": "7.3 Cr", "foreign": false, "in_xi": true}, {"name": "Marco Jansen", "team": "DC", "owner": "Aids", "role": "AR", "pts": 101, "price": "9.0 Cr", "foreign": true, "in_xi": true}, {"name": "Digvesh Rathi", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 93, "price": "6.3 Cr", "foreign": false, "in_xi": true}, {"name": "Naman Dhir", "team": "DC", "owner": "Aids", "role": "AR", "pts": 88, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Rahul Tewatia", "team": "DC", "owner": "Aids", "role": "AR", "pts": 71, "price": "1.7 Cr", "foreign": false, "in_xi": true}, {"name": "Nitish Rana", "team": "DC", "owner": "Aids", "role": "AR", "pts": 59, "price": "4.2 Cr", "foreign": false, "in_xi": false}, {"name": "Marcus Stoinis", "team": "DC", "owner": "Aids", "role": "AR", "pts": 31, "price": "9.5 Cr", "foreign": true, "in_xi": false}, {"name": "Mayank Markande", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 14, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Will Jacks", "team": "DC", "owner": "Aids", "role": "AR", "pts": 0, "price": "13.3 Cr", "foreign": true, "in_xi": false}, {"name": "Mayank Yadav", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 0, "price": "3.0 Cr", "foreign": false, "in_xi": false}, {"name": "Tom Banton", "team": "DC", "owner": "Aids", "role": "WK", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Kyle Jamieson", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Manan Vohra", "team": "DC", "owner": "Aids", "role": "BAT", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "Ankit Kumar", "team": "DC", "owner": "Aids", "role": "AR", "pts": 0, "price": "1.5 Cr", "foreign": false, "in_xi": false}, {"name": "Vaibhav Suryavanshi", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 318, "price": "16.5 Cr", "foreign": false, "in_xi": true}, {"name": "Ayush Mhatre", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 198, "price": "19.3 Cr", "foreign": false, "in_xi": true}, {"name": "Rashid Khan", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 196, "price": "8.0 Cr", "foreign": true, "in_xi": true}, {"name": "Ajinkya Rahane", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 192, "price": "6.8 Cr", "foreign": false, "in_xi": true}, {"name": "David Miller", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 129, "price": "12.0 Cr", "foreign": true, "in_xi": true}, {"name": "Krunal Pandya", "team": "CSK", "owner": "Chillar", "role": "AR", "pts": 109, "price": "6.0 Cr", "foreign": false, "in_xi": true}, {"name": "Matt Henry", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 68, "price": "5.0 Cr", "foreign": true, "in_xi": true}, {"name": "Kartik Sharma", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 41, "price": "4.2 Cr", "foreign": false, "in_xi": true}, {"name": "Jasprit Bumrah", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 32, "price": "18.0 Cr", "foreign": false, "in_xi": true}, {"name": "Lhuan-Dre Pretorious", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 0, "price": "30L", "foreign": true, "in_xi": false}, {"name": "Quinton De Kock", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 0, "price": "8.0 Cr", "foreign": true, "in_xi": false}, {"name": "Prashant Solanki", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 0, "price": "30L", "foreign": false, "in_xi": true}, {"name": "Jason Holder", "team": "CSK", "owner": "Chillar", "role": "AR", "pts": 0, "price": "2.4 Cr", "foreign": true, "in_xi": false}, {"name": "Kusal Perera", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 0, "price": "1.0 Cr", "foreign": true, "in_xi": false}, {"name": "Adam Milne", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": true}, {"name": "Chetan Sakariya", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 0, "price": "2.0 Cr", "foreign": false, "in_xi": false}, {"name": "Abhishek Sharma", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 202, "price": "15.5 Cr", "foreign": false, "in_xi": true}, {"name": "Rishabh Pant", "team": "RR", "owner": "Santhoo", "role": "WK", "pts": 192, "price": "11.0 Cr", "foreign": false, "in_xi": true}, {"name": "Travis Head", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 158, "price": "13.8 Cr", "foreign": true, "in_xi": true}, {"name": "Rinku Singh", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 144, "price": "5.8 Cr", "foreign": false, "in_xi": true}, {"name": "Jacob Duffy", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 135, "price": "2.2 Cr", "foreign": true, "in_xi": true}, {"name": "Sandeep Sharma", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 132, "price": "9.3 Cr", "foreign": false, "in_xi": true}, {"name": "Yuzvendra Chahal", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 95, "price": "9.3 Cr", "foreign": false, "in_xi": true}, {"name": "Shimron Hetmyer", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 93, "price": "11.8 Cr", "foreign": true, "in_xi": true}, {"name": "Liam Livingstone", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 36, "price": "8.3 Cr", "foreign": true, "in_xi": true}, {"name": "Varun Chakravarthy", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 12, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Trent Boult", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 9, "price": "11.3 Cr", "foreign": true, "in_xi": false}, {"name": "Rahul Chahar", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 8, "price": "1.5 Cr", "foreign": false, "in_xi": true}, {"name": "Abhishek Porel", "team": "RR", "owner": "Santhoo", "role": "WK", "pts": 0, "price": "6.3 Cr", "foreign": false, "in_xi": false}, {"name": "Rajvardhan Hangargekar", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 0, "price": "65L", "foreign": false, "in_xi": false}, {"name": "Karn Sharma", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 0, "price": "3.6 Cr", "foreign": false, "in_xi": false}, {"name": "Rahul Tripathi", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 0, "price": "75L", "foreign": false, "in_xi": false}, {"name": "Daniel Sams", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 0, "price": "1.0 Cr", "foreign": true, "in_xi": false}, {"name": "Tim David", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 153, "price": "7.8 Cr", "foreign": true, "in_xi": true}, {"name": "Ravindra Jadeja", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 142, "price": "5.0 Cr", "foreign": false, "in_xi": true}, {"name": "Aniket Verma", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 120, "price": "4.4 Cr", "foreign": false, "in_xi": true}, {"name": "Cameron Green", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 120, "price": "20.5 Cr", "foreign": true, "in_xi": true}, {"name": "Ashok Sharma", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 116, "price": "30L", "foreign": false, "in_xi": true}, {"name": "T. Natarajan", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 115, "price": "1.0 Cr", "foreign": false, "in_xi": true}, {"name": "Eshan Malinga", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 105, "price": "75L", "foreign": true, "in_xi": true}, {"name": "Kartik Tyagi", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 95, "price": "95L", "foreign": false, "in_xi": true}, {"name": "Tilak Varma", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 94, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Prashant Veer", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 72, "price": "10.3 Cr", "foreign": false, "in_xi": true}, {"name": "Suyash Sharma", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 62, "price": "1.1 Cr", "foreign": false, "in_xi": false}, {"name": "Noor Ahmad", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 58, "price": "10.3 Cr", "foreign": true, "in_xi": false}, {"name": "Jitesh Sharma", "team": "RCB", "owner": "Micromax Sahil", "role": "WK", "pts": 51, "price": "5.8 Cr", "foreign": false, "in_xi": true}, {"name": "Venkatesh Iyer", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 44, "price": "9.8 Cr", "foreign": false, "in_xi": false}, {"name": "Shahbaz Ahmed", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 20, "price": "55L", "foreign": false, "in_xi": false}, {"name": "Auqib Dar", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 9, "price": "45L", "foreign": false, "in_xi": false}, {"name": "Pat Cummins", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 0, "price": "9.0 Cr", "foreign": true, "in_xi": false}, {"name": "Jacob Bethell", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 0, "price": "4.4 Cr", "foreign": true, "in_xi": false}, {"name": "Smaran Ravichandaran", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Robin Minz", "team": "RCB", "owner": "Micromax Sahil", "role": "WK", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Vignesh Puthur", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Mayank Agarawal", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 0, "price": "5.0 Cr", "foreign": false, "in_xi": false}, {"name": "Josh Inglis", "team": "RCB", "owner": "Micromax Sahil", "role": "WK", "pts": 0, "price": "12.3 Cr", "foreign": true, "in_xi": false}];
+        const allPlayers = [{"name": "Dhruv Jurel", "team": "GT", "owner": "Daff", "role": "WK", "pts": 313, "price": "5.3 Cr", "foreign": false, "in_xi": true}, {"name": "Jos Buttler", "team": "GT", "owner": "Daff", "role": "WK", "pts": 308, "price": "8.3 Cr", "foreign": true, "in_xi": true}, {"name": "Yashasvi Jaiswal", "team": "GT", "owner": "Daff", "role": "BAT", "pts": 284, "price": "16.3 Cr", "foreign": false, "in_xi": true}, {"name": "Heinrich Klaasen", "team": "GT", "owner": "Daff", "role": "WK", "pts": 278, "price": "14.5 Cr", "foreign": true, "in_xi": true}, {"name": "Jamie Overton", "team": "GT", "owner": "Daff", "role": "AR", "pts": 277, "price": "90L", "foreign": true, "in_xi": true}, {"name": "Anshul Kamboj", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 256, "price": "4.6 Cr", "foreign": false, "in_xi": true}, {"name": "Sai Sudharsan", "team": "GT", "owner": "Daff", "role": "BAT", "pts": 183, "price": "12.3 Cr", "foreign": false, "in_xi": true}, {"name": "Tristan Stubbs", "team": "GT", "owner": "Daff", "role": "WK", "pts": 180, "price": "5.8 Cr", "foreign": true, "in_xi": true}, {"name": "Mohammad Shami", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 149, "price": "2.4 Cr", "foreign": false, "in_xi": true}, {"name": "Kuldeep Yadav", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 110, "price": "5.5 Cr", "foreign": false, "in_xi": true}, {"name": "Avesh Khan", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 107, "price": "3.0 Cr", "foreign": false, "in_xi": true}, {"name": "Mitchell Santner", "team": "GT", "owner": "Daff", "role": "AR", "pts": 49, "price": "8.3 Cr", "foreign": true, "in_xi": false}, {"name": "Khaleel Ahmed", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 39, "price": "7.5 Cr", "foreign": false, "in_xi": false}, {"name": "Gurjapneet Singh", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 37, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Ashutosh Sharma", "team": "GT", "owner": "Daff", "role": "AR", "pts": 34, "price": "9.0 Cr", "foreign": false, "in_xi": false}, {"name": "Kamindu Mendis", "team": "GT", "owner": "Daff", "role": "AR", "pts": 0, "price": "1.5 Cr", "foreign": true, "in_xi": false}, {"name": "Harpreet Brar", "team": "GT", "owner": "Daff", "role": "AR", "pts": 0, "price": "1.5 Cr", "foreign": false, "in_xi": false}, {"name": "Urvil Patel", "team": "GT", "owner": "Daff", "role": "WK", "pts": 0, "price": "4.2 Cr", "foreign": false, "in_xi": false}, {"name": "Vishnu Vinod", "team": "GT", "owner": "Daff", "role": "WK", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Fazalhaq Farooqi", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 0, "price": "1.0 Cr", "foreign": true, "in_xi": false}, {"name": "Shivam Mavi", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 0, "price": "1.3 Cr", "foreign": false, "in_xi": false}, {"name": "Anmolpreet Singh", "team": "GT", "owner": "Daff", "role": "BAT", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "Akash Madhwal", "team": "GT", "owner": "Daff", "role": "BOWL", "pts": 0, "price": "5.5 Cr", "foreign": false, "in_xi": false}, {"name": "Shubman Gill", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 273, "price": "10.3 Cr", "foreign": false, "in_xi": true}, {"name": "Virat Kohli", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 269, "price": "20.5 Cr", "foreign": false, "in_xi": true}, {"name": "Rajat Patidar", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 239, "price": "6.3 Cr", "foreign": false, "in_xi": true}, {"name": "Nitish Kumar Reddy", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 215, "price": "7.0 Cr", "foreign": false, "in_xi": true}, {"name": "Aiden Markram", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 188, "price": "9.8 Cr", "foreign": true, "in_xi": true}, {"name": "Rohit Sharma", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 179, "price": "11.3 Cr", "foreign": false, "in_xi": true}, {"name": "KL Rahul", "team": "SRH", "owner": "Thal", "role": "WK", "pts": 176, "price": "15.8 Cr", "foreign": false, "in_xi": true}, {"name": "Jaydev Unadkat", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 144, "price": "4.2 Cr", "foreign": false, "in_xi": true}, {"name": "Mitchell Marsh", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 113, "price": "6.5 Cr", "foreign": true, "in_xi": true}, {"name": "Abdul Samad", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 113, "price": "1.1 Cr", "foreign": false, "in_xi": true}, {"name": "Riyan Parag", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 102, "price": "7.8 Cr", "foreign": false, "in_xi": true}, {"name": "Mohammad Siraj", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 93, "price": "7.8 Cr", "foreign": false, "in_xi": false}, {"name": "Yash Dayal", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "Harshit Rana", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "60L", "foreign": false, "in_xi": false}, {"name": "Umran Malik", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "55L", "foreign": false, "in_xi": false}, {"name": "Musheer Khan", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Zeeshan Ansari", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "35L", "foreign": false, "in_xi": false}, {"name": "Anuj Rawat", "team": "SRH", "owner": "Thal", "role": "WK", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Swapnil Singh", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Rachin Ravindra", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Wanindu Hasaranga", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Deepak Hooda", "team": "SRH", "owner": "Thal", "role": "AR", "pts": 0, "price": "75L", "foreign": false, "in_xi": false}, {"name": "Abhinav Manohar", "team": "SRH", "owner": "Thal", "role": "BAT", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Aarya Desai", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Kamlesh Nagarkoti", "team": "SRH", "owner": "Thal", "role": "BOWL", "pts": 0, "price": "1.0 Cr", "foreign": false, "in_xi": false}, {"name": "Prasidh Krishna", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 278, "price": "5.0 Cr", "foreign": false, "in_xi": true}, {"name": "Sanju Samson", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 202, "price": "13.8 Cr", "foreign": false, "in_xi": true}, {"name": "Jofra Archer", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 188, "price": "4.6 Cr", "foreign": true, "in_xi": true}, {"name": "Shivam Dube", "team": "MI", "owner": "Nandi", "role": "AR", "pts": 165, "price": "10.5 Cr", "foreign": false, "in_xi": true}, {"name": "Mukesh Kumar", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 158, "price": "75L", "foreign": false, "in_xi": true}, {"name": "Finn Allen", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 133, "price": "8.8 Cr", "foreign": true, "in_xi": true}, {"name": "Romario Shepherd", "team": "MI", "owner": "Nandi", "role": "AR", "pts": 121, "price": "3.8 Cr", "foreign": true, "in_xi": true}, {"name": "Axar Patel", "team": "MI", "owner": "Nandi", "role": "AR", "pts": 114, "price": "10.3 Cr", "foreign": false, "in_xi": true}, {"name": "Shashank Singh", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 107, "price": "9.5 Cr", "foreign": false, "in_xi": true}, {"name": "Glenn Phillips", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 106, "price": "2.2 Cr", "foreign": true, "in_xi": true}, {"name": "Rovman Powell", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 71, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Nicholas Pooran", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 64, "price": "15.8 Cr", "foreign": true, "in_xi": false}, {"name": "Deepak Chahar", "team": "MI", "owner": "Nandi", "role": "BOWL", "pts": 42, "price": "6.8 Cr", "foreign": false, "in_xi": true}, {"name": "Prithvi Shaw", "team": "MI", "owner": "Nandi", "role": "BAT", "pts": 0, "price": "3.0 Cr", "foreign": false, "in_xi": false}, {"name": "Rahmanullah Gurbaz", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 0, "price": "1.6 Cr", "foreign": true, "in_xi": false}, {"name": "Tim Seifert", "team": "MI", "owner": "Nandi", "role": "WK", "pts": 0, "price": "12.0 Cr", "foreign": true, "in_xi": false}, {"name": "Phil Salt", "team": "DC", "owner": "Aids", "role": "WK", "pts": 230, "price": "9.0 Cr", "foreign": true, "in_xi": true}, {"name": "Shreyas Iyer", "team": "DC", "owner": "Aids", "role": "BAT", "pts": 222, "price": "18.5 Cr", "foreign": false, "in_xi": true}, {"name": "Pathum Nissanka", "team": "DC", "owner": "Aids", "role": "BAT", "pts": 202, "price": "4.6 Cr", "foreign": true, "in_xi": true}, {"name": "Washington Sundar", "team": "DC", "owner": "Aids", "role": "AR", "pts": 190, "price": "4.4 Cr", "foreign": false, "in_xi": true}, {"name": "Kagiso Rabada", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 140, "price": "8.3 Cr", "foreign": true, "in_xi": true}, {"name": "Vyshak Vijaykumar", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 139, "price": "2.2 Cr", "foreign": false, "in_xi": true}, {"name": "Ayush Badoni", "team": "DC", "owner": "Aids", "role": "AR", "pts": 114, "price": "7.3 Cr", "foreign": false, "in_xi": true}, {"name": "Marco Jansen", "team": "DC", "owner": "Aids", "role": "AR", "pts": 101, "price": "9.0 Cr", "foreign": true, "in_xi": true}, {"name": "Digvesh Rathi", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 93, "price": "6.3 Cr", "foreign": false, "in_xi": true}, {"name": "Naman Dhir", "team": "DC", "owner": "Aids", "role": "AR", "pts": 92, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Rahul Tewatia", "team": "DC", "owner": "Aids", "role": "AR", "pts": 71, "price": "1.7 Cr", "foreign": false, "in_xi": true}, {"name": "Nitish Rana", "team": "DC", "owner": "Aids", "role": "AR", "pts": 59, "price": "4.2 Cr", "foreign": false, "in_xi": false}, {"name": "Marcus Stoinis", "team": "DC", "owner": "Aids", "role": "AR", "pts": 31, "price": "9.5 Cr", "foreign": true, "in_xi": false}, {"name": "Mayank Markande", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 18, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Will Jacks", "team": "DC", "owner": "Aids", "role": "AR", "pts": 0, "price": "13.3 Cr", "foreign": true, "in_xi": false}, {"name": "Mayank Yadav", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 0, "price": "3.0 Cr", "foreign": false, "in_xi": false}, {"name": "Tom Banton", "team": "DC", "owner": "Aids", "role": "WK", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Kyle Jamieson", "team": "DC", "owner": "Aids", "role": "BOWL", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": false}, {"name": "Manan Vohra", "team": "DC", "owner": "Aids", "role": "BAT", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "Ankit Kumar", "team": "DC", "owner": "Aids", "role": "AR", "pts": 0, "price": "1.5 Cr", "foreign": false, "in_xi": false}, {"name": "Ravi Bishnoi", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 277, "price": "4.8 Cr", "foreign": false, "in_xi": true}, {"name": "Angkrish Raghuvanshi", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 242, "price": "10.0 Cr", "foreign": false, "in_xi": true}, {"name": "Priyansh Arya", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 167, "price": "13.3 Cr", "foreign": false, "in_xi": true}, {"name": "Ryan Rickelton", "team": "KKR", "owner": "Oorav", "role": "WK", "pts": 160, "price": "1.2 Cr", "foreign": true, "in_xi": true}, {"name": "Nandre Burger", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 147, "price": "95L", "foreign": true, "in_xi": true}, {"name": "Vaibhav Arora", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 140, "price": "30L", "foreign": false, "in_xi": true}, {"name": "Bhuvneshwar Kumar", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 128, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Suryakumar Yadav", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 111, "price": "11.3 Cr", "foreign": false, "in_xi": true}, {"name": "Sunil Narine", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 82, "price": "6.0 Cr", "foreign": true, "in_xi": true}, {"name": "Sherfane Rutherford", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 63, "price": "1.0 Cr", "foreign": true, "in_xi": true}, {"name": "Nehal Wadhera", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 63, "price": "3.6 Cr", "foreign": false, "in_xi": true}, {"name": "Josh Hazlewood", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 58, "price": "14.5 Cr", "foreign": true, "in_xi": false}, {"name": "Mohsin Khan", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 55, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Shahrukh Khan", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 42, "price": "3.2 Cr", "foreign": false, "in_xi": false}, {"name": "MS Dhoni", "team": "KKR", "owner": "Oorav", "role": "WK", "pts": 0, "price": "7.8 Cr", "foreign": false, "in_xi": false}, {"name": "Lockie Ferguson", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 0, "price": "3.0 Cr", "foreign": true, "in_xi": false}, {"name": "Mitchell Starc", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 0, "price": "6.3 Cr", "foreign": true, "in_xi": false}, {"name": "Karun Nair", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 0, "price": "50L", "foreign": false, "in_xi": false}, {"name": "R. Sai Kishore", "team": "KKR", "owner": "Oorav", "role": "AR", "pts": 0, "price": "5.5 Cr", "foreign": false, "in_xi": false}, {"name": "Mukesh Choudhary", "team": "KKR", "owner": "Oorav", "role": "BOWL", "pts": 0, "price": "70L", "foreign": false, "in_xi": false}, {"name": "Jake Fraser-McGurk", "team": "KKR", "owner": "Oorav", "role": "BAT", "pts": 0, "price": "6.5 Cr", "foreign": true, "in_xi": false}, {"name": "Devdutt Padikkal", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 240, "price": "6.0 Cr", "foreign": false, "in_xi": true}, {"name": "Sameer Rizvi", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 239, "price": "1.6 Cr", "foreign": false, "in_xi": true}, {"name": "Prabhsimran Singh", "team": "PBKS", "owner": "Megha", "role": "WK", "pts": 232, "price": "7.0 Cr", "foreign": false, "in_xi": true}, {"name": "Ishan Kishan", "team": "PBKS", "owner": "Megha", "role": "WK", "pts": 222, "price": "14.3 Cr", "foreign": false, "in_xi": true}, {"name": "Sarfaraz Khan", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 187, "price": "1.1 Cr", "foreign": false, "in_xi": true}, {"name": "Shardul Thakur", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 117, "price": "4.6 Cr", "foreign": false, "in_xi": true}, {"name": "Ruturaj Gaikwad", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 80, "price": "16.5 Cr", "foreign": false, "in_xi": true}, {"name": "Arshdeep Singh", "team": "PBKS", "owner": "Megha", "role": "BOWL", "pts": 80, "price": "12.3 Cr", "foreign": false, "in_xi": true}, {"name": "Hardik Pandya", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 75, "price": "16.5 Cr", "foreign": false, "in_xi": true}, {"name": "Ramandeep Singh", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 47, "price": "2.6 Cr", "foreign": false, "in_xi": true}, {"name": "Dewald Brevis", "team": "PBKS", "owner": "Megha", "role": "BAT", "pts": 32, "price": "16.5 Cr", "foreign": true, "in_xi": true}, {"name": "Harshal Patel", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 9, "price": "7.5 Cr", "foreign": false, "in_xi": false}, {"name": "Sam Curran", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 0, "price": "2.6 Cr", "foreign": true, "in_xi": false}, {"name": "Azmatullah Omarzai", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 0, "price": "3.0 Cr", "foreign": true, "in_xi": false}, {"name": "K.S. Bharat", "team": "PBKS", "owner": "Megha", "role": "WK", "pts": 0, "price": "75L", "foreign": false, "in_xi": false}, {"name": "Matheesha Pathirana", "team": "PBKS", "owner": "Megha", "role": "BOWL", "pts": 0, "price": "6.3 Cr", "foreign": true, "in_xi": false}, {"name": "Vijay Shankar", "team": "PBKS", "owner": "Megha", "role": "AR", "pts": 0, "price": "35L", "foreign": false, "in_xi": false}, {"name": "Vaibhav Suryavanshi", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 318, "price": "16.5 Cr", "foreign": false, "in_xi": true}, {"name": "Ayush Mhatre", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 198, "price": "19.3 Cr", "foreign": false, "in_xi": true}, {"name": "Rashid Khan", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 196, "price": "8.0 Cr", "foreign": true, "in_xi": true}, {"name": "Ajinkya Rahane", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 192, "price": "6.8 Cr", "foreign": false, "in_xi": true}, {"name": "David Miller", "team": "CSK", "owner": "Chillar", "role": "BAT", "pts": 129, "price": "12.0 Cr", "foreign": true, "in_xi": true}, {"name": "Krunal Pandya", "team": "CSK", "owner": "Chillar", "role": "AR", "pts": 113, "price": "6.0 Cr", "foreign": false, "in_xi": true}, {"name": "Matt Henry", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 68, "price": "5.0 Cr", "foreign": true, "in_xi": true}, {"name": "Kartik Sharma", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 41, "price": "4.2 Cr", "foreign": false, "in_xi": true}, {"name": "Jasprit Bumrah", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 36, "price": "18.0 Cr", "foreign": false, "in_xi": true}, {"name": "Lhuan-Dre Pretorious", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 0, "price": "30L", "foreign": true, "in_xi": false}, {"name": "Quinton De Kock", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 0, "price": "8.0 Cr", "foreign": true, "in_xi": false}, {"name": "Prashant Solanki", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 0, "price": "30L", "foreign": false, "in_xi": true}, {"name": "Jason Holder", "team": "CSK", "owner": "Chillar", "role": "AR", "pts": 0, "price": "2.4 Cr", "foreign": true, "in_xi": false}, {"name": "Kusal Perera", "team": "CSK", "owner": "Chillar", "role": "WK", "pts": 0, "price": "1.0 Cr", "foreign": true, "in_xi": false}, {"name": "Adam Milne", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 0, "price": "2.0 Cr", "foreign": true, "in_xi": true}, {"name": "Chetan Sakariya", "team": "CSK", "owner": "Chillar", "role": "BOWL", "pts": 0, "price": "2.0 Cr", "foreign": false, "in_xi": false}, {"name": "Abhishek Sharma", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 202, "price": "15.5 Cr", "foreign": false, "in_xi": true}, {"name": "Rishabh Pant", "team": "RR", "owner": "Santhoo", "role": "WK", "pts": 192, "price": "11.0 Cr", "foreign": false, "in_xi": true}, {"name": "Travis Head", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 158, "price": "13.8 Cr", "foreign": true, "in_xi": true}, {"name": "Rinku Singh", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 144, "price": "5.8 Cr", "foreign": false, "in_xi": true}, {"name": "Jacob Duffy", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 139, "price": "2.2 Cr", "foreign": true, "in_xi": true}, {"name": "Sandeep Sharma", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 132, "price": "9.3 Cr", "foreign": false, "in_xi": true}, {"name": "Yuzvendra Chahal", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 95, "price": "9.3 Cr", "foreign": false, "in_xi": true}, {"name": "Shimron Hetmyer", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 93, "price": "11.8 Cr", "foreign": true, "in_xi": true}, {"name": "Liam Livingstone", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 36, "price": "8.3 Cr", "foreign": true, "in_xi": true}, {"name": "Varun Chakravarthy", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 12, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Rahul Chahar", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 8, "price": "1.5 Cr", "foreign": false, "in_xi": true}, {"name": "Trent Boult", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 7, "price": "11.3 Cr", "foreign": true, "in_xi": false}, {"name": "Abhishek Porel", "team": "RR", "owner": "Santhoo", "role": "WK", "pts": 0, "price": "6.3 Cr", "foreign": false, "in_xi": false}, {"name": "Rajvardhan Hangargekar", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 0, "price": "65L", "foreign": false, "in_xi": false}, {"name": "Karn Sharma", "team": "RR", "owner": "Santhoo", "role": "BOWL", "pts": 0, "price": "3.6 Cr", "foreign": false, "in_xi": false}, {"name": "Rahul Tripathi", "team": "RR", "owner": "Santhoo", "role": "BAT", "pts": 0, "price": "75L", "foreign": false, "in_xi": false}, {"name": "Daniel Sams", "team": "RR", "owner": "Santhoo", "role": "AR", "pts": 0, "price": "1.0 Cr", "foreign": true, "in_xi": false}, {"name": "Tim David", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 157, "price": "7.8 Cr", "foreign": true, "in_xi": true}, {"name": "Ravindra Jadeja", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 142, "price": "5.0 Cr", "foreign": false, "in_xi": true}, {"name": "Aniket Verma", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 120, "price": "4.4 Cr", "foreign": false, "in_xi": true}, {"name": "Cameron Green", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 120, "price": "20.5 Cr", "foreign": true, "in_xi": true}, {"name": "Ashok Sharma", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 116, "price": "30L", "foreign": false, "in_xi": true}, {"name": "T. Natarajan", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 115, "price": "1.0 Cr", "foreign": false, "in_xi": true}, {"name": "Eshan Malinga", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 105, "price": "75L", "foreign": true, "in_xi": true}, {"name": "Tilak Varma", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 98, "price": "8.3 Cr", "foreign": false, "in_xi": true}, {"name": "Kartik Tyagi", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 95, "price": "95L", "foreign": false, "in_xi": true}, {"name": "Prashant Veer", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 72, "price": "10.3 Cr", "foreign": false, "in_xi": true}, {"name": "Suyash Sharma", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 66, "price": "1.1 Cr", "foreign": false, "in_xi": false}, {"name": "Noor Ahmad", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 58, "price": "10.3 Cr", "foreign": true, "in_xi": false}, {"name": "Jitesh Sharma", "team": "RCB", "owner": "Micromax Sahil", "role": "WK", "pts": 55, "price": "5.8 Cr", "foreign": false, "in_xi": true}, {"name": "Venkatesh Iyer", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 44, "price": "9.8 Cr", "foreign": false, "in_xi": false}, {"name": "Shahbaz Ahmed", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 20, "price": "55L", "foreign": false, "in_xi": false}, {"name": "Auqib Dar", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 9, "price": "45L", "foreign": false, "in_xi": false}, {"name": "Pat Cummins", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 0, "price": "9.0 Cr", "foreign": true, "in_xi": false}, {"name": "Jacob Bethell", "team": "RCB", "owner": "Micromax Sahil", "role": "AR", "pts": 0, "price": "4.4 Cr", "foreign": true, "in_xi": false}, {"name": "Smaran Ravichandaran", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Robin Minz", "team": "RCB", "owner": "Micromax Sahil", "role": "WK", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Vignesh Puthur", "team": "RCB", "owner": "Micromax Sahil", "role": "BOWL", "pts": 0, "price": "30L", "foreign": false, "in_xi": false}, {"name": "Mayank Agarawal", "team": "RCB", "owner": "Micromax Sahil", "role": "BAT", "pts": 0, "price": "5.0 Cr", "foreign": false, "in_xi": false}, {"name": "Josh Inglis", "team": "RCB", "owner": "Micromax Sahil", "role": "WK", "pts": 0, "price": "12.3 Cr", "foreign": true, "in_xi": false}];
         const searchInput = document.getElementById('player-search');
         const searchResults = document.getElementById('search-results');
         const searchOverlay = document.getElementById('search-overlay');
@@ -5320,7 +5351,7 @@
         }
 
         // WhatsApp share
-        const rankings = [{"rank": 1, "team": "GT", "nick": "Daff", "pts": 2445}, {"rank": 2, "team": "SRH", "nick": "Thal", "pts": 1953}, {"rank": 3, "team": "MI", "nick": "Nandi", "pts": 1610}, {"rank": 4, "team": "KKR", "nick": "Oorav", "pts": 1568}, {"rank": 5, "team": "PBKS", "nick": "Megha", "pts": 1539}, {"rank": 6, "team": "DC", "nick": "Aids", "pts": 1477}, {"rank": 7, "team": "CSK", "nick": "Chillar", "pts": 1283}, {"rank": 8, "team": "RR", "nick": "Santhoo", "pts": 1207}, {"rank": 9, "team": "RCB", "nick": "Micromax Sahil", "pts": 1183}];
+        const rankings = [{"rank": 1, "team": "GT", "nick": "Daff", "pts": 2445}, {"rank": 2, "team": "SRH", "nick": "Thal", "pts": 2011}, {"rank": 3, "team": "MI", "nick": "Nandi", "pts": 1614}, {"rank": 4, "team": "DC", "nick": "Aids", "pts": 1594}, {"rank": 5, "team": "KKR", "nick": "Oorav", "pts": 1580}, {"rank": 6, "team": "PBKS", "nick": "Megha", "pts": 1551}, {"rank": 7, "team": "CSK", "nick": "Chillar", "pts": 1291}, {"rank": 8, "team": "RR", "nick": "Santhoo", "pts": 1211}, {"rank": 9, "team": "RCB", "nick": "Micromax Sahil", "pts": 1195}];
         let msg = "&#127942; *IPL 2026 Fantasy Leaderboard*\n";
         msg += "_Updated: 2026-04-12_\n\n";
         rankings.forEach(r => {
