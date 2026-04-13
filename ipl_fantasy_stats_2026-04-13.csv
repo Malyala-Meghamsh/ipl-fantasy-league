@@ -1,5 +1,5 @@
 Player,Team,Credits,Total Points
-Ishan Kishan,SRH,10.5,351
+Ishan Kishan,SRH,10.5,367
 Heinrich Klaasen,SRH,10,337
 Dhruv Jurel,RR,9,329
 Rajat Patidar,RCB,9,328
@@ -13,7 +13,7 @@ Nitish Kumar Reddy,SRH,9,277
 Jamie Overton,CSK,8,277
 Shubman Gill,GT,10,273
 Anshul Kamboj,CSK,8.5,256
-Jofra Archer,RR,9.5,242
+Jofra Archer,RR,9.5,244
 Angkrish Raghuvanshi,KKR,9,242
 Devdutt Padikkal,RCB,9,240
 Sameer Rizvi,DC,8.5,239
@@ -24,9 +24,9 @@ Ryan Rickelton,MI,9,214
 Abhishek Sharma,SRH,10.5,212
 Tim David,RCB,9,209
 Rohit Sharma,MI,10,204
+Ravindra Jadeja,RR,10.5,202
 Sanju Samson,CSK,9.5,202
 Pathum Nissanka,DC,7,202
-Ravindra Jadeja,RR,10.5,201
 Ayush Mhatre,CSK,9,198
 Rashid Khan,GT,9.5,196
 Prince Yadav,LSG,7,196
@@ -49,8 +49,9 @@ Suryakumar Yadav,MI,10.5,165
 Shivam Dube,CSK,10,165
 Lungi Ngidi,DC,8,164
 Sandeep Sharma,RR,8,163
+Eshan Malinga,SRH,8.5,159
 Mukesh Kumar,DC,8.5,158
-Nandre Burger,RR,7,151
+Nandre Burger,RR,7,154
 Mohammad Shami,LSG,8.5,149
 Xavier Bartlett,PBKS,7,145
 Rinku Singh,KKR,9,144
@@ -68,10 +69,12 @@ Finn Allen,KKR,7,133
 Aniket Verma,SRH,9,131
 Romario Shepherd,RCB,8.5,131
 David Miller,DC,9,129
+Praful Hinge,SRH,7,128
+Donovan Ferreira,RR,7.5,127
 Anukul Roy,KKR,7.5,125
-Praful Hinge,SRH,7,122
+Sakib Hussain,SRH,7,122
+Tushar Deshpande,RR,8.5,120
 Cameron Green,KKR,8,120
-Donovan Ferreira,RR,7.5,120
 Ashok Sharma,GT,7,116
 T Natarajan,DC,7.5,115
 Axar Patel,DC,9.5,114
@@ -82,7 +85,6 @@ Suyash Sharma,RCB,8,112
 Brijesh Sharma,RR,7,111
 Kuldeep Yadav,DC,9.5,110
 Blessing Muzarabani,KKR,7.5,110
-Eshan Malinga,SRH,8.5,109
 Tilak Varma,MI,10,107
 Shashank Singh,PBKS,9,107
 Avesh Khan,LSG,8,107
@@ -95,12 +97,11 @@ Mohammed Siraj,GT,9.5,93
 Shimron Hetmyer,RR,9.5,93
 Digvesh Singh,LSG,9,93
 Abhinandan Singh,RCB,7,91
-Tushar Deshpande,RR,8.5,89
+Salil Arora,SRH,7,88
 Mitchell Santner,MI,9,87
 Sunil Narine,KKR,10.5,82
 Arshdeep Singh,PBKS,10,80
 Ruturaj Gaikwad,CSK,9,80
-Salil Arora,SRH,7,80
 Prashant Veer,CSK,8,72
 Rahul Tewatia,GT,9,71
 Rovman Powell,KKR,8,71
@@ -132,7 +133,6 @@ Ashutosh Sharma,DC,9,34
 Kumar Kushagra,GT,7,33
 Dewald Brevis,CSK,9,32
 Marcus Stoinis,PBKS,9,31
-Sakib Hussain,SRH,7,29
 George Linde,LSG,7.5,27
 Shahbaz Ahmed,LSG,8,20
 Varun Chakaravarthy,KKR,10,12
