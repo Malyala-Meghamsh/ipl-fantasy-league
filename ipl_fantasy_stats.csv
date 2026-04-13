@@ -1,9 +1,9 @@
 Player,Team,Credits,Total Points
 Ishan Kishan,SRH,10.5,351
 Heinrich Klaasen,SRH,10,337
+Dhruv Jurel,RR,9,331
 Rajat Patidar,RCB,9,328
 Vaibhav Sooryavanshi,RR,9,318
-Dhruv Jurel,RR,9,317
 Jos Buttler,GT,10,308
 Virat Kohli,RCB,11,290
 Yashasvi Jaiswal,RR,10,288
@@ -11,15 +11,15 @@ Ravi Bishnoi,RR,8.5,285
 Prasidh Krishna,GT,9,278
 Jamie Overton,CSK,8,277
 Shubman Gill,GT,10,273
+Nitish Kumar Reddy,SRH,9,261
 Anshul Kamboj,CSK,8.5,256
+Jofra Archer,RR,9.5,242
 Angkrish Raghuvanshi,KKR,9,242
 Devdutt Padikkal,RCB,9,240
 Sameer Rizvi,DC,8.5,239
 Prabhsimran Singh,PBKS,9,232
 Phil Salt,RCB,9.5,231
-Nitish Kumar Reddy,SRH,9,230
 Shreyas Iyer,PBKS,10.5,222
-Jofra Archer,RR,9.5,217
 Ryan Rickelton,MI,9,214
 Tim David,RCB,9,209
 Abhishek Sharma,SRH,10.5,204
@@ -41,13 +41,13 @@ Travis Head,SRH,10,183
 Tristan Stubbs,DC,9,180
 KL Rahul,DC,10,176
 Sherfane Rutherford,MI,8,171
-Sandeep Sharma,RR,8,169
 Priyansh Arya,PBKS,9.5,167
 Hardik Pandya,MI,10.5,166
 Jacob Duffy,RCB,7,166
 Suryakumar Yadav,MI,10.5,165
 Shivam Dube,CSK,10,165
 Lungi Ngidi,DC,8,164
+Sandeep Sharma,RR,8,163
 Mukesh Kumar,DC,8.5,158
 Nandre Burger,RR,7,151
 Mohammad Shami,LSG,8.5,149
@@ -58,17 +58,17 @@ Jaydev Unadkat,SRH,7,144
 Vaibhav Arora,KKR,9,140
 Krunal Pandya,RCB,9,140
 Kagiso Rabada,GT,7.5,140
+Riyan Parag,RR,9,139
 Vijaykumar Vyshak,PBKS,8,139
 Mukul Choudhary,LSG,7,139
 Shardul Thakur,MI,9,136
 Bhuvneshwar Kumar,RCB,9,136
 Shivang Kumar,SRH,7.5,135
 Finn Allen,KKR,7,133
-Riyan Parag,RR,9,131
+Aniket Verma,SRH,9,131
 Romario Shepherd,RCB,8.5,131
 David Miller,DC,9,129
 Anukul Roy,KKR,7.5,125
-Aniket Verma,SRH,9,124
 Cameron Green,KKR,8,120
 Ashok Sharma,GT,7,116
 T Natarajan,DC,7.5,115
@@ -93,11 +93,13 @@ Mohammed Siraj,GT,9.5,93
 Shimron Hetmyer,RR,9.5,93
 Digvesh Singh,LSG,9,93
 Abhinandan Singh,RCB,7,91
+Tushar Deshpande,RR,8.5,89
 Mitchell Santner,MI,9,87
 Sunil Narine,KKR,10.5,82
 Arshdeep Singh,PBKS,10,80
 Ruturaj Gaikwad,CSK,9,80
 Prashant Veer,CSK,8,72
+Salil Arora,SRH,7,72
 Rahul Tewatia,GT,9,71
 Rovman Powell,KKR,8,71
 Matt Henry,CSK,7.5,68
@@ -108,7 +110,6 @@ Nehal Wadhera,PBKS,9.5,63
 Nitish Rana,DC,8.5,59
 Josh Hazlewood,RCB,10,58
 Noor Ahmad,CSK,9,58
-Tushar Deshpande,RR,8.5,58
 AM Ghazanfar,MI,7,58
 Mohsin Khan,LSG,7.5,55
 David Payne,SRH,7,54
@@ -125,7 +126,6 @@ Gurjapneet Singh,CSK,7,37
 Jasprit Bumrah,MI,11,36
 Liam Livingstone,SRH,9,36
 Corbin Bosch,MI,7.5,36
-Salil Arora,SRH,7,36
 Ashutosh Sharma,DC,9,34
 Donovan Ferreira,RR,7.5,33
 Kumar Kushagra,GT,7,33
