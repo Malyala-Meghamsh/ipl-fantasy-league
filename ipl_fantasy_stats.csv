@@ -1,17 +1,17 @@
 Player,Team,Credits,Total Points
 Ishan Kishan,SRH,10.5,351
 Heinrich Klaasen,SRH,10,337
-Dhruv Jurel,RR,9,331
+Dhruv Jurel,RR,9,329
 Rajat Patidar,RCB,9,328
-Vaibhav Sooryavanshi,RR,9,318
+Vaibhav Sooryavanshi,RR,9,320
 Jos Buttler,GT,10,308
 Virat Kohli,RCB,11,290
-Yashasvi Jaiswal,RR,10,288
+Yashasvi Jaiswal,RR,10,289
 Ravi Bishnoi,RR,8.5,285
 Prasidh Krishna,GT,9,278
+Nitish Kumar Reddy,SRH,9,277
 Jamie Overton,CSK,8,277
 Shubman Gill,GT,10,273
-Nitish Kumar Reddy,SRH,9,261
 Anshul Kamboj,CSK,8.5,256
 Jofra Archer,RR,9.5,242
 Angkrish Raghuvanshi,KKR,9,242
@@ -21,11 +21,12 @@ Prabhsimran Singh,PBKS,9,232
 Phil Salt,RCB,9.5,231
 Shreyas Iyer,PBKS,10.5,222
 Ryan Rickelton,MI,9,214
+Abhishek Sharma,SRH,10.5,212
 Tim David,RCB,9,209
-Abhishek Sharma,SRH,10.5,204
 Rohit Sharma,MI,10,204
 Sanju Samson,CSK,9.5,202
 Pathum Nissanka,DC,7,202
+Ravindra Jadeja,RR,10.5,201
 Ayush Mhatre,CSK,9,198
 Rashid Khan,GT,9.5,196
 Prince Yadav,LSG,7,196
@@ -35,10 +36,10 @@ Ajinkya Rahane,KKR,9,192
 Washington Sundar,GT,8.5,190
 Aiden Markram,LSG,10,188
 Sarfaraz Khan,CSK,7,187
-Harsh Dubey,SRH,8.5,184
 Sai Sudharsan,GT,10,183
 Travis Head,SRH,10,183
 Tristan Stubbs,DC,9,180
+Harsh Dubey,SRH,8.5,180
 KL Rahul,DC,10,176
 Sherfane Rutherford,MI,8,171
 Priyansh Arya,PBKS,9.5,167
@@ -51,14 +52,13 @@ Sandeep Sharma,RR,8,163
 Mukesh Kumar,DC,8.5,158
 Nandre Burger,RR,7,151
 Mohammad Shami,LSG,8.5,149
-Ravindra Jadeja,RR,10.5,146
 Xavier Bartlett,PBKS,7,145
 Rinku Singh,KKR,9,144
+Riyan Parag,RR,9,144
 Jaydev Unadkat,SRH,7,144
 Vaibhav Arora,KKR,9,140
 Krunal Pandya,RCB,9,140
 Kagiso Rabada,GT,7.5,140
-Riyan Parag,RR,9,139
 Vijaykumar Vyshak,PBKS,8,139
 Mukul Choudhary,LSG,7,139
 Shardul Thakur,MI,9,136
@@ -69,7 +69,9 @@ Aniket Verma,SRH,9,131
 Romario Shepherd,RCB,8.5,131
 David Miller,DC,9,129
 Anukul Roy,KKR,7.5,125
+Praful Hinge,SRH,7,122
 Cameron Green,KKR,8,120
+Donovan Ferreira,RR,7.5,120
 Ashok Sharma,GT,7,116
 T Natarajan,DC,7.5,115
 Axar Patel,DC,9.5,114
@@ -98,8 +100,8 @@ Mitchell Santner,MI,9,87
 Sunil Narine,KKR,10.5,82
 Arshdeep Singh,PBKS,10,80
 Ruturaj Gaikwad,CSK,9,80
+Salil Arora,SRH,7,80
 Prashant Veer,CSK,8,72
-Salil Arora,SRH,7,72
 Rahul Tewatia,GT,9,71
 Rovman Powell,KKR,8,71
 Matt Henry,CSK,7.5,68
@@ -127,10 +129,10 @@ Jasprit Bumrah,MI,11,36
 Liam Livingstone,SRH,9,36
 Corbin Bosch,MI,7.5,36
 Ashutosh Sharma,DC,9,34
-Donovan Ferreira,RR,7.5,33
 Kumar Kushagra,GT,7,33
 Dewald Brevis,CSK,9,32
 Marcus Stoinis,PBKS,9,31
+Sakib Hussain,SRH,7,29
 George Linde,LSG,7.5,27
 Shahbaz Ahmed,LSG,8,20
 Varun Chakaravarthy,KKR,10,12
@@ -140,10 +142,9 @@ Harshal Patel,SRH,9.5,9
 Auqib Nabi,DC,7.5,9
 Rahul Chahar,CSK,7,8
 Matthew Short,CSK,7.5,6
-Lhuan-dre Pretorius,RR,7,4
 Anrich Nortje,LSG,7,4
-Praful Hinge,SRH,7,4
 Navdeep Saini,KKR,7.5,2
+Lhuan-dre Pretorius,RR,7,2
 Mitchell Starc,DC,10,0
 Sai Kishore,GT,9.5,0
 Pat Cummins,SRH,9.5,0
@@ -243,7 +244,6 @@ Ben Duckett,DC,7,0
 Ravi Singh,RR,7,0
 Danish Malewar,MI,7,0
 Pyla Avinash,PBKS,7,0
-Sakib Hussain,SRH,7,0
 Vishnu Vinod,PBKS,7,0
 Anuj Rawat,GT,7,0
 Matthew Breetzke,LSG,7,0
