@@ -1,7 +1,7 @@
 Player,Team,Credits,Total Points
+Rajat Patidar,RCB,9,380
 Ishan Kishan,SRH,10.5,367
-Virat Kohli,RCB,11,354
-Rajat Patidar,RCB,9,340
+Virat Kohli,RCB,11,357
 Heinrich Klaasen,SRH,10,337
 Dhruv Jurel,RR,9,329
 Vaibhav Sooryavanshi,RR,9,320
@@ -10,6 +10,7 @@ Jos Buttler,GT,10,308
 Yashasvi Jaiswal,RR,10,289
 Jamie Overton,CSK,8,287
 Ravi Bishnoi,RR,8.5,285
+Prince Yadav,LSG,7,285
 Angkrish Raghuvanshi,KKR,9,280
 Prasidh Krishna,GT,9,278
 Nitish Kumar Reddy,SRH,9,277
@@ -20,24 +21,23 @@ Ayush Mhatre,CSK,9,260
 Phil Salt,RCB,9.5,251
 Jofra Archer,RR,9.5,244
 Sameer Rizvi,DC,8.5,239
+Tim David,RCB,9,238
 Prabhsimran Singh,PBKS,9,232
 Bhuvneshwar Kumar,RCB,9,229
 Ajinkya Rahane,KKR,9,228
 Sarfaraz Khan,CSK,7,227
-Prince Yadav,LSG,7,227
 Shreyas Iyer,PBKS,10.5,222
-Tim David,RCB,9,221
 Ryan Rickelton,MI,9,214
 Abhishek Sharma,SRH,10.5,212
 Aiden Markram,LSG,10,206
 Rohit Sharma,MI,10,204
+Mukul Choudhary,LSG,7,203
 Ravindra Jadeja,RR,10.5,202
 Krunal Pandya,RCB,9,202
 Pathum Nissanka,DC,7,202
 Shivam Dube,CSK,10,199
 Rishabh Pant,LSG,9.5,197
 Rashid Khan,GT,9.5,196
-Mukul Choudhary,LSG,7,195
 Cooper Connolly,PBKS,7.5,193
 Washington Sundar,GT,8.5,190
 Sai Sudharsan,GT,10,183
@@ -52,6 +52,7 @@ Mitchell Marsh,LSG,10,168
 Priyansh Arya,PBKS,9.5,167
 Rasikh Salam,RCB,7.5,167
 Hardik Pandya,MI,10.5,166
+Avesh Khan,LSG,8,166
 Jacob Duffy,RCB,7,166
 Suryakumar Yadav,MI,10.5,165
 Lungi Ngidi,DC,8,164
@@ -63,7 +64,8 @@ Sunil Narine,KKR,10.5,155
 Anukul Roy,KKR,7.5,155
 Nandre Burger,RR,7,154
 Noor Ahmad,CSK,9,153
-Mohammad Shami,LSG,8.5,153
+Romario Shepherd,RCB,8.5,152
+Mohammad Shami,LSG,8.5,151
 Rinku Singh,KKR,9,150
 Xavier Bartlett,PBKS,7,145
 Riyan Parag,RR,9,144
@@ -72,7 +74,6 @@ Kagiso Rabada,GT,7.5,140
 Vijaykumar Vyshak,PBKS,8,139
 Finn Allen,KKR,7,138
 Shardul Thakur,MI,9,136
-Romario Shepherd,RCB,8.5,135
 Shivang Kumar,SRH,7.5,135
 Aniket Verma,SRH,9,131
 David Miller,DC,9,129
@@ -87,7 +88,7 @@ Ashok Sharma,GT,7,116
 Abdul Samad,LSG,8,115
 T Natarajan,DC,7.5,115
 Axar Patel,DC,9.5,114
-Avesh Khan,LSG,8,112
+Jitesh Sharma,RCB,9,113
 Brijesh Sharma,RR,7,111
 Kuldeep Yadav,DC,9.5,110
 Blessing Muzarabani,KKR,7.5,110
@@ -98,8 +99,8 @@ Glenn Phillips,GT,8,106
 Marco Jansen,PBKS,9.5,101
 Ruturaj Gaikwad,CSK,9,100
 Josh Hazlewood,RCB,10,99
+Digvesh Singh,LSG,9,99
 Dewald Brevis,CSK,9,99
-Digvesh Singh,LSG,9,97
 Yuzvendra Chahal,PBKS,9.5,95
 Naman Dhir,MI,9.5,93
 Shimron Hetmyer,RR,9.5,93
@@ -108,11 +109,10 @@ Abhinandan Singh,RCB,7,91
 Salil Arora,SRH,7,88
 Mitchell Santner,MI,9,87
 Arshdeep Singh,PBKS,10,80
-Jitesh Sharma,RCB,9,78
+Nicholas Pooran,LSG,10.5,77
 Prashant Veer,CSK,8,72
 Rahul Tewatia,GT,9,71
 Khaleel Ahmed,CSK,9.5,70
-Nicholas Pooran,LSG,10.5,69
 Matt Henry,CSK,7.5,68
 Manimaran Siddharth,LSG,7.5,66
 Nehal Wadhera,PBKS,9.5,63
@@ -140,6 +140,7 @@ Varun Chakaravarthy,KKR,10,16
 Mayank Markande,MI,7.5,12
 Harshal Patel,SRH,9.5,9
 Auqib Nabi,DC,7.5,9
+Himmat Singh,LSG,7,8
 Rahul Chahar,CSK,7,8
 Matthew Short,CSK,7.5,6
 Anrich Nortje,LSG,7,4
@@ -251,7 +252,6 @@ Matthew Breetzke,LSG,7,0
 Robin Minz,MI,7,0
 Tejasvi Singh,KKR,7,0
 Yash Thakur,PBKS,7,0
-Himmat Singh,LSG,7,0
 Jordan Cox,RCB,7,0
 Brydon Carse,SRH,7,0
 Akshat Raghuwanshi,LSG,7,0
