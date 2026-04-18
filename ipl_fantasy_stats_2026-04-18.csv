@@ -1,5 +1,5 @@
 Player,Team,Credits,Total Points
-Heinrich Klaasen,SRH,10,430
+Heinrich Klaasen,SRH,10,438
 Anshul Kamboj,CSK,8.5,401
 Rajat Patidar,RCB,9,394
 Virat Kohli,RCB,11,393
@@ -8,15 +8,15 @@ Jos Buttler,GT,10,389
 Jamie Overton,CSK,8,370
 Ishan Kishan,SRH,10.5,369
 Phil Salt,RCB,9.5,348
+Nitish Kumar Reddy,SRH,9,345
 Prabhsimran Singh,PBKS,9,345
 Dhruv Jurel,RR,9,329
 Bhuvneshwar Kumar,RCB,9,325
-Nitish Kumar Reddy,SRH,9,320
 Vaibhav Sooryavanshi,RR,9,320
 Shreyas Iyer,PBKS,10.5,319
 Prasidh Krishna,GT,9,313
+Ayush Mhatre,CSK,9,311
 Abhishek Sharma,SRH,10.5,303
-Ayush Mhatre,CSK,9,301
 Angkrish Raghuvanshi,KKR,9,294
 Sanju Samson,CSK,9.5,293
 Devdutt Padikkal,RCB,9,290
@@ -26,12 +26,12 @@ Prince Yadav,LSG,7,285
 Tim David,RCB,9,277
 KL Rahul,DC,10,273
 Tristan Stubbs,DC,9,266
+Sarfaraz Khan,CSK,7,262
 Krunal Pandya,RCB,9,247
 Sameer Rizvi,DC,8.5,245
 Jofra Archer,RR,9.5,244
 Cameron Green,KKR,8,240
 Kagiso Rabada,GT,7.5,231
-Sarfaraz Khan,CSK,7,231
 Ajinkya Rahane,KKR,9,230
 Lungi Ngidi,DC,8,224
 Rashid Khan,GT,9.5,221
@@ -50,6 +50,7 @@ Axar Patel,DC,9.5,201
 Vaibhav Arora,KKR,9,200
 Rishabh Pant,LSG,9.5,197
 Priyansh Arya,PBKS,9.5,190
+Eshan Malinga,SRH,8.5,188
 Mukesh Kumar,DC,8.5,187
 Kartik Tyagi,KKR,7,183
 Sunil Narine,KKR,10.5,182
@@ -73,7 +74,6 @@ Noor Ahmad,CSK,9,165
 Xavier Bartlett,PBKS,7,165
 Rovman Powell,KKR,8,164
 Rinku Singh,KKR,9,163
-Eshan Malinga,SRH,8.5,163
 Sandeep Sharma,RR,8,163
 Anukul Roy,KKR,7.5,163
 Shardul Thakur,MI,9,159
@@ -86,11 +86,11 @@ Vijaykumar Vyshak,PBKS,8,149
 Glenn Phillips,GT,8,147
 Shashank Singh,PBKS,9,144
 Riyan Parag,RR,9,144
+Ruturaj Gaikwad,CSK,9,144
 Jaydev Unadkat,SRH,7,144
 Jitesh Sharma,RCB,9,140
 Finn Allen,KKR,7,138
 Aniket Verma,SRH,9,137
-Ruturaj Gaikwad,CSK,9,135
 Marco Jansen,PBKS,9.5,130
 Donovan Ferreira,RR,7.5,127
 T Natarajan,DC,7.5,127
@@ -101,10 +101,10 @@ Tushar Deshpande,RR,8.5,120
 Dewald Brevis,CSK,9,119
 Suyash Sharma,RCB,8,118
 Abdul Samad,LSG,8,115
+Salil Arora,SRH,7,115
 AM Ghazanfar,MI,7,112
 Brijesh Sharma,RR,7,111
 Blessing Muzarabani,KKR,7.5,110
-Salil Arora,SRH,7,107
 Josh Hazlewood,RCB,10,103
 Yuzvendra Chahal,PBKS,9.5,101
 Digvesh Singh,LSG,9,99
@@ -138,9 +138,9 @@ Jasprit Bumrah,MI,11,38
 Corbin Bosch,MI,7.5,36
 Ashutosh Sharma,DC,9,34
 Kumar Kushagra,GT,7,33
+Matthew Short,CSK,7.5,32
 Tim Seifert,KKR,7.5,29
 Shahbaz Ahmed,LSG,8,20
-Matthew Short,CSK,7.5,12
 Mayank Markande,MI,7.5,12
 Karun Nair,DC,8,10
 Harshal Patel,SRH,9.5,9
