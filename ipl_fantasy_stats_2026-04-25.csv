@@ -1,8 +1,8 @@
 Player,Team,Credits,Total Points
 Abhishek Sharma,SRH,10.5,598
 Vaibhav Sooryavanshi,RR,9,560
+Heinrich Klaasen,SRH,10,552
 KL Rahul,DC,10,541
-Heinrich Klaasen,SRH,10,532
 Ishan Kishan,SRH,10.5,517
 Virat Kohli,RCB,11,508
 Prabhsimran Singh,PBKS,9,476
@@ -12,11 +12,11 @@ Shubman Gill,GT,10,460
 Anshul Kamboj,CSK,8.5,459
 Sanju Samson,CSK,9.5,458
 Shreyas Iyer,PBKS,10.5,450
+Nitish Kumar Reddy,SRH,9,448
 Jos Buttler,GT,10,436
 Jamie Overton,CSK,8,435
 Eshan Malinga,SRH,8.5,416
 Rajat Patidar,RCB,9,408
-Nitish Kumar Reddy,SRH,9,405
 Prince Yadav,LSG,7,403
 Yashasvi Jaiswal,RR,10,398
 Priyansh Arya,PBKS,9.5,392
@@ -24,9 +24,9 @@ Devdutt Padikkal,RCB,9,385
 Cooper Connolly,PBKS,7.5,378
 Ravindra Jadeja,RR,10.5,371
 Sai Sudharsan,GT,10,365
+Ravi Bishnoi,RR,8.5,361
 Kagiso Rabada,GT,7.5,360
 Bhuvneshwar Kumar,RCB,9,354
-Ravi Bishnoi,RR,8.5,353
 Phil Salt,RCB,9.5,348
 Prasidh Krishna,GT,9,334
 Tilak Varma,MI,10,328
@@ -59,6 +59,7 @@ Rinku Singh,KKR,9,241
 Ajinkya Rahane,KKR,9,240
 AM Ghazanfar,MI,7,240
 Shivam Dube,CSK,10,238
+Brijesh Sharma,RR,7,238
 Kuldeep Yadav,DC,9.5,237
 Nandre Burger,RR,7,235
 Hardik Pandya,MI,10.5,232
@@ -84,13 +85,12 @@ Marco Jansen,PBKS,9.5,185
 Mukesh Kumar,DC,8.5,183
 Sherfane Rutherford,MI,8,183
 Ruturaj Gaikwad,CSK,9,179
-Brijesh Sharma,RR,7,178
 Shivang Kumar,SRH,7.5,177
 Vijaykumar Vyshak,PBKS,8,176
 Ramandeep Singh,KKR,7.5,175
 Praful Hinge,SRH,7,174
 Rasikh Salam,RCB,7.5,173
-Aniket Verma,SRH,9,169
+Aniket Verma,SRH,9,170
 Ashwani Kumar,MI,8.5,169
 Varun Chakaravarthy,KKR,10,167
 Jacob Duffy,RCB,7,166
@@ -109,13 +109,13 @@ Suyash Sharma,RCB,8,147
 Josh Hazlewood,RCB,10,146
 Jaydev Unadkat,SRH,7,144
 Finn Allen,KKR,7,138
+Salil Arora,SRH,7,133
 Yuzvendra Chahal,PBKS,9.5,132
 Gurjapneet Singh,CSK,7,129
 T Natarajan,DC,7.5,127
 Manimaran Siddharth,LSG,7.5,124
-Salil Arora,SRH,7,123
 Nehal Wadhera,PBKS,9.5,121
-Tushar Deshpande,RR,8.5,120
+Tushar Deshpande,RR,8.5,118
 Digvesh Singh,LSG,9,115
 Abdul Samad,LSG,8,115
 Jasprit Bumrah,MI,11,110
