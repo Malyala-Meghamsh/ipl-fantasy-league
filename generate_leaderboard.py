@@ -605,14 +605,14 @@ def generate_html(rankings, history, fantasy_points):
                     <td class="today-owner">{owner_badge}<br><small>{owner_nick}</small></td>
                 </tr>"""
 
-        # Build owner filter buttons (only owners who have players in today's match)
-        today_owners_set = set()
+        # Build owner filter buttons (only owners who have players in today's match), sorted by total pts desc
+        today_owner_pts = {}
         for p in today_players_sorted:
             ot = player_to_owner.get(p["name"], "")
             if ot:
-                today_owners_set.add(ot)
+                today_owner_pts[ot] = today_owner_pts.get(ot, 0) + p["points"]
         filter_buttons = '<button class="today-filter-btn active" onclick="filterTodayOwner(\'ALL\')">All</button>'
-        for tc in sorted(today_owners_set):
+        for tc in sorted(today_owner_pts, key=lambda t: today_owner_pts[t], reverse=True):
             nick = OWNERS.get(tc, {}).get("nick", tc)
             bg = TEAM_COLORS.get(tc, {}).get("bg", "#333")
             txt = TEAM_COLORS.get(tc, {}).get("text", "#fff")
