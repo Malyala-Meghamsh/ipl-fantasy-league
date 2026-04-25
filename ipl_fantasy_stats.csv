@@ -1,11 +1,13 @@
 Player,Team,Credits,Total Points
+Abhishek Sharma,SRH,10.5,598
 Vaibhav Sooryavanshi,RR,9,560
 KL Rahul,DC,10,541
-Heinrich Klaasen,SRH,10,518
-Abhishek Sharma,SRH,10.5,514
+Heinrich Klaasen,SRH,10,532
+Ishan Kishan,SRH,10.5,517
 Virat Kohli,RCB,11,508
 Prabhsimran Singh,PBKS,9,476
-Dhruv Jurel,RR,9,463
+Dhruv Jurel,RR,9,471
+Jofra Archer,RR,9.5,461
 Shubman Gill,GT,10,460
 Anshul Kamboj,CSK,8.5,459
 Sanju Samson,CSK,9.5,458
@@ -13,12 +15,10 @@ Shreyas Iyer,PBKS,10.5,450
 Jos Buttler,GT,10,436
 Jamie Overton,CSK,8,435
 Eshan Malinga,SRH,8.5,416
-Ishan Kishan,SRH,10.5,412
 Rajat Patidar,RCB,9,408
-Jofra Archer,RR,9.5,403
+Nitish Kumar Reddy,SRH,9,405
 Prince Yadav,LSG,7,403
 Yashasvi Jaiswal,RR,10,398
-Nitish Kumar Reddy,SRH,9,394
 Priyansh Arya,PBKS,9.5,392
 Devdutt Padikkal,RCB,9,385
 Cooper Connolly,PBKS,7.5,378
@@ -26,7 +26,7 @@ Ravindra Jadeja,RR,10.5,371
 Sai Sudharsan,GT,10,365
 Kagiso Rabada,GT,7.5,360
 Bhuvneshwar Kumar,RCB,9,354
-Ravi Bishnoi,RR,8.5,349
+Ravi Bishnoi,RR,8.5,353
 Phil Salt,RCB,9.5,348
 Prasidh Krishna,GT,9,334
 Tilak Varma,MI,10,328
@@ -43,9 +43,10 @@ Cameron Green,KKR,8,285
 Aiden Markram,LSG,10,281
 Rishabh Pant,LSG,9.5,281
 Nitish Rana,DC,8.5,281
+Travis Head,SRH,10,280
 Krunal Pandya,RCB,9,279
 Naman Dhir,MI,9.5,277
-Travis Head,SRH,10,272
+Donovan Ferreira,RR,7.5,271
 Kartik Tyagi,KKR,7,270
 Harsh Dubey,SRH,8.5,265
 Axar Patel,DC,9.5,253
@@ -55,12 +56,11 @@ Mohammad Shami,LSG,8.5,244
 Mukul Choudhary,LSG,7,244
 Suryakumar Yadav,MI,10.5,242
 Rinku Singh,KKR,9,241
-Nandre Burger,RR,7,241
 Ajinkya Rahane,KKR,9,240
 AM Ghazanfar,MI,7,240
 Shivam Dube,CSK,10,238
-Donovan Ferreira,RR,7.5,238
 Kuldeep Yadav,DC,9.5,237
+Nandre Burger,RR,7,235
 Hardik Pandya,MI,10.5,232
 Lungi Ngidi,DC,8,230
 Mohammed Siraj,GT,9.5,227
@@ -81,10 +81,10 @@ Mitchell Santner,MI,9,194
 David Miller,DC,9,191
 Akeal Hosein,CSK,7.5,189
 Marco Jansen,PBKS,9.5,185
-Brijesh Sharma,RR,7,184
 Mukesh Kumar,DC,8.5,183
 Sherfane Rutherford,MI,8,183
 Ruturaj Gaikwad,CSK,9,179
+Brijesh Sharma,RR,7,178
 Shivang Kumar,SRH,7.5,177
 Vijaykumar Vyshak,PBKS,8,176
 Ramandeep Singh,KKR,7.5,175
@@ -112,10 +112,10 @@ Finn Allen,KKR,7,138
 Yuzvendra Chahal,PBKS,9.5,132
 Gurjapneet Singh,CSK,7,129
 T Natarajan,DC,7.5,127
-Tushar Deshpande,RR,8.5,124
 Manimaran Siddharth,LSG,7.5,124
 Salil Arora,SRH,7,123
 Nehal Wadhera,PBKS,9.5,121
+Tushar Deshpande,RR,8.5,120
 Digvesh Singh,LSG,9,115
 Abdul Samad,LSG,8,115
 Jasprit Bumrah,MI,11,110

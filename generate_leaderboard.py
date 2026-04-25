@@ -362,10 +362,10 @@ def compute_auction_awards(rankings, fantasy_points):
                     "pts_per_cr": pts / price,
                 })
 
-    # Visionary Pick: best pts/cr among players in the top 30% by points
+    # Visionary Pick: best pts/cr among players in the top 10% by points
     sorted_pts = sorted([p["pts"] for p in all_players if p["pts"] > 0])
-    top30_threshold = sorted_pts[int(len(sorted_pts) * 0.7)] if sorted_pts else 0
-    eligible_value = [p for p in all_players if p["pts"] >= top30_threshold]
+    top10_threshold = sorted_pts[int(len(sorted_pts) * 0.90)] if sorted_pts else 0
+    eligible_value = [p for p in all_players if p["pts"] >= top10_threshold]
     best_value = max(eligible_value, key=lambda p: p["pts_per_cr"]) if eligible_value else None
 
     # Shittiest Pick: worst pts/cr among expensive players (>= 5 Cr), exclude 0 pts
@@ -537,6 +537,14 @@ def generate_html(rankings, history, fantasy_points):
 
     # Build today's players to watch HTML
     today_matches, today_players = get_today_players(LATEST_CSV)
+    # Build set of Best XI player names (mapped to CSV names) for marking in today's table
+    best_xi_players = set()
+    for r in rankings:
+        for p in r["full_squad"]:
+            if p["in_xi"]:
+                csv_name = name_map.get(p["name"], p["name"])
+                best_xi_players.add(csv_name)
+
     today_section_html = ""
     if today_matches:
         match_labels = []
@@ -592,11 +600,12 @@ def generate_html(rankings, history, fantasy_points):
             today_pts = p.get("today_pts", 0)
             today_pts_display = f"+{today_pts}" if today_pts > 0 else str(today_pts) if today_pts < 0 else "0"
             today_pts_color = "today-day-hot" if today_pts >= day_hot_threshold else "today-day-warm" if today_pts >= day_warm_threshold else "today-day-zero"
+            xi_badge = ' <span class="today-xi-badge" title="In Best XI">&#11088;</span>' if p["name"] in best_xi_players else ''
             today_rows += f"""
                 <tr class="today-row" data-owner="{row_owner}">
                     <td class="num">{i}</td>
                     <td class="player-name">
-                        {p["name"]}
+                        {p["name"]}{xi_badge}
                         <span class="today-orig-team" style="background:{team_color['bg']};color:{team_color['text']}">{p["original_team"]}</span>
                     </td>
                     <td class="today-price">{price_str}</td>
@@ -646,6 +655,7 @@ def generate_html(rankings, history, fantasy_points):
                     </tr>
                 </tfoot>
             </table>
+            <div class="today-legend">&#11088; = In Team's Best XI</div>
         </div>
         """
 
@@ -1735,6 +1745,17 @@ def generate_html(rankings, history, fantasy_points):
         .today-unclaimed {{
             background: #333 !important;
             color: #888 !important;
+        }}
+        .today-xi-badge {{
+            font-size: 0.7em;
+            margin-left: 3px;
+            vertical-align: middle;
+        }}
+        .today-legend {{
+            text-align: center;
+            padding: 8px 14px;
+            font-size: 0.72em;
+            color: #666;
         }}
         .today-divider {{
             text-align: center;
