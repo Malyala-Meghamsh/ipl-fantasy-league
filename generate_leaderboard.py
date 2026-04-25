@@ -635,6 +635,14 @@ def generate_html(rankings, history, fantasy_points):
                 <tbody>
                     {today_rows}
                 </tbody>
+                <tfoot>
+                    <tr class="today-total-row">
+                        <td></td><td><strong>TOTAL</strong></td><td></td>
+                        <td class="pts" id="today-total-pts"><strong>{sum(p['points'] for p in today_players_sorted)}</strong></td>
+                        <td class="today-day" id="today-total-day"><strong>{'+' + str(sum(p.get('today_pts', 0) for p in today_players_sorted)) if sum(p.get('today_pts', 0) for p in today_players_sorted) > 0 else str(sum(p.get('today_pts', 0) for p in today_players_sorted))}</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         """
@@ -735,7 +743,7 @@ def generate_html(rankings, history, fantasy_points):
                 elif rank_diff < 0:
                     trend_html = f'<span class="trend trend-down">&#9660; {rank_diff}</span>'
                 else:
-                    trend_html = '<span class="trend trend-same">&#9644;</span>'
+                    trend_html = '<span class="trend trend-same">&mdash;</span>'
                 if pt_diff != 0:
                     sign = "+" if pt_diff > 0 else ""
                     trend_html += f' <span class="pt-diff">({sign}{pt_diff} pts)</span>'
@@ -1735,6 +1743,20 @@ def generate_html(rankings, history, fantasy_points):
             letter-spacing: 1px;
             border-top: 1px dashed #1a3a5e;
         }}
+        .today-total-row {{
+            background: #0a1525;
+            border-top: 2px solid #1a3a5e;
+        }}
+        .today-total-row td {{
+            padding: 10px 8px;
+            font-size: 0.9em;
+        }}
+        .today-total-row .pts {{
+            color: #ffd200;
+        }}
+        .today-total-row .today-day {{
+            color: #4caf50;
+        }}
         .today-filter-bar {{
             display: flex;
             flex-wrap: wrap;
@@ -1962,6 +1984,8 @@ def generate_html(rankings, history, fantasy_points):
             event.target.classList.add('active');
             const rows = document.querySelectorAll('.today-table tbody tr');
             let visibleIdx = 0;
+            let totalPts = 0;
+            let totalDay = 0;
             rows.forEach(row => {{
                 const rowOwner = row.getAttribute('data-owner');
                 if (!rowOwner) return;
@@ -1970,6 +1994,9 @@ def generate_html(rankings, history, fantasy_points):
                     if (row.classList.contains('today-row')) {{
                         visibleIdx++;
                         row.querySelector('.num').textContent = visibleIdx;
+                        totalPts += parseInt(row.querySelector('.pts')?.textContent) || 0;
+                        const dayText = row.querySelector('.today-day')?.textContent?.replace('+','') || '0';
+                        totalDay += parseInt(dayText) || 0;
                     }}
                 }} else {{
                     const show = rowOwner === owner;
@@ -1977,9 +2004,16 @@ def generate_html(rankings, history, fantasy_points):
                     if (show && row.classList.contains('today-row')) {{
                         visibleIdx++;
                         row.querySelector('.num').textContent = visibleIdx;
+                        totalPts += parseInt(row.querySelector('.pts')?.textContent) || 0;
+                        const dayText = row.querySelector('.today-day')?.textContent?.replace('+','') || '0';
+                        totalDay += parseInt(dayText) || 0;
                     }}
                 }}
             }});
+            const totalPtsEl = document.getElementById('today-total-pts');
+            const totalDayEl = document.getElementById('today-total-day');
+            if (totalPtsEl) totalPtsEl.innerHTML = '<strong>' + totalPts + '</strong>';
+            if (totalDayEl) totalDayEl.innerHTML = '<strong>' + (totalDay > 0 ? '+' + totalDay : totalDay) + '</strong>';
         }}
 
         // Player Search
