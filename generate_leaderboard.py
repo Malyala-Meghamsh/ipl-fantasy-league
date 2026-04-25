@@ -605,14 +605,16 @@ def generate_html(rankings, history, fantasy_points):
                     <td class="today-owner">{owner_badge}<br><small>{owner_nick}</small></td>
                 </tr>"""
 
-        # Build owner filter buttons (only owners who have players in today's match), sorted by total pts desc
-        today_owner_pts = {}
+        # Build owner filter buttons sorted by today's pts desc, tie-break by total pts desc
+        today_owner_day_pts = {}
+        today_owner_total_pts = {}
         for p in today_players_sorted:
             ot = player_to_owner.get(p["name"], "")
             if ot:
-                today_owner_pts[ot] = today_owner_pts.get(ot, 0) + p["points"]
+                today_owner_day_pts[ot] = today_owner_day_pts.get(ot, 0) + p.get("today_pts", 0)
+                today_owner_total_pts[ot] = today_owner_total_pts.get(ot, 0) + p["points"]
         filter_buttons = '<button class="today-filter-btn active" onclick="filterTodayOwner(\'ALL\')">All</button>'
-        for tc in sorted(today_owner_pts, key=lambda t: today_owner_pts[t], reverse=True):
+        for tc in sorted(today_owner_day_pts, key=lambda t: (today_owner_day_pts[t], today_owner_total_pts.get(t, 0)), reverse=True):
             nick = OWNERS.get(tc, {}).get("nick", tc)
             bg = TEAM_COLORS.get(tc, {}).get("bg", "#333")
             txt = TEAM_COLORS.get(tc, {}).get("text", "#fff")
