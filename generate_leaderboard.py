@@ -368,8 +368,8 @@ def compute_auction_awards(rankings, fantasy_points):
     eligible_value = [p for p in all_players if p["pts"] >= top25_threshold]
     best_value = max(eligible_value, key=lambda p: p["pts_per_cr"]) if eligible_value else None
 
-    # Shittiest Pick: worst pts/cr among expensive players (>= 5 Cr), exclude 0 pts
-    expensive = [p for p in all_players if p["price"] >= 5.0 and p["pts"] > 0]
+    # Shittiest Pick: worst pts/cr among expensive players (> 10 Cr), exclude 0 pts
+    expensive = [p for p in all_players if p["price"] > 10 and p["pts"] != 0]
     worst_value = min(expensive, key=lambda p: p["pts_per_cr"]) if expensive else None
 
     # Best Squad Selector: team with highest Best XI points (rankings[0])
