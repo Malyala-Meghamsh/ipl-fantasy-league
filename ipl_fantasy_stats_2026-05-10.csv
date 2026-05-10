@@ -11,19 +11,19 @@ Sai Sudharsan,GT,10,674
 Anshul Kamboj,CSK,8.5,626
 Jamie Overton,CSK,8,609
 Dhruv Jurel,RR,9,608
-Ryan Rickelton,MI,9,606
+Ryan Rickelton,MI,9,607
 Cooper Connolly,PBKS,7.5,604
 Virat Kohli,RCB,11,603
+Bhuvneshwar Kumar,RCB,9,592
 Kagiso Rabada,GT,7.5,590
 Prabhsimran Singh,PBKS,9,585
 Mitchell Marsh,LSG,10,582
 Nitish Kumar Reddy,SRH,9,577
 Devdutt Padikkal,RCB,9,576
-Bhuvneshwar Kumar,RCB,9,567
 Rashid Khan,GT,9.5,554
+Rajat Patidar,RCB,9,553
 Shreyas Iyer,PBKS,10.5,551
 Travis Head,SRH,10,549
-Rajat Patidar,RCB,9,545
 Jofra Archer,RR,9.5,526
 Prince Yadav,LSG,7,524
 Ravindra Jadeja,RR,10.5,515
@@ -36,7 +36,7 @@ Ruturaj Gaikwad,CSK,9,457
 Priyansh Arya,PBKS,9.5,449
 Washington Sundar,GT,8.5,448
 Pathum Nissanka,DC,7,445
-Naman Dhir,MI,9.5,439
+Naman Dhir,MI,9.5,440
 Angkrish Raghuvanshi,KKR,9,438
 Rinku Singh,KKR,9,433
 Jason Holder,GT,8,431
@@ -53,6 +53,7 @@ Nitish Rana,DC,8.5,374
 Axar Patel,DC,9.5,371
 Tilak Varma,MI,10,369
 Mohammed Siraj,GT,9.5,366
+Rohit Sharma,MI,10,364
 Ravi Bishnoi,RR,8.5,359
 AM Ghazanfar,MI,7,358
 Anukul Roy,KKR,7.5,357
@@ -65,7 +66,6 @@ Arshdeep Singh,PBKS,10,332
 Vaibhav Arora,KKR,9,332
 Nicholas Pooran,LSG,10.5,330
 Hardik Pandya,MI,10.5,330
-Rohit Sharma,MI,10,330
 Suryakumar Yadav,MI,10.5,326
 Mohammad Shami,LSG,8.5,326
 Marcus Stoinis,PBKS,9,325
@@ -73,11 +73,11 @@ Ayush Mhatre,CSK,9,311
 Sakib Hussain,SRH,7,310
 Varun Chakaravarthy,KKR,10,308
 Josh Hazlewood,RCB,10,305
+Shivam Dube,CSK,10,296
 Sarfaraz Khan,CSK,7,292
 Brijesh Sharma,RR,7,291
 Romario Shepherd,RCB,8.5,286
 Marco Jansen,PBKS,9.5,284
-Shivam Dube,CSK,10,279
 Harsh Dubey,SRH,8.5,277
 Lungi Ngidi,DC,8,270
 Ayush Badoni,LSG,9,266
@@ -99,7 +99,7 @@ Quinton de Kock,MI,8,221
 Jitesh Sharma,RCB,9,219
 David Miller,DC,9,217
 Shashank Singh,PBKS,9,212
-Avesh Khan,LSG,8,197
+Avesh Khan,LSG,8,195
 Salil Arora,SRH,7,195
 Mitchell Santner,MI,9,194
 Shahbaz Ahmed,LSG,8,192
@@ -138,10 +138,10 @@ Abdul Samad,LSG,8,115
 Shahrukh Khan,GT,8.5,112
 Blessing Muzarabani,KKR,7.5,110
 Mitchell Starc,DC,10,107
+Prashant Veer,CSK,8,97
 Corbin Bosch,MI,7.5,92
 Abhinandan Singh,RCB,7,91
 Jacob Bethell,RCB,7.5,89
-Prashant Veer,CSK,8,86
 Trent Boult,MI,10,84
 Manav Suthar,GT,7,82
 George Linde,LSG,7.5,78
