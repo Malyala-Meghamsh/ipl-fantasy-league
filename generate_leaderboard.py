@@ -601,7 +601,9 @@ def compute_rankings(fantasy_points, original_teams=None):
             role_order = {"WK": 1, "BAT": 2, "AR": 3, "BOWL": 4}
             best_team.sort(key=lambda p: (role_order.get(get_role(p[0]), 9), -p[1]))
             for name, pts in best_team:
-                players.append({"name": name, "role": get_role(name), "points": pts})
+                csv_name = name_map.get(name, name)
+                orig_team = original_teams.get(csv_name, "")
+                players.append({"name": name, "role": get_role(name), "points": pts, "original_team": orig_team})
                 best_xi_names.add(name)
         # Full squad with all players
         full_squad = []
@@ -630,6 +632,14 @@ def compute_rankings(fantasy_points, original_teams=None):
 
 def generate_html(rankings, history, fantasy_points, league_rankings=None, league_history=None):
     """Generate a complete standalone HTML file."""
+
+    # Compute playoff teams (any IPL team appearing in fixtures after league phase)
+    playoff_teams = set()
+    for d, matches in IPL_FIXTURES.items():
+        if d > LEAGUE_END_DATE:
+            for home, away in matches:
+                playoff_teams.add(home)
+                playoff_teams.add(away)
 
     # Build today's players to watch HTML
     today_matches, today_players = get_today_players(LATEST_CSV)
@@ -864,10 +874,11 @@ def generate_html(rankings, history, fantasy_points, league_rankings=None, leagu
             os_badge = ' <span class="overseas-badge">OS</span>' if is_foreign(p["name"]) else ""
             if is_foreign(p["name"]):
                 xi_overseas += 1
+            po_badge = ' <span class="playoff-badge" title="Playoff player">&#127942;</span>' if p.get("original_team") in playoff_teams else ""
             player_rows += f"""
                 <tr>
                     <td class="num">{i}</td>
-                    <td class="player-name">{p["name"]}{os_badge}</td>
+                    <td class="player-name">{p["name"]}{os_badge}{po_badge}</td>
                     <td><span class="role-badge role-{role_class}">{p["role"]}</span></td>
                     <td class="pts">{p["points"]}</td>
                 </tr>"""
@@ -896,6 +907,7 @@ def generate_html(rankings, history, fantasy_points, league_rankings=None, leagu
             if is_foreign(p["name"]):
                 squad_overseas += 1
             orig_team = p.get("original_team", "")
+            po_badge_sq = ' <span class="playoff-badge" title="Playoff player">&#127942;</span>' if orig_team in playoff_teams else ""
             orig_team_badge = ""
             if orig_team:
                 otc = TEAM_COLORS.get(orig_team, {"bg": "#333", "text": "#fff"})
@@ -903,7 +915,7 @@ def generate_html(rankings, history, fantasy_points, league_rankings=None, leagu
             squad_rows += f"""
                 <tr class="{row_class}">
                     <td class="num">{i}</td>
-                    <td class="player-name">{p["name"]}{os_badge}{orig_team_badge}</td>
+                    <td class="player-name">{p["name"]}{os_badge}{po_badge_sq}{orig_team_badge}</td>
                     <td><span class="role-badge role-{role_class}">{p["role"]}</span></td>
                     <td class="price">{price_str}</td>
                     <td class="pts">{p["points"]}</td>
@@ -1404,6 +1416,13 @@ def generate_html(rankings, history, fantasy_points, league_rankings=None, leagu
             margin-left: 4px;
             vertical-align: middle;
             letter-spacing: 0.5px;
+        }}
+        .playoff-badge {{
+            display: inline-block;
+            margin-left: 4px;
+            font-size: 0.8em;
+            vertical-align: middle;
+            title: "Playoff player";
         }}
         .orig-team-badge {{
             display: inline-block;
