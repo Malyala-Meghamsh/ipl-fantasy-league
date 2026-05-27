@@ -30,6 +30,15 @@ DAILY_CSV = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{TODAY}.csv")
 LATEST_CSV = os.path.join(BASE_DIR, "ipl_fantasy_stats.csv")
 HISTORY_CSV = os.path.join(BASE_DIR, "ranking_history.csv")
 
+# Playoff match fixtures — used for auto-reconstructing missed days
+# Format: date → (teams_that_played_yesterday, teams_playing_today)
+# Update after each playoff match
+PLAYOFF_FIXTURES = {
+    "2026-05-26": [("RCB", "GT")],   # Qualifier 1
+    "2026-05-27": [("SRH", "RR")],   # Eliminator
+    # Add more as they are scheduled
+}
+
 # ═══════════════════════════════════════════════════════════════════
 # STEP 1 — SCRAPE FANTASY STATS
 # ═══════════════════════════════════════════════════════════════════
@@ -453,6 +462,97 @@ def load_fantasy_points():
     return fp
 
 
+def reconstruct_missed_day(missed_date_str, baseline_date_str, missed_teams, today_teams):
+    """Reconstruct a missed day's CSV by applying only missed_teams' gains over baseline.
+    missed_date_str: the date we missed (e.g. '2026-05-26')
+    baseline_date_str: the day before the missed match (e.g. '2026-05-25')
+    missed_teams: set of team codes that played on the missed day (e.g. {'RCB', 'GT'})
+    today_teams: set of team codes playing today (gains to strip)
+    """
+    baseline_csv = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{baseline_date_str}.csv")
+    missed_csv   = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{missed_date_str}.csv")
+    if not os.path.isfile(baseline_csv):
+        print(f"⚠️  Baseline {baseline_csv} not found, skipping reconstruction.")
+        return False
+
+    baseline = {}
+    with open(baseline_csv, "r", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            baseline[row["Player"].strip()] = row
+
+    with open(LATEST_CSV, "r", encoding="utf-8") as f:
+        current_rows = list(csv.DictReader(f))
+
+    out_rows = []
+    stripped = 0
+    for row in current_rows:
+        team = row["Team"].strip()
+        player = row["Player"].strip()
+        if team in missed_teams:
+            out_rows.append(row)  # gains from missed match included
+        elif team in today_teams:
+            if player in baseline:
+                out_rows.append(baseline[player])
+                diff = int(row["Total Points"]) - int(baseline[player]["Total Points"])
+                if diff > 0:
+                    stripped += 1
+            else:
+                out_rows.append(row)
+        else:
+            if player in baseline:
+                out_rows.append(baseline[player])
+            else:
+                out_rows.append(row)
+
+    for player, brow in baseline.items():
+        if not any(r["Player"].strip() == player for r in current_rows):
+            out_rows.append(brow)
+
+    out_rows.sort(key=lambda r: int(r["Total Points"]), reverse=True)
+
+    with open(missed_csv, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["Player", "Team", "Credits", "Total Points"])
+        writer.writeheader()
+        writer.writerows(out_rows)
+
+    # Calculate and save rankings for missed date
+    fp_miss = {r["Player"].strip(): int(r["Total Points"]) for r in out_rows if r["Total Points"].strip()}
+    team_totals = {}
+    for tm, squad in squads.items():
+        _, best_pts = find_best_xi(tm, squad, fp_miss)
+        team_totals[tm] = best_pts
+    sorted_teams = sorted(team_totals.items(), key=lambda x: x[1], reverse=True)
+
+    existing_rows = []
+    if os.path.isfile(HISTORY_CSV):
+        with open(HISTORY_CSV, "r", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            next(reader, None)
+            for r in reader:
+                if r[0] != missed_date_str:
+                    existing_rows.append(r)
+
+    new_rows = []
+    inserted = False
+    for r in existing_rows:
+        if r[0] > missed_date_str and not inserted:
+            for rank, (tm, total) in enumerate(sorted_teams, 1):
+                new_rows.append([missed_date_str, str(rank), tm, str(total), str(round(total/11, 1))])
+            inserted = True
+        new_rows.append(r)
+    if not inserted:
+        for rank, (tm, total) in enumerate(sorted_teams, 1):
+            new_rows.append([missed_date_str, str(rank), tm, str(total), str(round(total/11, 1))])
+
+    with open(HISTORY_CSV, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Date", "Rank", "Team", "Best XI Points", "Avg Per Player"])
+        writer.writerows(new_rows)
+
+    print(f"✅ Reconstructed {missed_date_str}: stripped {stripped} today's gains → {missed_csv}")
+    return True
+
+
 def run_pipeline(otp_provider=None, log_callback=None):
     def _log(msg):
         print(msg)
@@ -535,6 +635,22 @@ def run_pipeline(otp_provider=None, log_callback=None):
     print(f"✅ Rankings appended to {HISTORY_CSV}")
     print(f"✅ Daily stats saved to {DAILY_CSV}")
     print(f"✅ Latest stats updated in {LATEST_CSV}")
+
+    # --- Auto-reconstruct missed days ---
+    # Check yesterday: if yesterday's CSV is missing and we know which teams played,
+    # reconstruct it using today's scrape as source + baseline from day-before-yesterday.
+    yesterday = (MATCH_DAY - timedelta(days=1)).strftime("%Y-%m-%d")
+    yesterday_csv = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{yesterday}.csv")
+    today_fixtures = PLAYOFF_FIXTURES.get(TODAY, [])
+    yesterday_fixtures = PLAYOFF_FIXTURES.get(yesterday, [])
+    if not os.path.isfile(yesterday_csv) and yesterday_fixtures:
+        day_before = (MATCH_DAY - timedelta(days=2)).strftime("%Y-%m-%d")
+        missed_teams = {team for match in yesterday_fixtures for team in match}
+        today_teams = {team for match in today_fixtures for team in match}
+        _log(f"\n⚙️  Auto-reconstructing missing {yesterday} (teams: {missed_teams})...")
+        success = reconstruct_missed_day(yesterday, day_before, missed_teams, today_teams)
+        if success:
+            _log(f"✅ {yesterday} reconstructed successfully")
 
     # --- Generate HTML leaderboard ---
     try:

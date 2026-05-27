@@ -18,6 +18,10 @@ _now = datetime.now()
 MATCH_DAY = (_now - timedelta(days=1)).date() if _now.hour < 2 else _now.date()
 TODAY = MATCH_DAY.strftime("%Y-%m-%d")
 
+# Last day of league phase (playoffs start after this)
+LEAGUE_END_DATE = "2026-05-24"
+LEAGUE_STATS_CSV = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{LEAGUE_END_DATE}.csv")
+
 # ═══════════════════════════════════════════════════════════════════
 # IPL 2026 FIXTURES (date → list of (home_team_code, away_team_code))
 # ═══════════════════════════════════════════════════════════════════
@@ -69,6 +73,9 @@ IPL_FIXTURES = {
     "2026-05-22": [("SRH", "RCB")],
     "2026-05-23": [("LSG", "PBKS")],
     "2026-05-24": [("MI", "RR"), ("KKR", "DC")],
+    # ── Playoffs ──
+    "2026-05-26": [("RCB", "GT")],   # Qualifier 1
+    "2026-05-27": [("SRH", "RR")],   # Eliminator
 }
 
 # Map original IPL team codes used in ipl_fantasy_stats.csv
@@ -452,6 +459,95 @@ def compute_auction_awards(rankings, fantasy_points):
     return awards
 
 
+def _build_league_section(rnk, hist):
+    """Build podium + simple standings table + history for the league phase view."""
+    # --- Podium ---
+    podium_items = []
+    for i, p_idx in enumerate([0, 1, 2]):
+        if p_idx >= len(rnk):
+            continue
+        r = rnk[p_idx]
+        colors = TEAM_COLORS.get(r["team"], {"bg": "#333", "text": "#fff"})
+        pos_class = "first" if i == 0 else ("second" if i == 1 else "third")
+        medal = "&#129351;" if i == 0 else ("&#129352;" if i == 1 else "&#129353;")
+        nick = OWNERS.get(r["team"], {}).get("nick", "")
+        podium_items.append(f'''
+        <div class="podium-item {pos_class}"
+             style="background:{colors["bg"]};color:{colors["text"]}">
+            <div class="podium-rank">{medal}</div>
+            <div class="podium-team">{r["team"]}</div>
+            <div class="podium-owner">{nick}</div>
+            <div class="podium-pts">{r["points"]} pts</div>
+        </div>''')
+    podium_html = '<div class="podium">' + "".join(podium_items) + "</div>"
+
+    # --- Simple Rankings Table ---
+    rows = ""
+    for rank, r in enumerate(rnk, 1):
+        owner_nick = OWNERS.get(r["team"], {}).get("nick", r["team"])
+        colors = TEAM_COLORS.get(r["team"], {"bg": "#333", "text": "#fff"})
+        avg = round(r["points"] / 11, 1) if r["points"] > 0 else 0
+        medal_cell = (
+            "&#129351;" if rank == 1 else
+            "&#129352;" if rank == 2 else
+            "&#129353;" if rank == 3 else
+            f"#{rank}"
+        )
+        rows += f"""<tr>
+            <td class="num" style="font-weight:700;font-size:1.1em">{medal_cell}</td>
+            <td><span style="display:inline-block;padding:2px 8px;border-radius:6px;font-weight:700;background:{colors["bg"]};color:{colors["text"]}">{r["team"]}</span></td>
+            <td style="color:#aaa;font-size:0.85em">{owner_nick}</td>
+            <td class="pts">{r["points"]}</td>
+            <td style="color:#888;text-align:right">{avg}</td>
+        </tr>"""
+
+    standings_html = f"""
+    <div class="history-section" style="margin-top:16px">
+        <h2>&#127941; League Phase Final Standings</h2>
+        <p style="font-size:0.75em;color:#555;margin-bottom:10px;text-align:center">Season ended: {LEAGUE_END_DATE}</p>
+        <table class="xi-table" style="font-size:0.88em">
+            <thead><tr>
+                <th>#</th><th>Team</th><th>Owner</th>
+                <th style="text-align:right">Best XI Pts</th>
+                <th style="text-align:right">Avg</th>
+            </tr></thead>
+            <tbody>{rows}</tbody>
+        </table>
+    </div>"""
+
+    # --- History Table (last 10 league dates) ---
+    hist_dates = sorted(hist.keys())[-10:]
+    if hist and hist_dates:
+        history_section = f"""
+        <div class="history-section">
+            <h2>League History (last 10 match days)</h2>
+            <div style="overflow-x:auto">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th class="team-col">Team</th>
+                        {"".join(f'<th>{d[5:]}</th>' for d in hist_dates)}
+                    </tr>
+                </thead>
+                <tbody>
+                    {"".join(
+                        '<tr><td class="team-col">' + r["team"] + ' <small>(' + OWNERS.get(r["team"], {}).get('nick','') + ')</small></td>' +
+                        "".join(
+                            '<td>' + str(hist.get(d, {}).get(r["team"], {}).get("points", "-")) + '</td>'
+                            for d in hist_dates
+                        ) + '</tr>'
+                        for r in rnk
+                    )}
+                </tbody>
+            </table>
+            </div>
+        </div>"""
+    else:
+        history_section = ""
+
+    return podium_html + standings_html + history_section
+
+
 def load_fantasy_points():
     fp = {}
     with open(LATEST_CSV, "r", encoding="utf-8") as f:
@@ -532,7 +628,7 @@ def compute_rankings(fantasy_points, original_teams=None):
     return results
 
 
-def generate_html(rankings, history, fantasy_points):
+def generate_html(rankings, history, fantasy_points, league_rankings=None, league_history=None):
     """Generate a complete standalone HTML file."""
 
     # Build today's players to watch HTML
@@ -963,6 +1059,26 @@ def generate_html(rankings, history, fantasy_points):
         },
         "colors": {team: TEAM_COLORS.get(team, {"bg": "#333"})["bg"] for team in squads}
     }).replace("'", '"') + ";"
+
+    # Build league phase section (if provided)
+    league_section_html = ""
+    if league_rankings is not None and league_history is not None:
+        league_section_html = _build_league_section(league_rankings, league_history)
+
+    if league_section_html:
+        phase_tab_bar = """
+        <div class="phase-tab-bar">
+            <div class="phase-tab" onclick="switchPhaseTab('league')">&#9917; League Phase</div>
+            <div class="phase-tab active" onclick="switchPhaseTab('overall')">&#127942; Overall + Playoffs</div>
+        </div>"""
+        league_wrapper = f'<div class="phase-tab-content" id="phase-league">{league_section_html}</div>'
+        overall_open = '<div class="phase-tab-content active" id="phase-overall">'
+        overall_close = '</div>'
+    else:
+        phase_tab_bar = ""
+        league_wrapper = ""
+        overall_open = ""
+        overall_close = ""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -1852,6 +1968,36 @@ def generate_html(rankings, history, fantasy_points):
             vertical-align: middle;
         }}
 
+        /* Phase tab bar (League vs Overall) */
+        .phase-tab-bar {{
+            display: flex;
+            background: #111122;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid #1a1a2e;
+        }}
+        .phase-tab {{
+            flex: 1;
+            text-align: center;
+            padding: 11px 0;
+            font-size: 0.82em;
+            font-weight: 700;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            user-select: none;
+        }}
+        .phase-tab:hover {{ color: #aaa; background: #151530; }}
+        .phase-tab.active {{
+            color: #ffd200;
+            border-bottom-color: #ffd200;
+            background: #151530;
+        }}
+        .phase-tab-content {{ display: none; }}
+        .phase-tab-content.active {{ display: block; }}
+
         /* Scrollbar */
         ::-webkit-scrollbar {{ width: 4px; }}
         ::-webkit-scrollbar-track {{ background: #0a0a1a; }}
@@ -1886,6 +2032,10 @@ def generate_html(rankings, history, fantasy_points):
 
         <!-- Page Tab: Leaderboard -->
         <div class="page-tab-content active" id="page-leaderboard">
+
+        {phase_tab_bar}
+        {league_wrapper}
+        {overall_open}
 
         <!-- Podium -->
         <div class="podium">
@@ -1935,6 +2085,7 @@ def generate_html(rankings, history, fantasy_points):
             Auto-generated by IPL Fantasy Pipeline &middot; {TODAY}
         </div>
 
+        {overall_close}
         </div><!-- end page-leaderboard -->
 
         <!-- Page Tab: Today's Match -->
@@ -1999,6 +2150,15 @@ def generate_html(rankings, history, fantasy_points):
             const tabMap = {{'leaderboard': 0, 'today': 1}};
             document.querySelectorAll('.page-tab')[tabMap[tab]]?.classList.add('active');
             document.getElementById('page-' + tab)?.classList.add('active');
+        }}
+
+        // Phase tab switching (League vs Overall)
+        function switchPhaseTab(phase) {{
+            document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.phase-tab-content').forEach(c => c.classList.remove('active'));
+            const phaseMap = {{'league': 0, 'overall': 1}};
+            document.querySelectorAll('.phase-tab')[phaseMap[phase]]?.classList.add('active');
+            document.getElementById('phase-' + phase)?.classList.add('active');
         }}
 
         // Today's Match owner filter
@@ -2158,7 +2318,26 @@ def main():
     rankings = compute_rankings(fantasy_points, original_teams)
     history = load_history()
 
-    html = generate_html(rankings, history, fantasy_points)
+    # Load league-phase data (up to LEAGUE_END_DATE)
+    league_rankings = None
+    league_history = None
+    if os.path.isfile(LEAGUE_STATS_CSV):
+        league_fp = {}
+        league_orig = {}
+        with open(LEAGUE_STATS_CSV, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                pts = row["Total Points"].strip()
+                if pts:
+                    name = row["Player"].strip()
+                    league_fp[name] = int(pts)
+                    league_orig[name] = row["Team"].strip()
+        league_rankings = compute_rankings(league_fp, league_orig)
+        league_history = {d: v for d, v in history.items() if d <= LEAGUE_END_DATE}
+        print(f"   League data loaded from {LEAGUE_STATS_CSV}")
+
+    html = generate_html(rankings, history, fantasy_points,
+                         league_rankings=league_rankings,
+                         league_history=league_history)
 
     os.makedirs(os.path.dirname(OUTPUT_HTML), exist_ok=True)
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
