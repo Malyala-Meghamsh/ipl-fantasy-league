@@ -76,6 +76,7 @@ IPL_FIXTURES = {
     # ── Playoffs ──
     "2026-05-26": [("RCB", "GT")],   # Qualifier 1
     "2026-05-27": [("SRH", "RR")],   # Eliminator
+    "2026-05-29": [("GT", "RR")]   # Eliminator
 }
 
 # Map original IPL team codes used in ipl_fantasy_stats.csv
