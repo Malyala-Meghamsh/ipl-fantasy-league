@@ -181,6 +181,38 @@ def scrape_stats(otp_provider=None, log_callback=None):
 
     driver.quit()
 
+    if not data:
+        _log("⚠️ No player rows were fetched from stats page.")
+        fallback_date = (MATCH_DAY - timedelta(days=1)).strftime("%Y-%m-%d")
+        fallback_csv = os.path.join(BASE_DIR, f"ipl_fantasy_stats_{fallback_date}.csv")
+        fallback_source = None
+
+        for candidate in [fallback_csv, LATEST_CSV]:
+            if not os.path.isfile(candidate):
+                continue
+            with open(candidate, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                fallback_rows = []
+                for row in reader:
+                    name = row.get("Player", "").strip()
+                    if not name:
+                        continue
+                    fallback_rows.append([
+                        name,
+                        row.get("Team", "").strip(),
+                        row.get("Credits", "").strip(),
+                        row.get("Total Points", "").strip(),
+                    ])
+            if fallback_rows:
+                data = fallback_rows
+                fallback_source = candidate
+                break
+
+        if fallback_source:
+            _log(f"↩️ Using fallback snapshot from {os.path.basename(fallback_source)} ({len(data)} players)")
+        else:
+            _log("❌ No fallback snapshot found. CSV will be written with header only.")
+
     # Save date-stamped CSV
     for path in [DAILY_CSV, LATEST_CSV]:
         with open(path, "w", newline="", encoding="utf-8") as f:
